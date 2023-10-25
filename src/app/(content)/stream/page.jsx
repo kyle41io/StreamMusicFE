@@ -1,7 +1,7 @@
 import React from "react";
 
 const page = () => {
-  return <div>playlist page</div>;
+  return <div>stream page</div>;
 };
 
 export default page;
