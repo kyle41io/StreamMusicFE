@@ -1,14 +1,9 @@
-import axios from "axios";
+// import axios from "axios";
+// import dotenv from "dotenv";
 
-export function search() {
-  return axios
-    .get(
-      `https://www.googleapis.com/youtube/v3/search?key=${process.env.YT_API_KEY}&q=kien&type=video&part=snippet`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    )
-    .then((res) => res.data);
-}
+// export const search = async () => {
+//   const res = await axios.get(
+//     `https://www.googleapis.com/youtube/v3/search?key=${process.env.YT_API_KEY}&q=kien&type=video&part=snippet`
+//   );
+//   return res.data;
+// };
