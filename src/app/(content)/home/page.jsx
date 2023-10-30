@@ -1,7 +1,7 @@
 import React from "react";
 
-const DetailMusic = () => {
-  return <div>Detail Music</div>;
+const Home = () => {
+  return <div>Home</div>;
 };
 
-export default DetailMusic;
+export default Home;
