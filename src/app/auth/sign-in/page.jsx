@@ -1,7 +1,10 @@
 import React from "react";
 
 const SignIn = () => {
-  return <div>Sign In</div>;
+  return <div>
+    <input placeholder="nhap email" />
+    <button>submit</button>
+  </div>;
 };
 
 export default SignIn;
