@@ -1,7 +1,7 @@
 import React from "react";
 
-const page = () => {
-  return <div>home page</div>;
+const DetailMusic = () => {
+  return <div>Detail Music</div>;
 };
 
-export default page;
+export default DetailMusic;
