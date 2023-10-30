@@ -1,10 +1,9 @@
-import React from "react";
+import SignIn from "@/components/auth/signin/SignIn"
 
-const SignIn = () => {
-  return <div>
-    <input placeholder="nhap email" />
-    <button>submit update</button>
-  </div>;
-};
+const pageSignIn = () => {
+  return (
+      <SignIn />
+  )
+}
 
-export default SignIn;
+export default SignIn
