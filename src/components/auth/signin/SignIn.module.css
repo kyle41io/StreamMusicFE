@@ -7,7 +7,7 @@
    justify-content: center;
 }
 
-.signup-container {
+.signin-container {
    height: 590px;
    display: flex;
    gap: 64px;
@@ -20,4 +20,10 @@
    background-image: url('./../../../assets/svg/listener.svg');
    background-repeat: no-repeat;
    background-position: center;
+}
+
+.singin-box {
+   padding: 24px;
+   display: flex;
+   flex-direction: column;
 }
