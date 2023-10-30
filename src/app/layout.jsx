@@ -4,7 +4,7 @@ import "../styles/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Dolphin Music Stream",
+  title: "Music Is Life",
   description: "Enjoy sharing your taste",
 };
 
