@@ -10,9 +10,9 @@ module.exports = {
       colors: {
         primary: "#FF6B00",
         primaryBlack: "#2B2B2B",
-        link: "#0094FF",
-        success: "#1AB232",
-        _error: "#FF4040",
+        primaryLink: "#0094FF",
+        primarySuccess: "#1AB232",
+        primaryError: "#FF4040",
         primaryGray: "#979797",
       },
     },
@@ -21,7 +21,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(primary|primaryBlack|link|primaryGray|success|_error)/,
+        /(bg|text|border)-(primary|primaryBlack|primaryLink|primaryGray|primarySuccess|primaryError)/,
     },
   ],
 };
