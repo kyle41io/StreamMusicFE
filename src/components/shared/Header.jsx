@@ -3,8 +3,9 @@ import React from "react";
 import logo from "@/assets/images/logo.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import Button from "./Button";
-import { MdPlaylistAdd } from "react-icons/md";
-import UserAvatar from "../UserAvatar";
+import ResultBox from "../ResultBox";
+// import { MdPlaylistAdd } from "react-icons/md";
+// import UserAvatar from "../UserAvatar";
 
 export default function Header() {
   return (
@@ -35,6 +36,8 @@ export default function Header() {
             size={20}
             className="text-secondaryBlack absolute right-3"
           />
+
+          <ResultBox />
         </form>
 
         {/* Buttons when there's no user */}
