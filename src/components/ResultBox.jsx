@@ -10,23 +10,23 @@ export default function ResultBox() {
       <span className="inline-block mb-3 px-6 text-sm font-medium text-thirdBlack">
         Result for "Anh"
       </span>
-      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal">
+      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal hover:bg-gray-100 cursor-pointer">
         <HiOutlineSearch size={20} />
         <span className="text-xs text-thirdBlack">Anh</span>
       </li>
-      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal">
+      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal hover:bg-gray-100 cursor-pointer">
         <HiOutlineSearch size={20} />
         <span className="text-xs text-thirdBlack">Anh nhớ em</span>
       </li>
-      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal">
+      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal hover:bg-gray-100 cursor-pointer">
         <HiOutlineSearch size={20} />
         <span className="text-xs text-thirdBlack">Anh nhận ra</span>
       </li>
-      <li className="flex  items-center gap-2 px-6 h-8 text-xs font-normal">
+      <li className="flex  items-center gap-2 px-6 h-8 text-xs font-normal hover:bg-gray-100 cursor-pointer">
         <HiOutlineSearch size={20} />
         <span className="text-xs text-thirdBlack">Anh là tất cả</span>
       </li>
-      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal">
+      <li className="flex items-center gap-2 px-6 h-8 text-xs font-normal hover:bg-gray-100 cursor-pointer">
         <HiOutlineSearch size={20} />
         <span className="text-xs text-thirdBlack">Anh yêu em</span>
       </li>
