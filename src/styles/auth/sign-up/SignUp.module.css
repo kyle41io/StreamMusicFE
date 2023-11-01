@@ -12,3 +12,8 @@
     display: flex;
     gap: 64px;
 }
+
+.listener-svg {
+    
+    background-image: url('./../../../assets/svg/listener.svg');
+}

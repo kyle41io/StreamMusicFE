@@ -4,11 +4,10 @@ function SignUp() {
     return (
         <div className={styles['main-session']}>
             <div className={styles['signup-container']}>
-                <div className=''>
+                <div className={styles['listener-svg']}>
                 </div>
             </div>
         </div>
-
     )
 }
 

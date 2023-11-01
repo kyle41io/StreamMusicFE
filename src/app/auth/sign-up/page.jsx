@@ -2,7 +2,10 @@ import SignUp from "@/components/auth/sign-up/SignUp"
 
 const pageSignUp = () => {
   return(
-    <SignUp />
+    <div>
+      abc
+      <SignUp />
+    </div>
   )
 }
 
