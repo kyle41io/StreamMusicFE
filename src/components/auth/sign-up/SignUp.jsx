@@ -1,5 +1,6 @@
 import styles from './../../../styles/auth/sign-up/SignUp.module.css'
 import Input from '@/components/shared/Input'
+import UploadImg from './UploadImg'
 import Link from 'next/link'
 
 function SignUp() {
@@ -22,7 +23,7 @@ function SignUp() {
                         <input type="checkbox" name="" id="" className={styles.checkbox} />
                         <span>I accept <span className="link">Term of use</span></span>
                     </div>
-                    {/* <UploadImg /> */}
+                    <UploadImg />
                     <button className='button-1'>Send</button>
                     <span className={styles['linkSignUp']}>
                         or
