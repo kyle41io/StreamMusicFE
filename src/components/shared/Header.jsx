@@ -37,7 +37,7 @@ export default function Header() {
             className="text-secondaryBlack absolute right-3"
           />
 
-          <ResultBox />
+          {/* <ResultBox />g */}
         </form>
 
         {/* Buttons when there's no user */}
