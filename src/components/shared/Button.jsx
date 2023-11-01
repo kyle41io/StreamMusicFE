@@ -1,4 +1,5 @@
 import React, { cloneElement } from "react";
+import { MdPlaylistAdd } from "react-icons/md";
 
 export default function Button({ text, color, showIcon, className }) {
   return (
