@@ -6,7 +6,9 @@ import Button from "./Button";
 import ResultBox from "../ResultBox";
 import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
+
 import Link from "next/link";
+
 
 export default function Header() {
   return (
