@@ -22,7 +22,9 @@ export default function UserAvatar() {
 
   return (
     <div
-      className="w-[108px] h-20 flex gap-3 items-center justify-center relative"
+      className={`${
+        showMenu ? "bg-black" : ""
+      } w-[108px] h-20 flex gap-3 items-center justify-center relative`}
       onClick={() => setShowMenu(!showMenu)}
     >
       <div className="rounded-full w-12 h-12 bg-white cursor-pointer">
