@@ -19,7 +19,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={poppins.className}>
+        <div className="flex flex-col">
+          <Header />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
