@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
 .link {
     color: #0094FF;
+    cursor: pointer;
 }
 
 .person {
@@ -20,6 +29,20 @@
 
 .close {
     background-image: url('./../assets/svg/close.svg');
+}
+
+.key {
+    background-image: url('./../assets/svg/key.svg');
+}
+
+.card {
+    background-image: url('./../assets/svg/card.svg');
+}
+
+.upload-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('./../assets/svg/upload.svg');
 }
 
 button {
