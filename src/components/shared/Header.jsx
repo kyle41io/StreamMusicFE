@@ -4,12 +4,12 @@ import logo from "@/assets/images/logo.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import Button from "./Button";
 import ResultBox from "../ResultBox";
-// import { MdPlaylistAdd } from "react-icons/md";
-// import UserAvatar from "../UserAvatar";
+import { MdPlaylistAdd } from "react-icons/md";
+import UserAvatar from "../UserAvatar";
 
 export default function Header() {
   return (
-    <div className="flex justify-center bg-primaryBlack w-full h-20">
+    <div className="fixed left-0 right-0 flex justify-center bg-primaryBlack w-full h-20">
       <div className="w-[73%] flex justify-between items-center">
         {/* Logo form */}
         <div className="flex gap-2 items-center">
@@ -37,7 +37,7 @@ export default function Header() {
             className="text-secondaryBlack absolute right-3"
           />
 
-          {/* <ResultBox />g */}
+          {/* <ResultBox /> */}
         </form>
 
         {/* Buttons when there's no user */}
