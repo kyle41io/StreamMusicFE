@@ -1,15 +1,7 @@
 'use client'
-import { useState } from 'react'
 import styles from './../../../styles/auth/sign-up/UploadImg.module.css'
 
 function UploadImg() {
-    const [fileName, setFileName] = useState('No file chosen');
-
-    const handleChange = (event) => {
-        const name = event.target.files[0].name;
-        setFileName(name);
-    }
-
     return (
         <div className={styles['upload-avt']}>
             <div className={styles['upload-button-container']}>
@@ -19,11 +11,11 @@ function UploadImg() {
                     <span className='link text-xs'>
                         Upload Avatar
                     </span>
-                    <input type="file" name="" id="input-avt" hidden onChange={event => {handleChange(event)}}/>
+                    <input type="file" name="" id="input-avt" hidden/>
                 </label>
             </div>
-            <span className={styles['file-name-label']}>
-                {fileName}
+            <span>
+                No file chosen
             </span>
         </div>
     )
