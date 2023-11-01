@@ -1,6 +1,8 @@
+
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shared/Header";
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -8,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Dolphin Music Stream",
+  title: "Music Is Life",
   description: "Enjoy sharing your taste",
 };
 
