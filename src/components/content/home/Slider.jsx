@@ -9,10 +9,12 @@ function Slider () {
                     Top Playlist
                 </p>
                 <div className={styles['move-buttons']}>
-                    <button className={`${styles['move-button']} left-arrow`}>
-
-                    </button>
+                    <button className={`${styles['move-button']} left-arrow`}></button>
+                    <button className={`${styles['move-button']} right-arrow`}></button>
                 </div>
+            </div>
+            <div className={styles['main-slider']}>
+
             </div>
         </div>
     )

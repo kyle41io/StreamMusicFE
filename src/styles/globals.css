@@ -45,6 +45,14 @@ body {
     background-image: url('./../assets/svg/upload.svg');
 }
 
+.left-arrow {
+    background-image: url('./../assets/svg/left-arrow.svg');
+}
+
+.right-arrow {
+    background-image: url('./../assets/svg/right-arrow.svg');
+}
+
 button {
     border: none;
 }
