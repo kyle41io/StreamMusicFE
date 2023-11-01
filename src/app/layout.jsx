@@ -1,4 +1,3 @@
-
 import { Poppins } from "next/font/google";
 import "./../styles/globals.css";
 import Header from "@/components/shared/Header";
@@ -9,7 +8,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Music Is Life",
+  title: "Dolphin Music Stream",
   description: "Enjoy sharing your taste",
 };
 
