@@ -11,6 +11,7 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+
 export const metadata = {
   title: "Dolphin Music Stream",
   description: "Enjoy sharing your taste",
