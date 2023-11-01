@@ -1,9 +1,7 @@
 import SignIn from "@/components/auth/signin/SignIn"
 
-const pageSignIn = () => {
+export default function pageSignIn() {
   return (
-      <SignIn />
+    <SignIn />
   )
 }
-
-export default SignIn

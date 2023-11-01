@@ -1,8 +1,12 @@
+
 import { DOTS } from "@/constant/genre";
 import { range } from "@/utils";
 import React, { useMemo } from "react";
 
 // siblingCount (optional): represents the min number of page buttons to be shown on each side of the current page button. Defaults to 1.
+
+
+
 
 export default function usePagination({
   totalCount,
@@ -11,6 +15,7 @@ export default function usePagination({
   currentPage,
 }) {
   const paginationRange = useMemo(() => {
+
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
@@ -75,6 +80,10 @@ export default function usePagination({
       let middleRange = range(leftSiblingIdx, rightSiblingIdx);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
+  }, [totalCount, pageSize, siblingCount, currentPage]);
+
+
+    
   }, [totalCount, pageSize, siblingCount, currentPage]);
 
   return paginationRange;
