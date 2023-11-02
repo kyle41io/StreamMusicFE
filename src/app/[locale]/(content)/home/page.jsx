@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 import React from "react";
 
-const page = () => {
-  return <div>home page</div>;
+const Home = () => {
+  return <div>Home</div>;
 };
 
-export default page;
+export default Home;
