@@ -51,6 +51,21 @@ body {
     background-image: url('./../assets/svg/play-white.svg');
 }
 
+.left-arrow {
+    background-image: url('./../assets/svg/left-arrow.svg');
+}
+
+.right-arrow {
+    background-image: url('./../assets/svg/right-arrow.svg');
+}
+
+.headphones {
+    width: 12px;
+    height: 12px;
+    background-image: url('./../assets/svg/headphones.svg');
+
+}
+
 button {
     border: none;
 }
