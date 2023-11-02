@@ -1,10 +1,12 @@
 export default function LanguageSwitcher() {
   return (
     <div>
-      <select>
-        <option value="en">English</option>
-        <option value="vi">Tiếng Việt</option>
-      </select>
+      <Link href={"/"} locale="en">
+        English
+      </Link>
+      <Link href={"/"} locale="vi">
+        Tiếng Việt
+      </Link>
     </div>
   );
 }

@@ -17,14 +17,11 @@ export default function Header() {
           <div className="flex gap-2 items-center cursor-pointer">
             <Image
               src={logo.src}
-              width={68}
+              width={240}
               height={68}
               className="object-center"
               alt="logo"
             />
-            <p className="uppercase text-2xl font-normal text-white">
-              Music is life
-            </p>
           </div>
         </Link>
 

@@ -1,12 +1,16 @@
 import "../../styles/globals.css";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
+import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Music Is Life",
   description: "Enjoy sharing your taste",
 };
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 const locales = ["en", "vi"];
 
 export default function LocaleLayout({ children, params: { locale } }) {
@@ -16,7 +20,10 @@ export default function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>{children}</body>
+      <body className={poppins.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
