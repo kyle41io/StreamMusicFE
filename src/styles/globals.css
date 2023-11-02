@@ -45,6 +45,12 @@ body {
     background-image: url('./../assets/svg/upload.svg');
 }
 
+.play-white {
+    height: 16px;
+    width: 16px;
+    background-image: url('./../assets/svg/play-white.svg');
+}
+
 button {
     border: none;
 }
