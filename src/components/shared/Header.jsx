@@ -8,6 +8,9 @@ import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
 import Link from "next/link";
 
+import Link from "next/link";
+
+
 export default function Header() {
   return (
     <div className="sticky left-0 right-0 flex justify-center bg-primaryBlack w-full h-20">
