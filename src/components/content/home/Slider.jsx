@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import styles from './../../../styles/content/home/Slider.module.css'
 import TOP_PLAYLIST from '@/constant/topPlaylist'
 
-function Slider({ list }) {
+function Slider({ t, list }) {
     const [pointer, setPointer] = useState(0);
     const [showBlurLeft, setShowBlurLeft] = useState(false);
     const [showBlurRight, setShowBlurRight] = useState(true);
@@ -39,7 +39,7 @@ function Slider({ list }) {
         <div className={styles['slider-container']}>
             <div className={styles['slider-header']}>
                 <p className={styles['slider-title']}>
-                    Top Playlist
+                    {t('top_playlist')}
                 </p>
                 <div className={styles['move-buttons']}>
                     <button className={`${styles['move-button']} left-arrow`} onClick={handleGoLeft}></button>
