@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.link {
+    color: #0094FF;
+    cursor: pointer;
+}
+
+.person {
+    background-image: url('./../assets/svg/person.svg');
+}
+
+.lock {
+    background-image: url('./../assets/svg/lock.svg');
+}
+
+.open {
+    background-image: url('./../assets/svg/open.svg');
+}
+
+.close {
+    background-image: url('./../assets/svg/close.svg');
+}
+
+.key {
+    background-image: url('./../assets/svg/key.svg');
+}
+
+.card {
+    background-image: url('./../assets/svg/card.svg');
+}
+
+.upload-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('./../assets/svg/upload.svg');
+}
+
+button {
+    border: none;
+}
+
+.button-1 {
+    background: #FF6B00;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 13px 0px;
+    border-radius: 6px;
+}
+
+.button-1:hover {
+    background: #df5d00;
+}
