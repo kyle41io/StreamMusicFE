@@ -1,7 +1,7 @@
 import styles from './../../styles/content/TopMember.module.css'
 import TOP_MEMBERS from '@/constant/topMembers'
 
-function TopMember({ list }) {
+function TopMember({ t ,list }) {
     const formatViews = (view) => {
         if (view > 1000) {
             return (view / 1000).toFixed(3);
@@ -13,7 +13,7 @@ function TopMember({ list }) {
     return (
         <div className={styles['top-member-container']}>
             <p className={styles['title']}>
-                Top Member
+                {t('top_member')}
             </p>
             <div className={styles['top-members']}>
                 {TOP_MEMBERS.map((item, index) => <div className={styles['top-member']} key={index}>
