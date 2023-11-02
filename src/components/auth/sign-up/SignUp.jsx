@@ -3,31 +3,31 @@ import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
 
-function SignUp() {
-  return (
+function SignUp({ t }) {
+  return (  
     <div className={styles["main-session"]}>
       <div className={styles["signup-container"]}>
         <div className={styles["listener-svg"]}></div>
         <div className={styles["signup-box"]}>
-          <p className={styles["title"]}>Sign Up</p>
+          <p className={styles["title"]}>{t('sign_up')}</p>
           <div className={styles["inputs-field"]}>
-            <Input type={"text"} placeholder="Display name" icon={"card"} />
-            <Input type={"text"} placeholder="Username" icon={"person"} />
-            <Input type={"password"} placeholder={"Password"} icon={"lock"} />
-            <Input type={"password"} placeholder={"Password"} icon={"key"} />
+            <Input type={"text"} placeholder={t('display_name')} icon={"card"} />
+            <Input type={"text"} placeholder={t('username')} icon={"person"} />
+            <Input type={"password"} placeholder={t('password')} icon={"lock"} />
+            <Input type={"password"} placeholder={t('repeat_password')} icon={"key"} />
           </div>
           <div className={styles.remember}>
             <input type="checkbox" name="" id="" className={styles.checkbox} />
             <span>
-              I accept <span className="link">Term of use</span>
+              {t('i_accept')} <span className="link">{t('term_of_use')}</span>
             </span>
           </div>
-          <UploadImg />
-          <button className="button-1">Send</button>
+          <UploadImg uploadAvatar={t('upload_avatar')} noFileChosen={t('no_file_chosen')}/>
+          <button className="button-1">{t('send')}</button>
           <span className={styles["linkSignUp"]}>
-            or
+            {t('or')}
             <Link href={"/auth/sign-in"}>
-              <span className="link"> Sign In</span>
+              <span className="link">{t('sign_in')}</span>
             </Link>
           </span>
         </div>

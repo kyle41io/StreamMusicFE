@@ -2,8 +2,8 @@
 import { useState } from 'react'
 import styles from './../../../styles/auth/sign-up/UploadImg.module.css'
 
-function UploadImg() {
-    const [fileName, setFileName] = useState('No file chosen');
+function UploadImg({ uploadAvatar, noFileChosen }) {
+    const [fileName, setFileName] = useState(noFileChosen);
 
     const handleChange = () => {
         setFileName(event.target.files[0].name);
@@ -16,7 +16,7 @@ function UploadImg() {
                     <div className='upload-icon'>
                     </div>
                     <span className='link text-xs'>
-                        Upload Avatar
+                        {uploadAvatar}
                     </span>
                     <input type="file" name="" id="input-avt" hidden onChange={handleChange}/>
                 </label>
