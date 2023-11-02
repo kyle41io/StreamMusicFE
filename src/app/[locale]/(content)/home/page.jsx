@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
-import React from "react";
+import TopMember from "@/components/content/TopMember";
 
 const Home = () => {
-  return <div>Home</div>;
+  return <TopMember />;
 };
 
 export default Home;
