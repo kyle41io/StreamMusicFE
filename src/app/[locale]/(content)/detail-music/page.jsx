@@ -1,7 +1,7 @@
 import React from "react";
 
 const DetailMusic = () => {
-  return <div>Detail Music</div>;
+  return <div>DetailMusic</div>;
 };
 
 export default DetailMusic;

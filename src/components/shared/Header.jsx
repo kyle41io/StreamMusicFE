@@ -6,24 +6,24 @@ import Button from "./Button";
 import ResultBox from "../ResultBox";
 import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="flex justify-center bg-primaryBlack w-full h-20">
+    <div className="fixed left-0 right-0 flex justify-center bg-primaryBlack w-full h-20">
       <div className="w-[73%] flex justify-between items-center">
         {/* Logo form */}
-        <div className="flex gap-2 items-center">
-          <Image
-            src={logo.src}
-            width={68}
-            height={68}
-            className="object-center"
-            alt="logo"
-          />
-          <p className="uppercase text-2xl font-normal text-white">
-            Music is life
-          </p>
-        </div>
+        <Link href="/home">
+          <div className="flex gap-2 items-center cursor-pointer">
+            <Image
+              src={logo.src}
+              width={240}
+              height={68}
+              className="object-center"
+              alt="logo"
+            />
+          </div>
+        </Link>
 
         {/* Input form */}
         <form className="flex items-center relative">
