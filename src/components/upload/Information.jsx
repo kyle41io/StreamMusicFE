@@ -54,46 +54,42 @@ const Information = ({ setCurrentStep, t }) => {
   };
 
   const handleUpload = async () => {
-    let imageUploadComplete = false;
-
-    if (!title || !slug) {
-      // setShowToast(true);
-      // setError(true);
+    if (!title) {
       return;
     } else {
-      const imageFileRef = ref(storage, `/files/${slug}/${uploadedImage.name}`);
-      const imageUploadTask = uploadBytesResumable(imageFileRef, uploadedImage);
-      setInfoPlaylist((prevInfoPlaylist) => ({
-        ...prevInfoPlaylist,
-        ref: imageFileRef,
-      }));
+      if (uploadedImage) {
+        const imageFileRef = ref(
+          storage,
+          `/files/${slug}/${uploadedImage.name}`
+        );
+        const imageUploadTask = uploadBytesResumable(
+          imageFileRef,
+          uploadedImage
+        );
+        setInfoPlaylist((prevInfoPlaylist) => ({
+          ...prevInfoPlaylist,
+          ref: imageFileRef,
+        }));
 
-      imageUploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const percent = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setPercentImage(percent);
-          if (percent === 100) {
-            imageUploadComplete = true;
-            checkUploadComplete();
-          }
-        },
-        (error) => {
-          console.log(error);
-          // setShowToast(true);
-          // setError(true);
-        },
-        async () => {}
-      );
-    }
+        imageUploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const percent = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setPercentImage(percent);
+          },
+          (error) => {
+            console.log(error);
+          },
+          async () => {}
+        );
+      }
 
-    const checkUploadComplete = () => {
-      if (imageUploadComplete || !uploadedImage) {
+      if (percentImage === 100 || !uploadedImage) {
         setCurrentStep(2);
       }
-    };
+    }
   };
 
   const handleChangeTitle = (title) => {
