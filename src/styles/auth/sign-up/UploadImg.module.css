@@ -6,11 +6,11 @@
 
 .upload-button-container {
     height: 45px;
+    min-width: 140px;
     border: 1px solid #979797;
     border-radius: 6px;
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
 
 .button-upload-avt {
@@ -18,6 +18,14 @@
     gap: 12px;
     padding: 0px 12px;
     align-items: center;
+    cursor: pointer;
+    min-width: fit-content;
+    height: 100%;
+}
+
+.button-upload-avt > span {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .file-name-label {

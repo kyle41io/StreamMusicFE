@@ -2,7 +2,7 @@ import Link from 'next/link'
 import styles from './../../../styles/auth/sign-in/SignIn.module.css'
 import Input from '@/components/shared/Input'
 
-const SignIn = () => {
+const SignIn = ({ t }) => {
   return (
     <div className={styles['main-session']}>
       <div className={styles['signin-container']}>
@@ -10,7 +10,7 @@ const SignIn = () => {
         </div>
         <div className={styles['signin-box']}>
           <p className={styles['title']}>
-            Sign In
+            {t("sign_in")}
           </p>
           <div className={styles['inputs-field']}>
             <Input type={"text"} placeholder="Username" icon={"person"} />
@@ -18,12 +18,12 @@ const SignIn = () => {
           </div>
           <div className={styles.remember}>
             <input type="checkbox" name="" id="" className={styles.checkbox} />
-            <span>Remember me</span>
+            <span>{t("remember_me")}</span>
           </div>
-          <button className='button-1'>Submit</button>
+          <button className='button-1'>{t('submit')}</button>
           <span className={styles['linkSignUp']}>
-            or
-            <Link href={"/auth/sign-up"} ><span className='link'> Sign Up</span></Link>
+            {t('or')}
+            <Link href={"/auth/sign-up"} ><span className='link'>{t('sign_up')}</span></Link>
           </span>
         </div>
       </div>

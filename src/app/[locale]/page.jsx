@@ -1,5 +1,5 @@
-import { useTranslations } from "next-intl";
 
+import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 
 function Home({ data }) {
