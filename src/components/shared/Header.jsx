@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="fixed left-0 right-0 flex justify-center bg-primaryBlack w-full h-20">
+    <div className="sticky left-0 right-0 flex justify-center bg-primaryBlack w-full h-20">
       <div className="w-[73%] flex justify-between items-center">
         {/* Logo form */}
         <Link href="/home">
