@@ -103,3 +103,7 @@ button {
     display: flex;
     gap: 24px;
 }
+
+.left-container {
+    width: 100%;
+}
