@@ -14,10 +14,16 @@ const poppins = Poppins({
 });
 const locales = ["en", "vi"];
 
-export default function LocaleLayout({ children, params: { locale } }) {
+export default async function LocaleLayout({ children, params: { locale } }) {
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
   // Validate that the incoming `locale` parameter is valid
-  const isValidLocale = locales.some((cur) => cur === locale);
-  if (!isValidLocale) notFound();
+  // const isValidLocale = locales.some((cur) => cur === locale);
+  // if (!isValidLocale) notFound();
 
   return (
     <html lang={locale}>
