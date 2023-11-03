@@ -2,7 +2,6 @@ import "../../styles/globals.css";
 import { Poppins } from "next/font/google";
 import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
-import { NextIntlClientProvider } from "next-intl";
 
 export const metadata = {
   title: "Music Is Life",
@@ -14,23 +13,17 @@ const poppins = Poppins({
 });
 const locales = ["en", "vi"];
 
-export default async function LocaleLayout({ children, params: { locale } }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+export default function LocaleLayout({ children, params: { locale } }) {
   // Validate that the incoming `locale` parameter is valid
-  // const isValidLocale = locales.some((cur) => cur === locale);
-  // if (!isValidLocale) notFound();
+  const isValidLocale = locales.some((cur) => cur === locale);
+  if (!isValidLocale) notFound();
 
   return (
     <html lang={locale}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <body className={poppins.className}>
         <Header />
         {children}
-      </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

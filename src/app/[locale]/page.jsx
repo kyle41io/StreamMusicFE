@@ -6,7 +6,7 @@ function Home({ data }) {
   const t = useTranslations("Auth");
 
   return (
-    <main>
+    <div>
       <div>
         <Link href={"/"} locale="en">
           English
@@ -17,7 +17,7 @@ function Home({ data }) {
       </div>
       <p>{t("sign_in")}</p>
       <div>{t("sign_up")}</div>
-    </main>
+    </div>
   );
 }
 
