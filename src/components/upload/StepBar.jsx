@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { BsCheckLg } from "react-icons/hi";
+import { BsCheck2 } from "react-icons/bs";
 import "@/styles/upload/StepBar.css";
 
 const StepBar = ({ currentStep, t }) => {
@@ -17,7 +17,7 @@ const StepBar = ({ currentStep, t }) => {
         >
           <div className="step">
             {i + 1 < currentStep || complete ? (
-              <BsCheckLg size={14} strokeWidth={3} color="white" />
+              <BsCheck2 size={14} strokeWidth={1} color="white" />
             ) : null}
           </div>
           <p className=" step-text">{step}</p>

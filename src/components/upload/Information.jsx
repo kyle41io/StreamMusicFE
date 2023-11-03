@@ -1,8 +1,8 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
-// import { useTranslations } from "next-intl";
 import FileContext from "@/store/FileProvider";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { slugify } from "@/utils/slugify";
 import storage from "@/lib/firebaseConfig";
 import LoadingIcon from "@/assets/icons/LoaddingIcon";
 import CameraIcon from "@/assets/icons/CameraIcon";
@@ -10,17 +10,17 @@ import Input from "./InputUpload";
 import "@/styles/upload/Information.css";
 import Dropdown from "./DropDown";
 
-const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
-  // const t = useTranslations("Upload");
+const Information = ({ setCurrentStep, t }) => {
   const { setInfoPlaylist } = useContext(FileContext);
   const { setUploadedImageFile } = useContext(FileContext);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageURL, setUploadedImageURL] = useState(null);
   const [errorImage, setErrorImage] = useState(false);
   const [percentImage, setPercentImage] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState(slugify(""));
+  const [slug, setSlug] = useState("");
   const [genre, setGenre] = useState("None");
   const [artist, setArtist] = useState("");
   const [description, setDescription] = useState("");
@@ -33,21 +33,8 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
     }));
   }, [title, slug, setInfoPlaylist]);
 
-  function slugify(str) {
-    const slug = String(str)
-      .normalize("NFKD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-");
-
-    return `${slug}`;
-  }
-
   const handleCancle = () => {
-    setCurrentStep(1);
+    // setCurrentStep(1);
   };
 
   const handleImageUpload = (file) => {
@@ -67,19 +54,18 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
   };
 
   const handleUpload = async () => {
-    const timestamp = Date.now();
     let imageUploadComplete = false;
 
     if (!title || !slug) {
-      setShowToast(true);
-      setError(true);
+      // setShowToast(true);
+      // setError(true);
       return;
     } else {
       const imageFileRef = ref(storage, `/files/${slug}/${uploadedImage.name}`);
       const imageUploadTask = uploadBytesResumable(imageFileRef, uploadedImage);
       setInfoPlaylist((prevInfoPlaylist) => ({
         ...prevInfoPlaylist,
-        ref: audioFileRef,
+        ref: imageFileRef,
       }));
 
       imageUploadTask.on(
@@ -96,8 +82,8 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
         },
         (error) => {
           console.log(error);
-          setShowToast(true);
-          setError(true);
+          // setShowToast(true);
+          // setError(true);
         },
         async () => {}
       );
@@ -105,26 +91,27 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
 
     const checkUploadComplete = () => {
       if (imageUploadComplete || !uploadedImage) {
-        setCurrentStep(3);
-        setShowToast(true);
-        setError(false);
+        setCurrentStep(2);
       }
     };
   };
 
   const handleChangeTitle = (title) => {
     setTitle(title);
+    setSlug(slugify(title));
+    if (title && slug) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
+
   const handleChangeArtist = (artist) => {
     setArtist(artist);
     setInfoPlaylist((prevInfoPlaylist) => ({
       ...prevInfoPlaylist,
       artist: artist,
     }));
-  };
-
-  const handleChangeSlug = (slug) => {
-    setSlug(slug);
   };
 
   return (
@@ -150,15 +137,16 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
               onChange={(event) => handleImageUpload(event.target.files[0])}
               maxfilesize={5 * 1024 * 1024}
             />
-            <div className="flex gap-1 justify-center items-center w-32 h-6 text-xs bg-white rounded-md mb-4 hover:opacity-80 cursor-pointer">
+            <label
+              className="flex gap-1 justify-center items-center w-32 h-6 text-xs bg-white rounded-md mb-4 hover:opacity-80 cursor-pointer"
+              htmlFor="image"
+            >
               <CameraIcon />
               <p>{t("upload_image")}</p>
-            </div>
+            </label>
           </div>
           {errorImage ? (
-            <p className="text-red-400 text-xs">
-              Invalid image. Type must be PNG or JPG and max size is 5MB
-            </p>
+            <p className="text-red-400 text-xs">{t("invalid_image")}</p>
           ) : (
             ""
           )}
@@ -169,14 +157,9 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
             value={title}
             onChange={(e) => handleChangeTitle(e)}
             required
-            label={"Title"}
+            label={t("title")}
           />
-          <Input
-            value={slug}
-            onChange={(e) => handleChangeSlug(e)}
-            required
-            label={"Slug"}
-          />
+          <Input disabled value={slug} required label={"Slug"} />
           <div className="w-full flex gap-3">
             <div style={{ width: "calc(50% - 6px)" }}>
               <Dropdown
@@ -190,7 +173,7 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
               <Input
                 value={artist}
                 onChange={(e) => handleChangeArtist(e)}
-                label={"Artist"}
+                label={t("artist")}
               />
             </div>
           </div>
@@ -198,24 +181,26 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
             type="textarea"
             value={description}
             onChange={(e) => setDescription(e)}
-            label={"Description"}
+            label={t("description")}
           />
         </div>
       </div>
       <div className="flex w-full justify-between items-center">
         <p className="text-black text-xs">
           <span className="text-red-500 font-bold text-base ml-1">*</span>{" "}
-          Required fields
+          {t("required_fields")}
         </p>
         <div className="flex gap-4">
           <button
             className="flex items-center px-2 py-1-md border rounded-md  hover:bg-slate-300"
             onClick={handleCancle}
           >
-            Cancel
+            {t("cancel")}
           </button>
           <button
-            className="flex items-center justify-center px-2 py-1 w-[55px] h-[25px] bg-primary text-white rounded-md hover:bg-orange-700"
+            className={`flex items-center justify-center px-2 py-1 w-[55px] h-[25px] bg-primary text-white rounded-md hover:bg-orange-700 ${
+              disabled ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             onClick={handleUpload}
           >
             {percentImage !== 100 && percentImage !== 0 ? (
@@ -223,7 +208,7 @@ const Information = ({ setCurrentStep, setShowToast, setError, t }) => {
                 <LoadingIcon />
               </div>
             ) : (
-              "Save"
+              <p>{t("next")}</p>
             )}
           </button>
         </div>

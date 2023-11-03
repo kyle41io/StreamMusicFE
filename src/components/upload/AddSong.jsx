@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddSong = ({ setCurrentStep }) => {
+const AddSong = ({ setCurrentStep, setShowToast, setError }) => {
   return <div>AddSong</div>;
 };
 

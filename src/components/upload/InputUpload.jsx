@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const Input = ({
@@ -15,7 +16,9 @@ const Input = ({
   icon,
   onChange,
   value,
+  className,
 }) => {
+  const t = useTranslations("Upload");
   const [isInputChanged, setIsInputChanged] = useState(false);
   const [inputStyles, setInputStyles] = useState({
     outlineColor: color,
@@ -23,7 +26,7 @@ const Input = ({
     borderColor: "#CFD3D4",
   });
   const [labelStyles, setLabelStyles] = useState({
-    color: disabled ? "#F2F4F5" : "#CFD3D4",
+    color: "#CFD3D4",
   });
   const inputRef = useRef(null);
   const [text, setText] = useState("");
@@ -161,7 +164,7 @@ const Input = ({
             )}
 
             <textarea
-              placeholder="Enter your text..."
+              placeholder={t("textarea_placeholder")}
               value={text}
               onChange={(e) => handleChange(e.target.value)}
               maxLength={maxLimit}
@@ -172,7 +175,7 @@ const Input = ({
 
             {isMaxLimitReached && (
               <span className="absolute -bottom-3 right-3 text-red-500">
-                Maximum character limit reached.
+                {t("character_reach")}
               </span>
             )}
           </div>
@@ -186,7 +189,7 @@ const Input = ({
           )}
           {inputStyles.outlineColor === "red" && !value && (
             <p className="text-red-600 text-xs opacity-70 w-80">
-              This field is required, can not be blank.
+              {t("required_message")}
             </p>
           )}
           {inputStyles.outlineColor !== "red" && (

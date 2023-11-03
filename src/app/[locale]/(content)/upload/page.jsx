@@ -53,20 +53,14 @@ export default function Home() {
         {currentStep === 3 && <Complete t={t} />}
       </FileProvider>
 
-      <div
-        className={`toast-container ${
-          showToast && !closingToast ? "show" : ""
-        } ${closingToast ? "closing" : ""}`}
-      >
-        {showToast && (
-          <ToastMessage
-            onClose={handleCloseToast}
-            error={error}
-            errorMessage={"Failed to upload"}
-            successMessage={"Uploaded successfully"}
-          />
-        )}
-      </div>
+      <ToastMessage
+        onClose={handleCloseToast}
+        error={error}
+        errorMessage={t("upload_error")}
+        successMessage={t("upload_success")}
+        showToast={showToast}
+        closingToast={closingToast}
+      />
     </main>
   );
 }
