@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import logo from "@/assets/images/logo.png";
@@ -7,10 +8,13 @@ import ResultBox from "../ResultBox";
 import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+
+
   return (
-    <div className="sticky flex justify-center bg-primaryBlack w-full h-20">
+    <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
       <div className="w-[73%] flex justify-between items-center">
         {/* Logo form */}
         <Link href="/home">
@@ -43,8 +47,12 @@ export default function Header() {
         {/* Buttons when there's no user */}
 
         <div className="flex gap-8">
-          <Button text="Sign in" />
-          <Button text="Sign up" color="primary" />
+          <Link href="/auth/sign-in">
+            <Button text="Sign in" />
+          </Link>
+          <Link href="/auth/sign-up">
+            <Button text="Sign up" color="primary" />
+          </Link>
         </div>
 
         {/* Button when user logged in */}

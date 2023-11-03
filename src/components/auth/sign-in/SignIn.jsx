@@ -13,8 +13,8 @@ const SignIn = ({ t }) => {
             {t("sign_in")}
           </p>
           <div className={styles['inputs-field']}>
-            <Input type={"text"} placeholder="Username" icon={"person"} />
-            <Input type={"password"} placeholder={"Password"} icon={"lock"} />
+            <Input type={"text"} placeholder={t('username')} icon={"person"} />
+            <Input type={"password"} placeholder={t('password')} icon={"lock"} />
           </div>
           <div className={styles.remember}>
             <input type="checkbox" name="" id="" className={styles.checkbox} />
