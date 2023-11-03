@@ -27,10 +27,12 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <Header />
-        {children}
-      </NextIntlClientProvider>
+      <body>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Header />
+          {children}
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }
