@@ -1,6 +1,8 @@
+
 import { useTranslations } from "next-intl";
 import TopMember from "@/components/content/home/TopMember";
 import Slider from "@/components/content/home/Slider";
+import NewPlaylist from "@/components/content/home/NewPlaylist";
 
 const Home = () => {
   const t = useTranslations("Home");
@@ -11,7 +13,7 @@ const Home = () => {
         <Slider topPlayList_t={t("top_playlist")} />
         <div className="section-2">
           <div className="left-container">
-            
+            <NewPlaylist />
           </div>
           <div className="right-container">
             <TopMember t={t} />
