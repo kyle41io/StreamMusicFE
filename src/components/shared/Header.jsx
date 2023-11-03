@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
+
+
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
       <div className="w-[73%] flex justify-between items-center">
