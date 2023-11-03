@@ -69,15 +69,15 @@
     "information": "Infomation",
     "add_songs": "Add songs",
     "complete": "Complete",
+    "invalid_image": "Invalid image. Type must be PNG or JPG and max size is 5MB",
     "title": "Title",
-    "slug": "Slug",
     "genre": "Genre",
     "artist": "Artist",
     "artist_placeholder": "Enter the artist's name",
     "description": "Description",
     "description_placeholder": "Describe your playlist",
     "upload_image": "Upload image",
-    "require_fields": "Required fields",
+    "required_fields": "Required fields",
     "search_song_placeholder": "Please enter the song's name...",
     "views": "Views",
     "minutes_ago": "minutes ago",
@@ -94,6 +94,11 @@
     "play_now": "Play now",
     "go_home": "Go Home",
     "or": "or",
-    "create_another_playlist": "Create another playlist"
+    "create_another_playlist": "Create another playlist",
+    "required_message": "This field is required, can not be blank.",
+    "textarea_placeholder": "Describe your track",
+    "character_reach": "Maximum character limit reached.",
+    "upload_error": "Failed to upload",
+    "upload_success": "Uploaded successfully"
   }
 }

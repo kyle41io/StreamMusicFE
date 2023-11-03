@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { BiSolidChevronDown } from "react-icons/bi";
 import { BiSolidChevronUp } from "react-icons/bi";
 import { LIST_GENRE } from "@/constant/genre";
 import "@/styles/upload/DropDown.css";
 
 const Dropdown = ({ genre, setGenre, setInfoPlaylist }) => {
+  const t = useTranslations("Upload");
   const [inputStyles, setInputStyles] = useState({
     outlineColor: "#f08c51",
     borderColor: "#CFD3D4",
@@ -49,7 +51,7 @@ const Dropdown = ({ genre, setGenre, setInfoPlaylist }) => {
   return (
     <div>
       <label className="text-xs" style={labelStyles} htmlFor="text-input">
-        Genre
+        {t("genre")}
       </label>
       <div
         ref={inputRef}
