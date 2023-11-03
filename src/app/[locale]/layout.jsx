@@ -2,6 +2,7 @@ import "../../styles/globals.css";
 import { Poppins } from "next/font/google";
 import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 
 export const metadata = {
   title: "Music Is Life",
