@@ -9,12 +9,10 @@ export default function Button({
   color,
   showIcon,
   className,
-  onClick,
 }) {
   return (
     <div
-      className={`${className} h-12 w-32 inline-flex items-center justify-center border rounded-md text-center border-${color} bg-${color} cursor-pointer rela`}
-      onClick={onClick}
+      className={`${className} h-12 w-32 inline-flex items-center justify-center border rounded-md text-center border-${color} bg-${color} cursor-pointer`}
     >
       <span className="inline-block">
         {showIcon &&
