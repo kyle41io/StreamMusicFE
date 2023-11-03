@@ -3,12 +3,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const app = initializeApp({
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "dolphin-music-is-life.firebaseapp.com",
-  projectId: "dolphin-music-is-life",
-  storageBucket: "dolphin-music-is-life.appspot.com",
-  messagingSenderId: "587248320249",
-  appId: "1:587248320249:web:b8185c8443bc16ff586c28",
+  apiKey: "AIzaSyCuf4bKxyrSXgxJExwMx-7MUpcMpCyHXbM",
+  authDomain: "music-upload-kyle.firebaseapp.com",
+  projectId: "music-upload-kyle",
+  storageBucket: "music-upload-kyle.appspot.com",
+  messagingSenderId: "952808664139",
+  appId: "1:952808664139:web:c8595fe595fba286edb1ce",
 });
 
 const storage = getStorage(app);
