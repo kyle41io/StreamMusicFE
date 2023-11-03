@@ -1,4 +1,4 @@
-import styles from './../../styles/content/TopMember.module.css'
+import styles from './../../../styles/content/home/TopMember.module.css'
 import TOP_MEMBERS from '@/constant/topMembers'
 
 function TopMember({ t ,list }) {

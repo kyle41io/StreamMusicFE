@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react'
 import styles from './../../../styles/content/home/Slider.module.css'
 import TOP_PLAYLIST from '@/constant/topPlaylist'
 
-function Slider({ t, list }) {
+function Slider({ topPlayList_t, list }) {
     const [pointer, setPointer] = useState(0);
     const [showBlurLeft, setShowBlurLeft] = useState(false);
     const [showBlurRight, setShowBlurRight] = useState(true);
 
     useEffect(() => {
-        console.log(pointer);
         if (pointer === 0) {
             setShowBlurRight(true);
             setShowBlurLeft(false);
@@ -39,7 +38,7 @@ function Slider({ t, list }) {
         <div className={styles['slider-container']}>
             <div className={styles['slider-header']}>
                 <p className={styles['slider-title']}>
-                    {t('top_playlist')}
+                    {topPlayList_t}
                 </p>
                 <div className={styles['move-buttons']}>
                     <button className={`${styles['move-button']} left-arrow`} onClick={handleGoLeft}></button>
