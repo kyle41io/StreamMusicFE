@@ -99,6 +99,7 @@
     "textarea_placeholder": "Describe your track",
     "character_reach": "Maximum character limit reached.",
     "upload_error": "Failed to upload",
-    "upload_success": "Uploaded successfully"
+    "upload_success": "Uploaded successfully",
+    "copy": "Copied to clipboard!"
   }
 }

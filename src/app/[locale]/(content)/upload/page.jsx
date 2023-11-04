@@ -49,7 +49,14 @@ export default function Home() {
             t={t}
           />
         )}
-        {currentStep === 2 && <AddSong currentStep={currentStep} t={t} />}
+        {currentStep === 2 && (
+          <AddSong
+            setCurrentStep={setCurrentStep}
+            setShowToast={setShowToast}
+            setError={setError}
+            t={t}
+          />
+        )}
         {currentStep === 3 && <Complete t={t} />}
       </FileProvider>
 
