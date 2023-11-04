@@ -2,34 +2,34 @@
 import React, { useContext, useState, useEffect } from "react";
 import CopyIcon from "@/assets/icons/CopyIcon";
 import FileContext from "@/store/FileProvider";
+import { useRouter } from "next/navigation";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
-const Complete = () => {
+const Complete = ({ t }) => {
+  const router = useRouter();
   const [copySuccess, setCopySuccess] = useState(false);
   const [audioURL, setAudioURL] = useState("");
-  const [isLinkHovered, setIsLinkHovered] = useState(false);
-  const { infoPlaylist, uploadedImageFile, uploadedFile } =
-    useContext(FileContext);
-  const { title, artist, duration, genre, ref } = infoPlaylist;
+  const { infoPlaylist, uploadedImageFile } = useContext(FileContext);
+  const { title, artist, genre, ref } = infoPlaylist;
 
-  useEffect(() => {
-    const storage = getStorage();
-    const storageRef = ref;
+  // useEffect(() => {
+  //   const storage = getStorage();
+  //   const storageRef = ref;
 
-    uploadBytes(storageRef, uploadedFile)
-      .then((snapshot) => {
-        getDownloadURL(snapshot.ref)
-          .then((url) => {
-            setAudioURL(url);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [uploadedFile, ref]);
+  //   uploadBytes(storageRef, uploadedImageFile)
+  //     .then((snapshot) => {
+  //       getDownloadURL(snapshot.ref)
+  //         .then((url) => {
+  //           setAudioURL(url);
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [uploadedImageFile, ref]);
 
   const handleCopyLink = () => {
     const linkInput = document.getElementById("link-input");
@@ -40,13 +40,6 @@ const Complete = () => {
     setTimeout(() => {
       setCopySuccess(false);
     }, 2000);
-  };
-  const handleAccessLink = () => {
-    window.open(audioURL, "_blank");
-  };
-
-  const handleAction = () => {
-    window.location.reload();
   };
 
   return (
@@ -63,54 +56,38 @@ const Complete = () => {
         />
 
         <div className="flex w-[410px] flex-col gap-2">
-          <h2 className="text-[#0F0F0F] font-semibold text-base">
-            Congratulation, you’ve uploaded successfully !
-          </h2>
+          <h2 className="text-[#0F0F0F] font-semibold text-base">{title}</h2>
           <div className="max-w-full flex text-sm gap-1 ">
             <p className="break-all">
-              {title} - {artist ? artist : "N/A"}
+              {genre ? genre : "None"} - {artist ? artist : "N/A"}
             </p>
           </div>
-          <div className="flex gap-4 text-xs text-[#979797]">
-            <p>{duration}</p> <p>{genre}</p>
-          </div>
+
           <div className=" w-full flex flex-col gap-[2px]">
-            <label className="text-[#979797] text-xs" htmlFor="link">
-              Link
-            </label>
             <div className="relative">
               <input
                 id="link-input"
                 name="link"
                 type="text"
                 placeholder={audioURL ? "" : "loading..."}
-                className="bg-slate-100/50 w-full text-blue-600 p-2 pr-10 text-xs h-7"
+                className="bg-slate-100/50 w-5/6 text-blue-600 p-2 pr-10 text-xs h-7"
                 value={audioURL}
                 readOnly
-                onMouseEnter={() => setIsLinkHovered(true)}
-                onMouseLeave={() => setIsLinkHovered(false)}
               />
               <div
-                className="flex justify-center items-center w-5 h-5 rounded-md absolute right-3 top-1/2 -translate-y-[10px] cursor-pointer hover:bg-primary/50"
+                className="flex justify-center items-center w-5 h-5 rounded-md absolute right-[72px] top-1/2 -translate-y-[10px] cursor-pointer hover:bg-primary/50"
                 onClick={handleCopyLink}
               >
                 <span className="">
                   <CopyIcon />
                 </span>
               </div>
+              <button className="px-3 py-1 ml-2 bg-primary hover:bg-orange-700 rounded p-2 text-white">
+                {t("play_now")}
+              </button>
               {copySuccess && (
                 <div className="bg-green-500/80 text-slate-200 text-xs absolute p-1 -bottom-8 left-0 ml-2 mb-1 rounded-md">
-                  Copied to clipboard!
-                </div>
-              )}
-              {audioURL && isLinkHovered && (
-                <div
-                  onMouseEnter={() => setIsLinkHovered(true)}
-                  onMouseLeave={() => setIsLinkHovered(false)}
-                  className="text-blue-600 bg-gray-300 text-base absolute left-2 px-4 py-1 top-4 -translate-y-[-10px] rounded-md cursor-pointer hover:text-blue-300"
-                  onClick={handleAccessLink}
-                >
-                  Access Link -&gt;
+                  {t("copy")}
                 </div>
               )}
             </div>
@@ -120,16 +97,16 @@ const Complete = () => {
       <div className="text-[#979797]">
         <button
           className="text-blue-600 hover:text-blue-600/80"
-          onClick={handleAction}
+          onClick={() => router.push("/home")}
         >
-          Go Home
+          {t("go_home")}
         </button>{" "}
-        or{" "}
+        {t("or")}{" "}
         <button
           className="text-blue-600 hover:text-blue-600/80"
-          onClick={handleAction}
+          onClick={() => window.location.reload()}
         >
-          Upload another track
+          {t("create_another_playlist")}
         </button>
       </div>
     </div>
