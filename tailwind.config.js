@@ -17,6 +17,7 @@ module.exports = {
         secondaryBlack: "#24292F",
         secondaryGray: "#dcdcdc",
         thirdBlack: "#0f0f0f",
+        thirdGray: "#f6f6f6",
       },
     },
   },
@@ -24,7 +25,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(primary|primaryBlack|primaryLink|primaryGray|primarySuccess|primaryError|secondaryBlack|secondaryGray|thirdBlack)/,
+        /(bg|text|border)-(primary|primaryBlack|primaryLink|primaryGray|primarySuccess|primaryError|secondaryBlack|secondaryGray|thirdBlack|thirdGray)/,
     },
   ],
 };

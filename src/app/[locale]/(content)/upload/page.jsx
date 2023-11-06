@@ -6,7 +6,7 @@ import Information from "@/components/upload/Information";
 import AddSong from "@/components/upload/AddSong";
 import Complete from "@/components/upload/Complete";
 import { FileProvider } from "@/store/FileProvider";
-import ToastMessage from "@/components/shared/ToastMessage";
+import ToastMessage from "@/components/music-detail/shared/ToastMessage";
 import "@/styles/upload/UploadStyle.css";
 
 export default function Home() {
