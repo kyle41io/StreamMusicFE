@@ -70,19 +70,19 @@ const Complete = ({ t }) => {
                 name="link"
                 type="text"
                 placeholder={audioURL ? "" : "loading..."}
-                className="bg-slate-100/50 w-5/6 text-blue-600 p-2 pr-10 text-xs h-7"
+                className="bg-slate-100/50 w-3/4 text-blue-600 p-2 pr-10 text-xs h-7"
                 value={audioURL}
                 readOnly
               />
               <div
-                className="flex justify-center items-center w-5 h-5 rounded-md absolute right-[72px] top-1/2 -translate-y-[10px] cursor-pointer hover:bg-primary/50"
+                className="flex justify-center items-center w-5 h-5 rounded-md absolute right-28 top-1/2 -translate-y-[10px] cursor-pointer hover:bg-primary/50"
                 onClick={handleCopyLink}
               >
                 <span className="">
                   <CopyIcon />
                 </span>
               </div>
-              <button className="px-3 py-1 ml-2 bg-primary hover:bg-orange-700 rounded p-2 text-white">
+              <button className="text-sm ml-2 bg-primary hover:bg-orange-700 rounded p-1 px-2 text-white">
                 {t("play_now")}
               </button>
               {copySuccess && (

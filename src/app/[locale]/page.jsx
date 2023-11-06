@@ -5,7 +5,7 @@ function Home({ data }) {
   const t = useTranslations("Auth");
 
   return (
-    <main>
+    <main className={"min-h-screen"}>
       <div>
         <Link href={"/"} locale="en">
           English

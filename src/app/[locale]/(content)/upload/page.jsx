@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center">
-      <h1 className="text-4xl font-bold my-10 text-[#0F0F0F]">
+      <h1 className="text-4xl font-bold text-[#0F0F0F]">
         {t("create_new_playlist")}
       </h1>
       <StepBar currentStep={currentStep} t={t} />

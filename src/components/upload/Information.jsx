@@ -80,6 +80,7 @@ const Information = ({ setCurrentStep, t }) => {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
             setPercentImage(percent);
+            if (percent === 100) setCurrentStep(2);
           },
           (error) => {
             console.log(error);
@@ -88,7 +89,7 @@ const Information = ({ setCurrentStep, t }) => {
         );
       }
 
-      if (percentImage === 100 || !uploadedImage) {
+      if (!uploadedImage) {
         setCurrentStep(2);
       }
     }
@@ -196,7 +197,7 @@ const Information = ({ setCurrentStep, t }) => {
             {t("cancel")}
           </button>
           <button
-            className={`flex items-center justify-center px-2 py-1 w-[55px] h-[25px] bg-primary text-white rounded-md hover:bg-orange-700 ${
+            className={`flex items-center justify-center px-2 py-1 w-[55px] h-full bg-primary text-white rounded-md hover:bg-orange-700 ${
               disabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={handleNext}
@@ -212,7 +213,6 @@ const Information = ({ setCurrentStep, t }) => {
         </div>
       </div>
       <div className="w-full flex justify-center gap-28">
-        {percentImage === 100 && <p className="text-sm text-primary">Image</p>}
         {percentImage !== 100 && percentImage !== 0 && (
           <div className="flex flex-col justify-center items-center text-slate-200 text-sm font-semibold">
             <progress
