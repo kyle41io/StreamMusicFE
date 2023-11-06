@@ -99,6 +99,7 @@
     "textarea_placeholder": "Mô tả danh sách phát của bạn",
     "character_reach": "Đạt giới hạn số ký tự.",
     "upload_error": "Thất bại",
-    "upload_success": "Tạo thành công"
+    "upload_success": "Tạo thành công",
+    "copy": "Đã sao chép"
   }
 }

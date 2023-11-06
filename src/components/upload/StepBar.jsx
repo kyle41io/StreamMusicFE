@@ -17,7 +17,7 @@ const StepBar = ({ currentStep, t }) => {
         >
           <div className="step">
             {i + 1 < currentStep || complete ? (
-              <BsCheck2 size={14} strokeWidth={1} color="white" />
+              <BsCheck2 size={12} strokeWidth={1} color="white" cla />
             ) : null}
           </div>
           <p className=" step-text">{step}</p>

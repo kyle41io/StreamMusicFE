@@ -1,16 +1,18 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import FileContext from "@/store/FileProvider";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { slugify } from "@/utils/slugify";
 import storage from "@/lib/firebaseConfig";
 import LoadingIcon from "@/assets/icons/LoaddingIcon";
 import CameraIcon from "@/assets/icons/CameraIcon";
-import Input from "./InputUpload";
+import Input from "./Information/InputUpload";
 import "@/styles/upload/Information.css";
-import Dropdown from "./DropDown";
+import Dropdown from "./Information/DropDown";
 
 const Information = ({ setCurrentStep, t }) => {
+  const router = useRouter();
   const { setInfoPlaylist } = useContext(FileContext);
   const { setUploadedImageFile } = useContext(FileContext);
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -34,7 +36,7 @@ const Information = ({ setCurrentStep, t }) => {
   }, [title, slug, setInfoPlaylist]);
 
   const handleCancle = () => {
-    // setCurrentStep(1);
+    router.back();
   };
 
   const handleImageUpload = (file) => {
@@ -53,47 +55,43 @@ const Information = ({ setCurrentStep, t }) => {
     }
   };
 
-  const handleUpload = async () => {
-    let imageUploadComplete = false;
-
-    if (!title || !slug) {
-      // setShowToast(true);
-      // setError(true);
+  const handleNext = async () => {
+    if (!title) {
       return;
     } else {
-      const imageFileRef = ref(storage, `/files/${slug}/${uploadedImage.name}`);
-      const imageUploadTask = uploadBytesResumable(imageFileRef, uploadedImage);
-      setInfoPlaylist((prevInfoPlaylist) => ({
-        ...prevInfoPlaylist,
-        ref: imageFileRef,
-      }));
+      if (uploadedImage) {
+        const imageFileRef = ref(
+          storage,
+          `/files/${slug}/${uploadedImage.name}`
+        );
+        const imageUploadTask = uploadBytesResumable(
+          imageFileRef,
+          uploadedImage
+        );
+        setInfoPlaylist((prevInfoPlaylist) => ({
+          ...prevInfoPlaylist,
+          ref: imageFileRef,
+        }));
 
-      imageUploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const percent = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setPercentImage(percent);
-          if (percent === 100) {
-            imageUploadComplete = true;
-            checkUploadComplete();
-          }
-        },
-        (error) => {
-          console.log(error);
-          // setShowToast(true);
-          // setError(true);
-        },
-        async () => {}
-      );
-    }
+        imageUploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const percent = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setPercentImage(percent);
+          },
+          (error) => {
+            console.log(error);
+          },
+          async () => {}
+        );
+      }
 
-    const checkUploadComplete = () => {
-      if (imageUploadComplete || !uploadedImage) {
+      if (percentImage === 100 || !uploadedImage) {
         setCurrentStep(2);
       }
-    };
+    }
   };
 
   const handleChangeTitle = (title) => {
@@ -192,7 +190,7 @@ const Information = ({ setCurrentStep, t }) => {
         </p>
         <div className="flex gap-4">
           <button
-            className="flex items-center px-2 py-1-md border rounded-md  hover:bg-slate-300"
+            className="flex items-center px-2 py-1 rounded-md  hover:bg-slate-300"
             onClick={handleCancle}
           >
             {t("cancel")}
@@ -201,7 +199,7 @@ const Information = ({ setCurrentStep, t }) => {
             className={`flex items-center justify-center px-2 py-1 w-[55px] h-[25px] bg-primary text-white rounded-md hover:bg-orange-700 ${
               disabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
-            onClick={handleUpload}
+            onClick={handleNext}
           >
             {percentImage !== 100 && percentImage !== 0 ? (
               <div className="circle">
@@ -217,7 +215,6 @@ const Information = ({ setCurrentStep, t }) => {
         {percentImage === 100 && <p className="text-sm text-primary">Image</p>}
         {percentImage !== 100 && percentImage !== 0 && (
           <div className="flex flex-col justify-center items-center text-slate-200 text-sm font-semibold">
-            <div className="">Image</div>
             <progress
               className="w-48 h-1 rounded-md"
               value={percentImage}
