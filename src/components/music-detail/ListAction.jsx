@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 import { FaShare, FaTrashAlt } from "react-icons/fa";
+import { FileProvider } from "@/store/FileProvider";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function ListAction() {
+  const { setOpenDeleteModal } = useContext(DetailProvider);
   return (
     <section className="w-full flex justify-between">
       <div className="flex gap-4 items-center">
@@ -28,7 +31,10 @@ export default function ListAction() {
           <FaShare size={12} />
           <span>Share</span>
         </div>
-        <div className="flex gap-1 items-center text-xs text-primaryError cursor-pointer border border-primaryError rounded py-1 px-[10px]">
+        <div
+          className="flex gap-1 items-center text-xs text-primaryError cursor-pointer border border-primaryError rounded py-1 px-[10px]"
+          onClick={() => setOpenDeleteModal(true)}
+        >
           <FaTrashAlt size={12} />
         </div>
       </div>

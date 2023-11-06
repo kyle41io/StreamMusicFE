@@ -7,7 +7,7 @@ html {
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,7 +26,7 @@ body {
   background: #ff6b00;
   appearance: none;
   border-radius: 50%;
-  cursor: ew-resize;
+  cursor: pointer;
 }
 
 .volume::-webkit-slider-thumb {
@@ -36,7 +36,46 @@ body {
   background: #ff6b00;
   appearance: none;
   border-radius: 50%;
-  cursor: ew-resize;
+  cursor: pointer;
+}
+.footer-bar::-webkit-slider-thumb {
+  width: 6px;
+  height: 6px;
+  -webkit-appearance: none;
+  background: #ff6b00;
+  appearance: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+  background-color: #d9d9d9;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #d9d9d9;
+}
+
+.footer-volume {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+.footer-v::-webkit-scrollbar-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff6b00;
+  writing-mode: bt-lr;
+  cursor: pointer;
+  appearance: none;
 }
 
 .person {
@@ -103,23 +142,22 @@ button {
 }
 
 .button-1:hover {
-    background: #df5d00;
+  background: #df5d00;
 }
 
 .body-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 64px;
+  display: flex;
+  justify-content: center;
+  padding-top: 64px;
 }
 
 .content-container {
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
 }
 
 .section-2 {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
-
