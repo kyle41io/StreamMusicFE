@@ -15,4 +15,146 @@
 
 .main-content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.new-playlists-container {
+    width: 100%;
+}
+
+.new-playlists {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.new-playlist {
+    display: flex;
+    height: 62px;
+    width: 100%;
+    border-bottom: 1px solid #DCDCDC;
+    align-items: center;
+}
+
+.playing {
+    background-color: #F9F9F9;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    height: 40px;
+    font-size: 16px;
+    color: #979797;
+    font-weight: 500;
+}
+
+.no {
+    min-width: 60px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.song {
+    width: 100%;
+    padding: 8px 10px;
+}
+
+.author {
+    padding: 8px 10px;
+    min-width: 150px;
+}
+
+.genre {
+    padding: 8px 10px;
+    min-width: 140px;
+}
+
+.tracks {
+    padding: 8px 10px;
+    min-width: 80px;
+}
+
+.blank {
+    min-width: 100px;
+    padding: 8px 10px;
+}
+
+.new-playlist-no {
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.new-playlist-song {
+    padding: 8px 10px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+.new-playlist-img {
+    width: 47px;
+    height: 47px;
+    border-radius: 4px;
+}
+
+.new-playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.new-playlist-author {
+    min-width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.new-playlist-view-like {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+    color: #979797;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.new-playlist-genre {
+    min-width: 140px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+.new-playlist-tracks {
+    min-width: 80px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.new-playlist-vl {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.new-playlist-action {
+    min-width: 100px;
+    padding: 8px 10px;
+    display: flex;
+    gap: 16px;
+}
+
+.box-pd-8-10 {
+
 }
