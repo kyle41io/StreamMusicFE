@@ -1,6 +1,6 @@
 import "../../styles/globals.css";
 import { Poppins } from "next/font/google";
-import Header from "@/components/music-detail/shared/Header";
+import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "@/components/music-detail/Footer";

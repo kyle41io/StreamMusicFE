@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./../../../styles/auth/sign-in/SignIn.module.css";
-import Input from "@/components/music-detail/shared/Input";
+import Input from "@/components/shared/Input";
 
 const SignIn = ({ t }) => {
   return (

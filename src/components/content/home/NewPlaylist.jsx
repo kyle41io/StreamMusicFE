@@ -1,6 +1,6 @@
 "use client";
 
-import PagingBar from "@/components/music-detail/shared/PagingBar";
+import PagingBar from "@/components/shared/PagingBar";
 import { useState } from "react";
 
 function NewPlaylist() {

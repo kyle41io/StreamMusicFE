@@ -1,5 +1,5 @@
 import styles from "./../../../styles/auth/sign-up/SignUp.module.css";
-import Input from "@/components/music-detail/shared/Input";
+import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
 
