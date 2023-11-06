@@ -1,23 +1,16 @@
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
+import Home from "./(content)/home/page";
+import SignInPage from "./auth/sign-in/page";
 
-function Home({ data }) {
+function Page({ data }) {
   const t = useTranslations("Auth");
 
   return (
-    <main className={"min-h-screen"}>
-      <div>
-        <Link href={"/"} locale="en">
-          English
-        </Link>
-        <Link href={"/"} locale="vi">
-          Tiếng Việt
-        </Link>
-      </div>
-      <p>{t("sign_in")}</p>
-      <div>{t("sign_up")}</div>
+    <main className={"w-full px-20"}>
+      <SignInPage />
     </main>
   );
 }
 
-export default Home;
+export default Page;

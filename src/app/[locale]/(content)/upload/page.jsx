@@ -9,7 +9,7 @@ import { FileProvider } from "@/store/FileProvider";
 import ToastMessage from "@/components/shared/ToastMessage";
 import "@/styles/upload/UploadStyle.css";
 
-export default function Home() {
+export default function UploadPage() {
   const t = useTranslations("Upload");
   const [currentStep, setCurrentStep] = useState(1);
   const [showToast, setShowToast] = useState(false);
