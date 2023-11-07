@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export default function Header() {
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
-      <div className="w-[73%] flex justify-between items-center">
+      <div className="w-full flex justify-between items-center px-32">
         {/* Logo form */}
         <Link href="/home">
           <div className="flex gap-2 items-center cursor-pointer">

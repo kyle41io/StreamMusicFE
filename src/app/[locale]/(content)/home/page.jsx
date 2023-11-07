@@ -9,7 +9,7 @@ const HomePage = () => {
   const t = useTranslations("Home");
 
   return (
-    <div className="body-container">
+    <div className="w-full body-container">
       <div className="content-container">
         <Slider topPlayList_t={t("top_playlist")} />
         <div className="section-2">

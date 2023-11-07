@@ -30,11 +30,11 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
-      <body className={"flex flex-col items-center gap-12"}>
+      <body className={"w-full flex flex-col items-center gap-12"}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <MusicDetailProvider>
             <Header />
-            {children}
+            <div className="w-full px-32">{children}</div>
             <Modal />
             <Footer />
           </MusicDetailProvider>
