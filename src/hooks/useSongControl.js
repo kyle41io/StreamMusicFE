@@ -1,6 +1,7 @@
 import { tracks } from "@/constant/songs(test)";
 import { DetailProvider } from "@/store/MusicDetailProvider";
-import React, { useContext } from "react";
+import { formatTime } from "@/utils";
+import { useContext } from "react";
 
 export default function useSongControl() {
   const {
@@ -34,8 +35,8 @@ export default function useSongControl() {
   const onSongProgressChange = (e) => {
     const newTime = (e.target.value / 100) * audioRef.current.duration;
     audioRef.current.currentTime = newTime;
-    setTimeProgress(formatTime(newTime));
     setSongProgressValue(e.target.value);
+    setTimeProgress(formatTime(newTime));
   };
 
   return { handlePlayPrev, handlePlayNext, onSongProgressChange };
