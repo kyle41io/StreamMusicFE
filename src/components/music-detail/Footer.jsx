@@ -66,7 +66,7 @@ export default function Footer() {
     }
   }, [audioRef]);
   return (
-    <section className="sticky bottom-0 flex justify-center w-full h-[72px] bg-thirdGray px-32">
+    <section className="sticky bottom-0 flex justify-center w-full h-[72px] bg-thirdGray px-36">
       <div className="w-full justify-between flex gap-6 items-center">
         <ButtonControl />
         <div className="w-[42%] flex items-center gap-3">

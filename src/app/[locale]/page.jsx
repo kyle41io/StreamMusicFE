@@ -12,9 +12,9 @@ function Page({ data }) {
   useAuth();
 
   return (
-    <main>
+    <div>
       <HomePage />
-    </main>
+    </div>
   );
 }
 

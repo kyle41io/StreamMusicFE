@@ -34,7 +34,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
         <NextIntlClientProvider locale={locale} messages={messages}>
           <MusicDetailProvider>
             <Header />
-            <div className="w-full px-32">{children}</div>
+            <main className="w-full px-36">{children}</main>
             <Modal />
             <Footer />
           </MusicDetailProvider>
