@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import thumbnail from "@/assets/images/album_thumb.png";
 import { IoStatsChartSharp } from "react-icons/io5";
 

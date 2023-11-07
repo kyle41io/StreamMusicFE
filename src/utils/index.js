@@ -14,3 +14,8 @@ export const formatTime = (time) => {
   }
   return "00:00";
 };
+
+export const getBackgroundSize = (value, MAX) => {
+  return { backgroundSize: `${(value * MAX) / MAX}% 100%` };
+};
+

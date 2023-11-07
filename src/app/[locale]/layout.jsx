@@ -3,8 +3,8 @@ import { Poppins } from "next/font/google";
 import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import Footer from "@/components/music-detail/Footer";
 import MusicDetailProvider from "@/store/MusicDetailProvider";
+import Modal from "@/components/Modal";
 
 export const metadata = {
   title: "Music Is Life",
@@ -34,7 +34,8 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           <MusicDetailProvider>
             <Header />
             {children}
-            <Footer />
+            <Modal />
+           
           </MusicDetailProvider>
         </NextIntlClientProvider>
       </body>

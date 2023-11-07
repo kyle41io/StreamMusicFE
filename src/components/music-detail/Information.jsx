@@ -10,7 +10,13 @@ export default function Information() {
     <section className="w-full flex gap-12">
       <div className="w-[19%] flex flex-col gap-4 items-center text-center">
         <div className="rounded-full w-[174px] h-[174px] flex justify-center items-center border border-primaryGray">
-          <Image src={avatar.src} width={158} height={158} alt="avatar" />
+          <Image
+            src={avatar.src}
+            width={158}
+            height={158}
+            alt="avatar"
+            className="rounded-full"
+          />
         </div>
         <p className="text-thirdBlack text-2xl">N B D</p>
       </div>
