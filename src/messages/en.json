@@ -29,11 +29,13 @@
     "sign_out": "Sign out"
   },
   "Home": {
+    "": "",
     "live_music": "Live Music",
     "top_playlist": "Top Playlist",
     "top_member": "Top Member",
     "new_playlist": "New Playlist",
     "no": "No",
+    "song": "Song",
     "name": "Name",
     "author": "Author",
     "genre": "Genre",

@@ -2,9 +2,10 @@
 
 import styles from "./../../../styles/content/home/NewPlaylist.module.css";
 import PagingBar from "@/components/shared/PagingBar";
+import CommonTable from "@/components/shared/CommonTable";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import NEW_PLAYLIST from "@/constant/newplaylist";
+import { NEW_PLAYLIST, tableHeader } from "@/constant/newplaylist";
 
 function NewPlaylist() {
   const t = useTranslations("Home");
@@ -14,7 +15,8 @@ function NewPlaylist() {
     <div className={styles["main-container"]}>
       <p className={styles.title}>{t("new_playlist")}</p>
       <div className={styles["main-content"]}>
-        <div className={styles["new-playlists-container"]}>
+        <CommonTable list={NEW_PLAYLIST} headerList={tableHeader}/>
+        {/* <div className={styles["new-playlists-container"]}>
           <div className={styles["header"]}>
             <div className={styles.no}>No</div>
             <div className={styles.song}>Song</div>
@@ -68,7 +70,8 @@ function NewPlaylist() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+
         <PagingBar
           currentPage={currentPage}
           onClick={setCurrentPage}
