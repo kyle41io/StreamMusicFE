@@ -1,12 +1,9 @@
-
 import { useTranslations } from "next-intl";
 import TopMember from "@/components/content/home/TopMember";
 import Slider from "@/components/content/home/Slider";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
 
-
-
-const Home = () => {
+const HomePage = () => {
   const t = useTranslations("Home");
 
   return (
@@ -26,4 +23,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

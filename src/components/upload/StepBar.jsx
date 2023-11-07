@@ -7,7 +7,7 @@ const StepBar = ({ currentStep, t }) => {
   const steps = [t("information"), t("add_songs"), t("complete")];
   const [complete, setComplete] = useState(false);
   return (
-    <div className="flex mb-10">
+    <div className="flex mb-10 z-0">
       {steps?.map((step, i) => (
         <div
           key={i}

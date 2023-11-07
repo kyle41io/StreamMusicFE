@@ -9,7 +9,7 @@ import { FileProvider } from "@/store/FileProvider";
 import ToastMessage from "@/components/shared/ToastMessage";
 import "@/styles/upload/UploadStyle.css";
 
-export default function Home() {
+export default function UploadPage() {
   const t = useTranslations("Upload");
   const [currentStep, setCurrentStep] = useState(1);
   const [showToast, setShowToast] = useState(false);
@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center">
-      <h1 className="text-4xl font-bold my-10 text-[#0F0F0F]">
+      <h1 className="text-4xl font-bold text-[#0F0F0F]">
         {t("create_new_playlist")}
       </h1>
       <StepBar currentStep={currentStep} t={t} />

@@ -29,7 +29,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
-      <body>
+      <body className={"flex flex-col items-center gap-12"}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <MusicDetailProvider>
             <Header />

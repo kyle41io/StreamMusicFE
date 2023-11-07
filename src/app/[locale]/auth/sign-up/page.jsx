@@ -1,9 +1,9 @@
 import SignUp from "@/components/auth/sign-up/SignUp";
 import { useTranslations } from "next-intl";
 
-const pageSignUp = () => {
+const SignUpPage = () => {
   const t = useTranslations("Auth");
-  return <SignUp t={t}/>;
+  return <SignUp t={t} />;
 };
 
-export default pageSignUp;
+export default SignUpPage;
