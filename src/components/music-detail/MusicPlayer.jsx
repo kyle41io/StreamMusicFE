@@ -6,6 +6,7 @@ import SongControl from "./SongControl";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 import { tracks } from "@/constant/songs(test)";
 import { formatTime } from "@/utils";
+import useSongControl from "@/hooks/useSongControl";
 
 export default function MusicPlayer() {
   const {
@@ -17,26 +18,25 @@ export default function MusicPlayer() {
     track,
     setTrack,
     audioRef,
-    inputRef,
     setSongProgressValue,
     songProgressValue,
     setTimeProgress,
+    progressBarRef,
   } = useContext(DetailProvider);
+  const { onSongProgressChange } = useSongControl();
+
+  const MAX = 100;
+  const getBackgroundSize = () => {
+    return { backgroundSize: `${(songProgressValue * 100) / MAX}% 100%` };
+  };
 
   const onTimeUpdate = () => {
     if (audioRef.current.duration) {
       const progress = Math.floor(
         (audioRef.current.currentTime / audioRef.current.duration) * 100
       );
-      inputRef.current.value = progress;
+      progressBarRef.current.value = progress;
     }
-  };
-
-  const onSongProgressChange = (e) => {
-    const newTime = (e.target.value / 100) * audioRef.current.duration;
-    audioRef.current.currentTime = newTime;
-    setTimeProgress(formatTime(newTime));
-    setSongProgressValue(e.target.value);
   };
 
   useEffect(() => {
@@ -106,11 +106,12 @@ export default function MusicPlayer() {
       {/* Song progress */}
       <div className="-mt-5 mb-1">
         <input
+          ref={progressBarRef}
           type="range"
-          ref={inputRef}
+          className="music_player"
           value={songProgressValue}
-          className="song-progress rounded-lg appearance-none bg-primaryGray h-[6px] w-full cursor-pointer"
           onChange={onSongProgressChange}
+          style={getBackgroundSize()}
         />
       </div>
       <audio ref={audioRef} className="hidden" onTimeUpdate={onTimeUpdate}>

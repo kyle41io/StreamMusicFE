@@ -4,7 +4,6 @@ import { FaCommentAlt } from "react-icons/fa";
 import { BiSolidChevronDown } from "react-icons/bi";
 import CommentTextarea from "./CommentTextarea";
 import CommentList from "./CommentList";
-
 const options = ["Newest", "Oldest"];
 
 export default function CommentSection() {

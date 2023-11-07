@@ -1,76 +1,47 @@
 "use client";
-import React, { useContext } from "react";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
-import { BiSolidRightArrow } from "react-icons/bi";
-import { IoMdRepeat, IoMdPause } from "react-icons/io";
-import { IoVolumeHigh } from "react-icons/io5";
+import { useContext, useEffect } from "react";
+import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
 import { DetailProvider } from "@/store/MusicDetailProvider";
-import { tracks } from "@/constant/songs(test)";
 import { formatTime } from "@/utils";
+import useVolumeControl from "@/hooks/useVolumeControl";
+import ButtonControl from "./ButtonControl";
 export default function SongControl() {
-  const {
-    isPlaying,
-    setIsPlaying,
-    isRepeat,
-    setIsRepeat,
-    setTrack,
-    audioRef,
-    currentIndex,
-    setCurrentIndex,
-    timeProgress,
-  } = useContext(DetailProvider);
+  const { audioRef, timeProgress, volumeBarRef, songVolume, setSongVolume } =
+    useContext(DetailProvider);
+  const { handleControlVolume } = useVolumeControl();
 
-  const handlePlayPrev = () => {
-    const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-    setCurrentIndex(prevIndex);
-    setTrack(tracks[prevIndex]);
-    audioRef.current.src = tracks[prevIndex].path;
-    setIsPlaying(true);
-    audioRef.current.play();
+  const MAX = 100;
+  const getBackgroundSize = () => {
+    return { backgroundSize: `${(songVolume * 100) / MAX}% 100%` };
   };
 
-  const handlePlayNext = () => {
-    const nextIndex = (currentIndex + 1) % tracks.length;
-    setCurrentIndex(nextIndex);
-    setTrack(tracks[nextIndex]);
-    setIsPlaying(true);
-    audioRef.current.src = tracks[nextIndex].path;
-    audioRef.current.play();
-  };
+  useEffect(() => {
+    if (audioRef) {
+      audioRef.current.volume = songVolume / 100;
+    }
+  }, [songVolume, audioRef]);
 
   return (
     <div className="flex pl-5 text-white">
       <div className="flex gap-5 items-center">
-        <FaAngleDoubleLeft
-          size={24}
-          className="cursor-pointer"
-          onClick={handlePlayPrev}
-        />
-        <div
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="cursor-pointer"
-        >
-          {isPlaying ? (
-            <IoMdPause size={24} />
-          ) : (
-            <BiSolidRightArrow size={24} />
-          )}
-        </div>
-        <FaAngleDoubleRight
-          size={24}
-          className="cursor-pointer"
-          onClick={handlePlayNext}
-        />
-        <IoMdRepeat
-          size={24}
-          className={`${isRepeat ? "text-primary" : ""} cursor-pointer`}
-          onClick={() => setIsRepeat(!isRepeat)}
-        />
+        <ButtonControl />
         <div className="flex gap-2 items-center">
-          <IoVolumeHigh size={24} className="cursor-pointer" />
+          <div className="cursor-pointer" onClick={handleControlVolume}>
+            {audioRef.current?.muted || songVolume === 0 ? (
+              <IoVolumeMute size={24} />
+            ) : !audioRef.current?.muted && songVolume <= 50 ? (
+              <IoVolumeMedium size={24} />
+            ) : (
+              <IoVolumeHigh size={24} />
+            )}
+          </div>
           <input
+            ref={volumeBarRef}
+            value={songVolume}
             type="range"
-            className="w-[72px] h-1 volume rounded-lg appearance-none bg-primaryGray cursor-pointer"
+            className="song-volume"
+            onChange={(e) => setSongVolume(Number(e.target.value))}
+            style={getBackgroundSize()}
           />
         </div>
         <p className="text-xs text-white">
