@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import MusicDetailProvider from "@/store/MusicDetailProvider";
 import Modal from "@/components/Modal";
+import Footer from "@/components/music-detail/Footer";
 
 export const metadata = {
   title: "Music Is Life",
@@ -35,7 +36,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
             <Header />
             {children}
             <Modal />
-           
+            <Footer />
           </MusicDetailProvider>
         </NextIntlClientProvider>
       </body>
