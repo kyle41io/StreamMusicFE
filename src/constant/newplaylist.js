@@ -133,23 +133,23 @@ export const NEW_PLAYLIST = [
 
 export const tableHeader = [
     {
-        label: 'No',
+        label: 'no',
         key: 'no',
     },
     {
-        label: 'Song',
+        label: 'song',
         key: 'song',
     },   
     {
-        label: 'Author',
+        label: 'author',
         key: 'author'
     },
     {
-        label: 'Genre',
+        label: 'genre',
         key: 'genre'
     },
     {
-        label: 'Tracks',
+        label: 'tracks',
         key: 'tracks'
     },
     {
