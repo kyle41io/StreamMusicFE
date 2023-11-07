@@ -30,7 +30,10 @@ function CommonTable({ list, headerList }) {
           author: item.author,
           genre: item.genre,
           tracks: item.tracks,
-          isPlaying: item.isPlaying
+          isPlaying: <>
+            {item.isPlaying ? <div className="playing-icon"></div> : <div className="play-black"></div>}
+            <div className="icon-20 heart-gray"></div>
+          </>
         };
       };
 
