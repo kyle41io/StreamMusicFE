@@ -8,6 +8,8 @@ import { tracks } from "@/constant/songs(test)";
 import { formatTime } from "@/utils";
 import useSongControl from "@/hooks/useSongControl";
 
+const MAX = 100;
+
 export default function MusicPlayer() {
   const {
     isPlaying,
@@ -25,7 +27,6 @@ export default function MusicPlayer() {
   } = useContext(DetailProvider);
   const { onSongProgressChange } = useSongControl();
 
-  const MAX = 100;
   const getBackgroundSize = () => {
     return { backgroundSize: `${(songProgressValue * 100) / MAX}% 100%` };
   };
@@ -35,7 +36,7 @@ export default function MusicPlayer() {
       const progress = Math.floor(
         (audioRef.current.currentTime / audioRef.current.duration) * 100
       );
-      progressBarRef.current.value = progress;
+      setSongProgressValue(progress);
     }
   };
 
@@ -64,18 +65,19 @@ export default function MusicPlayer() {
 
   useEffect(() => {
     const audio = audioRef.current;
-    const handleTimeUpdate = () => {
-      setTimeProgress(formatTime(audio.currentTime));
-      let newProgress;
-      if (audio.currentTime / audio.duration) {
-        newProgress = (audio.currentTime / audio.duration) * 100;
-      }
-      setSongProgressValue(newProgress);
-    };
-    audio.addEventListener("timeupdate", handleTimeUpdate);
-
-    return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
-  }, []);
+    if (audio) {
+      const handleTimeUpdate = () => {
+        setTimeProgress(formatTime(audio.currentTime));
+        let newProgress;
+        if (audio.currentTime && audio.duration) {
+          newProgress = (audio.currentTime / audio.duration) * 100;
+        }
+        setSongProgressValue(newProgress);
+      };
+      audio.addEventListener("timeupdate", handleTimeUpdate);
+      return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
+    }
+  }, [audioRef]);
 
   return (
     <div className="w-full flex-col h-[180px] bg-primaryBlack">
@@ -114,7 +116,11 @@ export default function MusicPlayer() {
           style={getBackgroundSize()}
         />
       </div>
-      <audio ref={audioRef} className="hidden" onTimeUpdate={onTimeUpdate}>
+      <audio
+        ref={audioRef}
+        className="hidden"
+        onTimeUpdate={() => onTimeUpdate()}
+      >
         <source src={track.path} type="audio/mpeg" />
       </audio>
 
