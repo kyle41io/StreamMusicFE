@@ -1,7 +1,9 @@
+"use client";
 import { useTranslations } from "next-intl";
 import TopMember from "@/components/content/home/TopMember";
 import Slider from "@/components/content/home/Slider";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
+import { useAuth } from "@/hooks/useAuth";
 
 const HomePage = () => {
   const t = useTranslations("Home");
