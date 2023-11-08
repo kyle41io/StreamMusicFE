@@ -15,19 +15,26 @@ const SignIn = () => {
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const requestBody = {
       username: userName,
       password: passWord
     }
-    console.log((requestBody));
     fetch('http://192.168.1.123:3000/auth', {
       method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(requestBody),
-    }).then(response => response.json())
+    })
+      .then(response => {
+        if(response.status === 200) {
+          router.push('/home')
+        }
+        return response.json();
+      })
       .then(data => {
-        console.log(data);
-        router.push('/home');
+        localStorage.setItem('token', data)
       })
   }
 
