@@ -1,6 +1,4 @@
 "use client";
-import { DetailProvider } from "@/store/MusicDetailProvider";
-import React, { useCallback, useContext, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
 const Modal = ({
@@ -12,7 +10,7 @@ const Modal = ({
   body,
   onClose,
 }) => {
-  // const { showDeleteModal, setShowDeleteModal } = useContext(DetailProvider);
+
 
   return (
     <>

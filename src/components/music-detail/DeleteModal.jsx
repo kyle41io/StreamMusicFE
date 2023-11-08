@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-import Modal from "../Modal";
+import Modal from "../shared/Modal";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function DeleteModal() {
@@ -19,11 +19,6 @@ export default function DeleteModal() {
     </div>
   );
 
-  useEffect(() => {
-    if (showDeleteModal) {
-      console.log(123);
-    }
-  }, []);
 
   return (
     <Modal
