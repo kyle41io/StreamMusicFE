@@ -1,37 +1,25 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import { DetailProvider } from "@/store/MusicDetailProvider";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-const Modal = ({ isOpen = false, disabled, className }) => {
-  const [showModal, setShowModal] = useState(isOpen);
-
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
-
-  const handleClose = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-    setShowModal(false);
-  }, [disabled]);
-
-  const handleSubmit = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-    onSubmit();
-  }, [disabled]);
-
-  if (!isOpen) {
-    return null;
-  }
+const Modal = ({
+  isOpen,
+  disabled,
+  className,
+  title,
+  buttonTitle = "Save",
+  body,
+  onClose,
+}) => {
+  // const { showDeleteModal, setShowDeleteModal } = useContext(DetailProvider);
 
   return (
     <>
       {/* Background container */}
-      <div
-        className="justify-center 
+      {isOpen && (
+        <div
+          className="justify-center 
           items-center 
           flex 
           overflow-x-hidden 
@@ -42,10 +30,10 @@ const Modal = ({ isOpen = false, disabled, className }) => {
           outline-none 
           focus:outline-none
           bg-neutral-800/70"
-      >
-        {/* Main modal */}
-        <div
-          className={`translate
+        >
+          {/* Main modal */}
+          <div
+            className={`translate
               h-[147px] 
               border-0 
               rounded-lg 
@@ -59,29 +47,34 @@ const Modal = ({ isOpen = false, disabled, className }) => {
               gap-5
               outline-none 
               focus:outline-none ${className}`}
-        >
-          {/* Header */}
-          <header className="flex justify-between">
-            <p className="text-sm">Delete confirmation</p>
-            <IoMdClose size={16} className="cursor-pointer text-primaryGray" />
-          </header>
-
-          {/* Body */}
-          <div
-            className="flex items-center p-3 text-primaryError text-xs font-normal rounded"
-            style={{ background: "rgba(255, 64, 64, 0.15)" }}
           >
-            Are you sure want to delete this album?
-          </div>
+            {/* Header */}
+            <header className="flex justify-between">
+              <p className="text-sm">{title}</p>
+              <button
+                className="cursor-pointer text-primaryGray"
+                onClick={onClose}
+              >
+                <IoMdClose size={16} />
+              </button>
+            </header>
 
-          <footer className="flex justify-end gap-3 text-xs">
-            <button className="text-primaryGray p-1">Cancel</button>
-            <button className="text-white border rounded bg-primaryError py-[2px] px-2">
-              Delete
-            </button>
-          </footer>
+            {/* Body */}
+            <div className="flex-auto items-center text-xs font-normal rounded">
+              {body}
+            </div>
+
+            <footer className="flex justify-end gap-3 text-xs">
+              <button className="text-primaryGray p-1" onClick={onClose}>
+                Cancel
+              </button>
+              <button className="text-white border rounded bg-primaryError py-[2px] px-2">
+                {buttonTitle}
+              </button>
+            </footer>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
