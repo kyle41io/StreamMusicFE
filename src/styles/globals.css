@@ -224,3 +224,8 @@ button {
 .links:hover {
   text-decoration: underline;
 }
+
+.spinner-element {
+  display: flex;
+  justify-content: center;
+}

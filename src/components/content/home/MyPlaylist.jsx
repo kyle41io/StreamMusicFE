@@ -5,7 +5,8 @@ import styles from './../../../styles/content/home/MyPlaylist.module.css'
 import Link from 'next/link';
 import { MY_PLAYLISTS } from '@/constant/myplaylists';
 import PagingBar from '@/components/shared/PagingBar';
-import { useState } from 'react';
+import InfinityList from './InfinityList';
+import { useEffect, useRef, useState } from 'react';
 
 function MyPlaylist() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,23 +30,11 @@ function MyPlaylist() {
                                 <img src={item.img_src} className={styles['my-playlist-img']} />
                                 <Link href={"./../music-detail"} className='play-orange'></Link>
                             </div>
-                            <div className={styles['my-playlist-songs']}>
-                                {item.songs.map((song) =>
-                                    <div className={styles['my-playlist-song']}>
-                                        <p className={styles['song-info']}>
-                                            {song.name_song} - {song.author_song}
-                                        </p>
-                                        <div className={styles['song-views']}>
-                                            <div className='play-white-2'></div>
-                                            <p>{song.views_song}</p>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                            <InfinityList songs={item.songs} index={index}/>
                         </div>
                     )}
                 </div>
-                <PagingBar currentPage={currentPage} onClick={setCurrentPage} maxPage={20}/>
+                <PagingBar currentPage={currentPage} onClick={setCurrentPage} maxPage={20} />
             </div>
         </div>
     )
