@@ -44,14 +44,14 @@ function CommonTable({ list, headerList }) {
   return (
     <div className={styles['new-playlists']}>
       <div className={styles["header"]}>
-        {headerList.map((item) =>
-          <div className={styles[item.key]}>{t(item.label)}</div>
+        {headerList.map((item, index) =>
+          <div className={styles[item.key]} key={index}>{t(item.label)}</div>
         )}
       </div>
-      {(list.map(i => createDataList(i))).map((item) =>
-        <div className={styles['new-playlist']}>
-          {headerList.map((headerItem) =>
-            <div className={`${styles[`new-playlist-${headerItem.key}`]} px-2.5 py-2`}>
+      {(list.map(i => createDataList(i))).map((item, index) =>
+        <div className={styles['new-playlist']} key={index}>
+          {headerList.map((headerItem, headerIndex) =>
+            <div className={`${styles[`new-playlist-${headerItem.key}`]} px-2.5 py-2`} key={headerIndex}>
               {item[headerItem.key]}
             </div>
           )}

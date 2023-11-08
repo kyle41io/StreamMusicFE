@@ -8,7 +8,7 @@ import React from "react";
 
 const DetailMusic = () => {
   return (
-    <div className="w-[73%] flex mx-auto mt-10 gap-[4%]">
+    <div className="flex mx-auto mt-10 gap-[4%]">
       <div className="w-[64%] flex flex-col gap-6">
         <MusicPlayer />
         <ListAction />
