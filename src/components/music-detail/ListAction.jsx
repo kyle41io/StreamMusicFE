@@ -6,7 +6,7 @@ import { FaShare, FaTrashAlt } from "react-icons/fa";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function ListAction() {
-  const { setOpenDeleteModal } = useContext(DetailProvider);
+  const { setShowDeleteModal } = useContext(DetailProvider);
   return (
     <section className="w-full flex justify-between">
       <div className="flex gap-4 items-center">
@@ -32,7 +32,7 @@ export default function ListAction() {
         </div>
         <div
           className="flex gap-1 items-center text-xs text-primaryError cursor-pointer border border-primaryError rounded py-1 px-[10px]"
-          onClick={() => setOpenDeleteModal(true)}
+          onClick={() => setShowDeleteModal(true)}
         >
           <FaTrashAlt size={12} />
         </div>

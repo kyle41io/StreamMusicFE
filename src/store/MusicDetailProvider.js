@@ -12,7 +12,6 @@ export default function MusicDetailProvider({ children }) {
   const [isRepeat, setIsRepeat] = useState(false);
   const audioRef = useRef(null);
   const inputRef = useRef(null);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [songProgressValue, setSongProgressValue] = useState(0);
   const [timeProgress, setTimeProgress] = useState("--:--");
   const progressBarRef = useRef(null);
@@ -20,7 +19,7 @@ export default function MusicDetailProvider({ children }) {
   const [showVolume, setShowVolume] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [songVolume, setSongVolume] = useState(60);
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
     <DetailProvider.Provider
@@ -39,8 +38,6 @@ export default function MusicDetailProvider({ children }) {
         setSongProgressValue,
         timeProgress,
         setTimeProgress,
-        openDeleteModal,
-        setOpenDeleteModal,
         progressBarRef,
         volumeBarRef,
         showVolume,
@@ -49,7 +46,8 @@ export default function MusicDetailProvider({ children }) {
         setIsLiked,
         songVolume,
         setSongVolume,
-     
+        showDeleteModal,
+        setShowDeleteModal,
       }}
     >
       {children}
