@@ -8,22 +8,25 @@ import ResultBox from "../ResultBox";
 import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
-      <div className="flex justify-between items-center 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] lg:px-10 md:px-6 sm:px-4 px-2">
+      <div className="flex justify-between items-center md:gap-2 h-full 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px]">
         {/* Logo form */}
         <Link href="/home">
-          <div className="flex gap-2 items-center cursor-pointer">
+          <div className="flex gap-2 items-center cursor-pointer p-3">
             <Image
               src={logo.src}
-              width={240}
+              width={68}
               height={68}
-              className="object-center"
+              className="object-center min-w-[46px] min-h-[46px] sm:block md:block lg:block xl:block"
               alt="logo"
             />
+
+            <div className="text-2xl text-white uppercase font-normal hidden xl:block">
+              Music is life
+            </div>
           </div>
         </Link>
 
@@ -32,7 +35,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Please enter the song name"
-            className="h-12 w-[450px] p-3 rounded-md placeholder:text-primaryGray placeholder:text-sm"
+            className="xl:h-12 lg:h-12 md:h-12  2xl:w-[450px] lg:w-[450px] xl:w-[450px] md:w-[360px] p-3 rounded-md placeholder:text-primaryGray placeholder:text-sm"
           />
           <HiOutlineSearch
             size={20}
@@ -44,16 +47,24 @@ export default function Header() {
 
         {/* Buttons when there's no user */}
 
-        <div className="flex gap-8">
+        <div className="flex justify-between 2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4 sm:gap-3">
           <Link href="/auth/sign-in">
-            <Button text="Sign in" />
+            <Button
+              text="Sign in"
+              className="sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
+            />
           </Link>
           <Link href="/auth/sign-up">
-            <Button text="Sign up" color="primary" />
+            <Button
+              text="Sign up"
+              color="primary"
+              className="sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
+            />
           </Link>
         </div>
 
         {/* Button when user logged in */}
+
         {/* <div className="flex gap-8 items-center">
           <Button
             text="Create Playlist"
