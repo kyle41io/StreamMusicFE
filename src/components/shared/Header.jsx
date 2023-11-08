@@ -12,10 +12,10 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
-      <div className="flex justify-between items-center md:gap-2 h-full 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px]">
+      <div className="flex justify-between items-center md:gap-2 h-full 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] px-10">
         {/* Logo form */}
         <Link href="/home">
-          <div className="flex gap-2 items-center cursor-pointer p-3">
+          <div className="flex gap-2 items-center cursor-pointer p-2">
             <Image
               src={logo.src}
               width={68}
@@ -51,14 +51,14 @@ export default function Header() {
           <Link href="/auth/sign-in">
             <Button
               text="Sign in"
-              className="sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
+              className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
             />
           </Link>
           <Link href="/auth/sign-up">
             <Button
               text="Sign up"
               color="primary"
-              className="sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
+              className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
             />
           </Link>
         </div>
