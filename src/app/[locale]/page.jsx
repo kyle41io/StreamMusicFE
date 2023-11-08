@@ -12,9 +12,9 @@ function Page({ data }) {
   useAuth();
 
   return (
-    <main className={"w-full px-20"}>
+    <div>
       <HomePage />
-    </main>
+    </div>
   );
 }
 

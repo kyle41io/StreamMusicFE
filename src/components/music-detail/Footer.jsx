@@ -66,8 +66,8 @@ export default function Footer() {
     }
   }, [audioRef]);
   return (
-    <section className="sticky bottom-0 flex justify-center w-full h-[72px] bg-thirdGray">
-      <div className="w-[73%] justify-between flex gap-6 items-center">
+    <section className="sticky bottom-0 flex justify-center w-full h-[72px] bg-thirdGray px-36">
+      <div className="w-full justify-between flex gap-6 items-center">
         <ButtonControl />
         <div className="w-[42%] flex items-center gap-3">
           <p className="text-sm text-primary w-[32px]">{timeProgress}</p>

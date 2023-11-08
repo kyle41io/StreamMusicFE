@@ -11,7 +11,7 @@ const HomePage = () => {
 
   return (
     <div className="body-container">
-      <div className="content-container">
+      <div className="!w-full content-container">
         <Slider topPlayList_t={t("top_playlist")} />
         <div className="section-2">
           <div className="left-container">
