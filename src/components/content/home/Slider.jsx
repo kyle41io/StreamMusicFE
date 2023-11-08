@@ -1,33 +1,55 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 import styles from './../../../styles/content/home/Slider.module.css'
 import TOP_PLAYLIST from '@/constant/topPlaylist'
 
 function Slider({ topPlayList_t, list }) {
-    const [pointer, setPointer] = useState(0);
     const [showBlurLeft, setShowBlurLeft] = useState(false);
     const [showBlurRight, setShowBlurRight] = useState(true);
 
+    const sliderRef = useRef();
+    const containerRef = useRef();
+    const interValLeft = useRef();
+    const interValRight = useRef();
+
     useEffect(() => {
-        if (pointer === 0) {
-            setShowBlurRight(true);
-            setShowBlurLeft(false);
-        } else if (pointer === - TOP_PLAYLIST.length + 5) {
-            setShowBlurLeft(true);
-            setShowBlurRight(false);
-        }
-    }, [pointer])
+        sliderRef.current.style.left = '0px';
+        sliderRef.current.style.right = `${(-1790 + containerRef.current.offsetWidth)}px`;
+    }, [])
 
     const handleGoLeft = () => {
-        if (pointer < 0) { setPointer(pointer => pointer + 1); }
+        interValLeft.current = setInterval(() => {
+            console.log(parseInt(sliderRef.current.style.left));
+            if (parseInt(sliderRef.current.style.left) >= 0) {
+                clearInterval(interValLeft);
+            } else {
+                sliderRef.current.style.left = `${parseInt(sliderRef.current.style.left) + 10}px`
+                sliderRef.current.style.right = `${parseInt(sliderRef.current.style.right) - 10}px`
+                setShowBlurRight(true);
+                setShowBlurLeft(false);
+            }
+        }, 50);
     }
 
     const handleGoRight = () => {
-        if (pointer > -TOP_PLAYLIST.length + 5) { setPointer(pointer => pointer - 1); }
+        interValRight.current = setInterval(() => {
+            if (parseInt(sliderRef.current.style.left) <= (-1790 + containerRef.current.offsetWidth)) {
+                clearInterval(interValRight)
+            } else {
+                sliderRef.current.style.left = `${parseInt(sliderRef.current.style.left) - 10}px`
+                sliderRef.current.style.right = `${parseInt(sliderRef.current.style.right) + 10}px`
+                setShowBlurLeft(true);
+                setShowBlurRight(false);
+            }
+        }, 50);
+    }
+
+    const handleResize = () => {
+        console.log('resized!');
     }
 
     const formatViews = (views) => {
-        if(views < 1000) {
+        if (views < 1000) {
             return views.toString();
         } else {
             return (views / 1000).toFixed(3);
@@ -35,22 +57,22 @@ function Slider({ topPlayList_t, list }) {
     }
 
     return (
-        <div className={styles['slider-container']}>
+        <div className={styles['slider-container']} onResize={handleResize}>
             <div className={styles['slider-header']}>
                 <p className={styles['slider-title']}>
                     {topPlayList_t}
                 </p>
                 <div className={styles['move-buttons']}>
-                    <button className={`${styles['move-button']} left-arrow`} onClick={handleGoLeft}></button>
-                    <button className={`${styles['move-button']} right-arrow`} onClick={handleGoRight}></button>
+                    <button className={`${styles['move-button']} left-arrow`} onMouseDown={handleGoLeft} onMouseUp={() => clearInterval(interValLeft.current)}></button>
+                    <button className={`${styles['move-button']} right-arrow`} onMouseDown={handleGoRight} onMouseUp={() => clearInterval(interValRight.current)}></button>
                 </div>
             </div>
-            <div className={styles['main-slider']} >
+            <div className={styles['main-slider']} ref={containerRef}>
                 {showBlurLeft && <div className={styles['blur-left']}>
                 </div>}
                 {showBlurRight && <div className={styles['blur-right']}>
                 </div>}
-                <div className={styles['slider']} style={{ transform: `translateX(${pointer * (374 + 16)}px)` }}>
+                <div className={styles['slider']} ref={sliderRef}>
                     {TOP_PLAYLIST.map((item, index) => <div className={styles['card']} key={index}>
                         <div className={styles['views']}>
                             <div className='headphones'></div>
@@ -66,7 +88,7 @@ function Slider({ topPlayList_t, list }) {
                                 {item.title}
                             </p>
                         </div>
-                        <img src={item.img_src} className={styles['img']}/>
+                        <img src={item.img_src} className={styles['img']} />
                     </div>)}
                 </div>
             </div>

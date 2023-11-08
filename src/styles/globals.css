@@ -80,7 +80,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 131px;
 }
 
-.song-progress .person {
+.person {
   background-image: url("./../assets/svg/person.svg");
 }
 
