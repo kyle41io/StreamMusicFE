@@ -19,7 +19,6 @@ function Slider({ topPlayList_t, list }) {
 
     const handleGoLeft = () => {
         interValLeft.current = setInterval(() => {
-            console.log(parseInt(sliderRef.current.style.left));
             if (parseInt(sliderRef.current.style.left) >= 0) {
                 clearInterval(interValLeft);
             } else {
