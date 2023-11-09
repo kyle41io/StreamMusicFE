@@ -108,8 +108,6 @@ export default function Footer() {
             <div
               ref={volumeBarRef}
               className="absolute flex items-center justify-center w-[40px] h-[153px] top-0 left-0 border rounded bg-thirdGray -translate-y-[116%] -translate-x-2 "
-              onMouseOver={() => setShowVolumeBar(true)}
-              onMouseLeave={() => setShowVolumeBar(fa)}
             >
               <input
                 value={songVolume}
