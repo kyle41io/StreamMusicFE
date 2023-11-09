@@ -4,6 +4,7 @@ import TopMember from "@/components/content/home/TopMember";
 import Slider from "@/components/content/home/Slider";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
 import { useAuth } from "@/hooks/useAuth";
+import MyPlaylist from "@/components/content/home/MyPlaylist";
 
 const HomePage = () => {
   const t = useTranslations("Home");
@@ -16,6 +17,7 @@ const HomePage = () => {
         <div className="section-2">
           <div className="left-container">
             <NewPlaylist />
+            <MyPlaylist />
           </div>
           <div className="right-container">
             <TopMember t={t} />

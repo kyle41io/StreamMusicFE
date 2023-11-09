@@ -2,14 +2,14 @@
 
 import styles from './../../styles/shared/PagingBar.module.css'
 
-function PagingBar({ currentPage, onClick, maxPage }) {
+function PagingBar({ currentPage=1, onClick, maxPage }) {
 
     const handleClick = (item) => {
         onClick(item);
     }
 
     const rerenderArray = (currentPage) => {
-        console.log(currentPage);
+        //console.log(currentPage);
         if (currentPage === 1) {
             return [currentPage + 1, currentPage + 2];
         } else if (currentPage === 2) {
