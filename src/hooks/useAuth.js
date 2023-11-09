@@ -9,7 +9,9 @@ export function useAuth() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      router.push("/auth/sign-in");
+      router.push("/auth/sign-in", {
+        scroll: true,
+      });
     }
   }, []);
 

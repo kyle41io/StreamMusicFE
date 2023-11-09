@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 const HomePage = () => {
   const t = useTranslations("Home");
+  useAuth();
 
   return (
     <div className="body-container">

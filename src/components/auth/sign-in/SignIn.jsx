@@ -16,10 +16,14 @@ const SignIn = () => {
   const [passWord, setPassword] = useState('');
 
   const handleSubmit = async () => {
+    
     const requestBody = {
       username: userName,
       password: passWord
     }
+
+    let responseHolder = {};
+    
     fetch('http://192.168.1.123:3000/auth', {
       method: 'POST',
       headers: {
@@ -28,18 +32,19 @@ const SignIn = () => {
       body: JSON.stringify(requestBody),
     })
       .then(response => {
-        if(response.status === 200) {
-          router.push('/home')
-        }
+        responseHolder = response;
         return response.json();
       })
       .then(data => {
-        localStorage.setItem('token', data)
+        if(responseHolder.status === 200 || responseHolder.status === 201) {
+          router.push('/home', {
+            scroll: true
+          });
+          localStorage.setItem('token', data.token);
+        } else {
+          console.log(data);
+        }  
       })
-  }
-
-  const createLocalStorage = (value) => {
-    localStorage.setItem('token', value)
   }
 
   return (
@@ -65,7 +70,7 @@ const SignIn = () => {
           <button className="button-1" onClick={handleSubmit}>{t("submit")}</button>
           <span className={styles["linkSignUp"]}>
             {t("or")}
-            <Link href={"/auth/sign-up"}>
+            <Link href={"/auth/sign-up"} scroll={true}>
               <span className="link">{t("sign_up")}</span>
             </Link>
           </span>
