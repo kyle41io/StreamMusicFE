@@ -8,6 +8,18 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
         onClick(item);
     }
 
+    const handlePrevious = () => {
+        if(currentPage > 1) {
+            onClick(currentPage - 1);
+        }
+    }
+
+    const handleNext = () => {
+        if(currentPage < maxPage) {
+            onClick(currentPage + 1);
+        }
+    }
+
     const rerenderArray = (currentPage) => {
         //console.log(currentPage);
         if (currentPage === 1) {
@@ -30,7 +42,7 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
 
     return (
         <div className={styles['main-bar']}>
-            <span className="cursor-default" onClick={() => onClick(currentPage - 1)}>
+            <span className="cursor-default" onClick={handlePrevious}>
                 Previous
             </span>
             <div className={styles['page-number-choser']}>
@@ -51,7 +63,7 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
                     {maxPage}
                 </div>
             </div>
-            <span className="cursor-default" onClick={() => onClick(currentPage + 1)}>
+            <span className="cursor-default" onClick={handleNext}>
                 Next
             </span>
         </div>
