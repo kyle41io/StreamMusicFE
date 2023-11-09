@@ -1,9 +1,11 @@
 "use client";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 export function useAuth() {
   const router = useRouter();
+  const { userData, setUserData } = useContext(DetailProvider);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -12,8 +14,9 @@ export function useAuth() {
       router.push("/auth/sign-in", {
         scroll: true,
       });
+    } else {
+      setUserData(token);
     }
   }, []);
 
-  return null;
 }

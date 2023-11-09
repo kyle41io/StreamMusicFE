@@ -22,6 +22,7 @@ export default function UserAvatar() {
 
   return (
     <div
+      ref={menuRef}
       className={`${
         showMenu ? "bg-black" : ""
       } w-[108px] h-20 flex gap-3 items-center justify-center relative`}
@@ -39,9 +40,8 @@ export default function UserAvatar() {
       <BiSolidChevronDown size={24} className="text-white cursor-pointer" />
       {showMenu && (
         <ul
-          className="w-[218px] text-sm absolute rounded-br-md rounded-bl-md bottom-0 py-1 right-0 translate-y-[100%]"
+          className="w-[218px] text-sm absolute bg-white rounded-br-md rounded-bl-md bottom-0 py-1 right-0 translate-y-[100%] z-20"
           style={{ boxShadow: "0px 4px 4px 0px rgba(171, 171, 171, 0.25)" }}
-          ref={menuRef}
         >
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
             My profile
