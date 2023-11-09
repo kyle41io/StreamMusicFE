@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@media screen and (max-width: 1360px) {
+  .section-2 {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
 html {
   height: 100%;
 }
