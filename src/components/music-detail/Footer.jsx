@@ -14,7 +14,9 @@ import useSongControl from "@/hooks/useSongControl";
 export default function Footer() {
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+
   const volumeRef = useRef(null);
+
   const {
     timeProgress,
     isLiked,
@@ -86,10 +88,11 @@ export default function Footer() {
           ref={volumeRef}
           className="relative group"
           onMouseOver={() => setShowVolumeBar(true)}
-          onMouseLeave={handleHoverOut}
+          onMouseLeave={() => setShowVolumeBar(false)}
+          
         >
           <div
-            className="cursor-pointer text-2xl"
+            className="cursor-pointer text-2xl "
             onClick={handleControlVolume}
           >
             {audioRef.current?.muted || songVolume === 0 ? (
@@ -105,6 +108,8 @@ export default function Footer() {
             <div
               ref={volumeBarRef}
               className="absolute flex items-center justify-center w-[40px] h-[153px] top-0 left-0 border rounded bg-thirdGray -translate-y-[116%] -translate-x-2 "
+              onMouseOver={() => setShowVolumeBar(true)}
+              onMouseLeave={() => setShowVolumeBar(fa)}
             >
               <input
                 value={songVolume}
