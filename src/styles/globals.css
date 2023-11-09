@@ -10,7 +10,6 @@
 }
 
 html {
-
 }
 
 * {
@@ -18,7 +17,6 @@ html {
 }
 
 body {
-  
 }
 
 .link {
@@ -150,7 +148,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 .play-orange {
-  background-image: url('./../assets/svg/play-orange.svg');
+  background-image: url("./../assets/svg/play-orange.svg");
   position: absolute;
   z-index: 2;
   width: 80px;
@@ -162,7 +160,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 .play-white-2 {
   width: 16px;
   height: 16px;
-  background-image: url('./../assets/svg/play-white-2.svg');
+  background-image: url("./../assets/svg/play-white-2.svg");
 }
 
 .icon-20 {
@@ -217,15 +215,15 @@ button {
 }
 
 .left-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .links {
   font-size: 14px;
-  color: #0094FF;
+  color: #0094ff;
 }
 
 .links:hover {
@@ -246,3 +244,4 @@ button {
   left: -8px;
   cursor: pointer;
 }
+

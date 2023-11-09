@@ -1,7 +1,7 @@
 "use client";
 import AlbumItem from "@/components/music-detail/AlbumItem";
 import Information from "@/components/music-detail/Information";
-import ListAction from "@/components/music-detail/ListAction";
+import ListAction from "@/components/ListAction";
 import MusicPlayer from "@/components/music-detail/MusicPlayer";
 import React, { useEffect, useState } from "react";
 

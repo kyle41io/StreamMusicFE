@@ -64,7 +64,7 @@ export default function Footer() {
   }, [audioRef]);
 
   return (
-    <section className="sticky bottom-0 flex justify-center w-full bg-thirdGray">
+    <section className="fixed bottom-0 flex justify-center w-full bg-thirdGray items-center">
       <div className="h-[72px] 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] justify-between flex gap-6 items-center">
         <ButtonControl />
         <div className="w-[42%] flex items-center gap-3">
@@ -89,7 +89,6 @@ export default function Footer() {
           className="relative group"
           onMouseOver={() => setShowVolumeBar(true)}
           onMouseLeave={() => setShowVolumeBar(false)}
-          
         >
           <div
             className="cursor-pointer text-2xl "
@@ -128,8 +127,8 @@ export default function Footer() {
             alt="avatar"
             className="rounded-full ml-6"
           />
-          <div className="h-full flex flex-col gap-1 mt-1">
-            <p className="text-xs text-primaryGray">N B D</p>
+          <div className="flex flex-col h-full mt-3">
+            <p className="text-xs text-primaryGray mb-1">N B D</p>
             <h5 className="text-sm text-thirdBlack uppercase">
               Mặt mộc | Phạm Nguyên Ngọc x Vanh x Ân Nhi{" "}
             </h5>
