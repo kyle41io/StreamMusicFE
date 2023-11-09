@@ -236,3 +236,13 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.group::after {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 27px;
+  top: -25px;
+  left: -8px;
+  cursor: pointer;
+}
