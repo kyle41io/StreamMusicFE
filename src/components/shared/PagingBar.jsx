@@ -42,9 +42,9 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
 
     return (
         <div className={styles['main-bar']}>
-            <span className="cursor-default" onClick={handlePrevious}>
+            <button onClick={handlePrevious}>
                 Previous
-            </span>
+            </button>
             <div className={styles['page-number-choser']}>
                 <div className={`${styles.numbers} ${currentPage == 1 ? styles.chosen : ''}`} onClick={() => onClick(1)}>
                     1
@@ -63,9 +63,9 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
                     {maxPage}
                 </div>
             </div>
-            <span className="cursor-default" onClick={handleNext}>
+            <button onClick={handleNext}>
                 Next
-            </span>
+            </button>
         </div>
     )
 }
