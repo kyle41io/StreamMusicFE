@@ -8,6 +8,7 @@ import MyPlaylist from "@/components/content/home/MyPlaylist";
 
 const HomePage = () => {
   const t = useTranslations("Home");
+  useAuth();
 
   return (
     <div className="body-container">

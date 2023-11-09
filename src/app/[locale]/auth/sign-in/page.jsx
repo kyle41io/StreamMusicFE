@@ -1,10 +1,16 @@
-import SignIn from "@/components/auth/sign-in/SignIn";
+'use client'
 
-import { useTranslations } from "next-intl";
+import SignIn from "@/components/auth/sign-in/SignIn";
+import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
-  const t = useTranslations("Auth");
-  return <SignIn t={t} />;
+  const router = useRouter();
+
+  if (localStorage.getItem('token')) {
+    router.push('/home')
+  }
+
+  return <SignIn />;
 };
 
 export default SignInPage;
