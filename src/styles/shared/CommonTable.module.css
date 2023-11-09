@@ -39,6 +39,7 @@
 .song {
     width: 100%;
     padding: 8px 10px;
+    min-width: 200px;
 }
 
 .author {
@@ -74,6 +75,7 @@
     gap: 16px;
     align-items: center;
     width: 100%;
+    min-width: 200px;
 }
 
 .new-playlist-img {
