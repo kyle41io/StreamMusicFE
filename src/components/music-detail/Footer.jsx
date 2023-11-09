@@ -12,7 +12,7 @@ import ButtonControl from "./ButtonControl";
 import useSongControl from "@/hooks/useSongControl";
 
 export default function Footer() {
-  const [isHover, setIsHover] = useState(false);
+  const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const volumeRef = useRef(null);
   const {
@@ -39,6 +39,12 @@ export default function Footer() {
     return { backgroundSize: `${(songVolume * 100) / MAX}% 100%` };
   };
 
+  const handleHoverOut = (e) => {
+    if (showVolumeBar) {
+      console.log(e.target);
+    }
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -54,9 +60,10 @@ export default function Footer() {
       return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
     }
   }, [audioRef]);
+
   return (
     <section className="sticky bottom-0 flex justify-center w-full bg-thirdGray">
-      <div className="h-[72px] 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] lg:px-10 md:px-6 sm:px-4 px-2 justify-between flex gap-6 items-center">
+      <div className="h-[72px] 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] justify-between flex gap-6 items-center">
         <ButtonControl />
         <div className="w-[42%] flex items-center gap-3">
           <p className="text-sm text-primary w-[32px]">{timeProgress}</p>
@@ -74,7 +81,13 @@ export default function Footer() {
               : "--:--"}
           </p>
         </div>
-        <div ref={volumeRef} className="relative group">
+
+        <div
+          ref={volumeRef}
+          className="relative group"
+          onMouseOver={() => setShowVolumeBar(true)}
+          onMouseLeave={handleHoverOut}
+        >
           <div
             className="cursor-pointer text-2xl"
             onClick={handleControlVolume}
@@ -88,16 +101,20 @@ export default function Footer() {
             )}
           </div>
 
-          <div className="absolute flex items-center justify-center w-[40px] h-[153px] top-0 left-0 border rounded bg-thirdGray -translate-y-[116%] -translate-x-2 opacity-0  group-hover:opacity-100">
-            <input
+          {showVolumeBar && (
+            <div
               ref={volumeBarRef}
-              value={songVolume}
-              type="range"
-              style={getVolumeBackgroundSize()}
-              className="footer-volume"
-              onChange={(e) => setSongVolume(Number(e.target.value))}
-            />
-          </div>
+              className="absolute flex items-center justify-center w-[40px] h-[153px] top-0 left-0 border rounded bg-thirdGray -translate-y-[116%] -translate-x-2 "
+            >
+              <input
+                value={songVolume}
+                type="range"
+                style={getVolumeBackgroundSize()}
+                className="footer-volume"
+                onChange={(e) => setSongVolume(Number(e.target.value))}
+              />
+            </div>
+          )}
         </div>
         {/* Information */}
         <div className="w-[35,7%] h-full flex items-center border-l gap-4 border-l-secondaryGray">
