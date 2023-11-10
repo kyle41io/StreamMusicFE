@@ -9,13 +9,17 @@ import { NEW_PLAYLIST, tableHeader } from "@/constant/newplaylist";
 
 function NewPlaylist() {
   const t = useTranslations("Home");
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [playingIndex, setPlayingIndex] = useState();
+
+  console.log(playingIndex);
 
   return (
     <div className={styles["main-container"]}>
       <p className={styles.title}>{t("new_playlist")}</p>
       <div className={styles["main-content"]}>
-        <CommonTable list={NEW_PLAYLIST} headerList={tableHeader}/>
+        <CommonTable list={NEW_PLAYLIST} headerList={tableHeader} playingIndex={playingIndex} setPlayingIndex={setPlayingIndex}/>
         <PagingBar
           currentPage={currentPage}
           onClick={setCurrentPage}
