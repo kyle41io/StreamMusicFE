@@ -13,8 +13,6 @@ function NewPlaylist() {
   const [currentPage, setCurrentPage] = useState(1);
   const [playingIndex, setPlayingIndex] = useState();
 
-  console.log(playingIndex);
-
   return (
     <div className={styles["main-container"]}>
       <p className={styles.title}>{t("new_playlist")}</p>

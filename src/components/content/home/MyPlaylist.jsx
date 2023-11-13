@@ -30,7 +30,7 @@ function MyPlaylist() {
                                 <img src={item.img_src} className={styles['my-playlist-img']} />
                                 <Link href={"./../music-detail"} className='play-orange'></Link>
                             </div>
-                            <InfinityList songs={item.songs} index={index}/>
+                            <InfinityList index={index}/>
                         </div>
                     )}
                 </div>
