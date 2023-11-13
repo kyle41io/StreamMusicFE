@@ -49,11 +49,14 @@ function Slider({ topPlayList_t, list }) {
                     <button className={`${styles['move-button']} right-arrow`} onMouseDown={() => handleMove(false)} onMouseUp={() => clearInterval(interValFake.current)}></button>
                 </div>
             </div>
-            <div className={styles['main-slider']} ref={containerRef}>
+            <div className={styles['blurs-container']}>
                 {showBlurLeft && <div className={styles['blur-left']}>
                 </div>}
                 {!showBlurLeft && <div className={styles['blur-right']}>
                 </div>}
+            </div>
+            <div className={styles['main-slider']} ref={containerRef}>
+
                 <div className={styles['slider']} ref={sliderRef}>
                     {TOP_PLAYLIST.map((item, index) => <div className={styles['card']} key={index}>
                         <div className={styles['views']}>
