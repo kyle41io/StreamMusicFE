@@ -8,7 +8,6 @@ function CommonTable({ list, headerList, playingIndex, setPlayingIndex }) {
   const t = useTranslations("Home");
 
   const createDataList = (item, index) => {
-    console.log(index);
     return {
       no: item.no,
       song: (

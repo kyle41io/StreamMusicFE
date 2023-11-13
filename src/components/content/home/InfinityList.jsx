@@ -1,26 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './../../../styles/content/home/InfinityList.module.css'
+import { getList } from '@/constant/myPlayListMock';
 
-function InfinityList({ songs, index}) {
+function InfinityList({ playListId, index }) {
+    const [internalSongs, setInternalSongs] = useState([]);
     const [isScrollEnd, setIsScrollEnd] = useState(false);
+    const [segment, setSegment] = useState(0);
+    const [isLoadable, setIsLoadable] = useState(true);
+
+    const observer = useRef();
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
+        observer.current = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && isLoadable) {
+                    setSegment(prev => {
+                        return prev + 1;
+                    });
                     setIsScrollEnd(true);
                 } else {
                     setIsScrollEnd(false);
                 }
             })
         })
-        //console.log(document.querySelector(`.spinner-element.s${index}`));
-        observer.observe(document.querySelector(`.spinner-element.s${index}`));
+        observer.current.observe(document.querySelector(`.spinner-element.s${index}`));
+
+        return () => {
+            observer.current.disconnect();
+        }
     }, [])
+
+    useEffect(() => {
+        const appendList = getList(segment, 5).list;
+        const length = getList(segment, 5).length;
+        const newList = [...internalSongs, ...appendList];
+        setInternalSongs(newList)
+        if(segment*5 === length) {
+            setIsLoadable(false);
+        }
+    }, [segment])
+
+    useEffect(() => {
+        if(!isLoadable) {
+            setIsScrollEnd(false);
+            observer.current.disconnect();
+        }
+    }, [isLoadable])
 
     return (
         <div className={styles['my-playlist-songs']}>
-            {songs.map((song, songIndex) =>
+            {internalSongs.map((song, songIndex) =>
                 <div className={styles['my-playlist-song']} key={songIndex}>
                     <p className={styles['song-info']}>
                         {song.name_song} - {song.author_song}
