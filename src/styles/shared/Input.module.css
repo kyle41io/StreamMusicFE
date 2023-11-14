@@ -36,9 +36,19 @@
     font-size: 14px;
 }
 
+.right-icons {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    gap: 8px;
+}
+
 .right-icon {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: contain;
-    right: 0;
     cursor: pointer;
 }
 

@@ -85,6 +85,10 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 131px;
 }
 
+.error {
+  background-image: url('./../assets/svg/error.svg');
+}
+
 .person {
   background-image: url("./../assets/svg/person.svg");
 }
