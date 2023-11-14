@@ -10,7 +10,6 @@ export default function UserAvatar() {
 
   useEffect(() => {
     const clickOutside = (e) => {
-      console.log(menuRef.current);
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowMenu(false);
       }
