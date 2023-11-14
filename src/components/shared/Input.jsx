@@ -1,22 +1,24 @@
 'use client';
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../../styles/shared/Input.module.css'
 
-const Input = ({ value, type, placeholder, icon, setDataState, regex, errorMessage }) => {
+const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, errorMessage }) => {
   const [internalType, setInternalType] = useState(type);
   const [eye, setEye] = useState('open');
   const [status, setStatus] = useState('');
 
+  useEffect(() => {
+    if(isError) {
+      setStatus('error')
+    } else {
+      setStatus('')
+    }
+  }, [isError])
+
   const handleChangeValue = (event) => {
     setDataState(event.target.value)
     setStatus('typing');
-  }
-
-  const handleBlur = () => {
-    if (!value.match(regex)) {
-      setStatus('error');
-    }
   }
 
   const handleToggleEye = () => {
@@ -27,6 +29,15 @@ const Input = ({ value, type, placeholder, icon, setDataState, regex, errorMessa
       setEye('open');
       setInternalType('password');
     }
+  }
+
+  const handleBlur = () => {
+    if(isError) {
+      setStatus('error')
+    } else {
+      setStatus('')
+    }
+    onBlur();
   }
 
   return (
