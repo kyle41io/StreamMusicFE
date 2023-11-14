@@ -5,6 +5,7 @@ import ListAction from "@/components/ListAction";
 import MusicPlayer from "@/components/music-detail/MusicPlayer";
 
 const DetailMusic = () => {
+
   return (
     <div className="flex mx-auto gap-[4%]">
       <div className="w-[64%] flex flex-col gap-6">
