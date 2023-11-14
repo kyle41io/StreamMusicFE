@@ -23,7 +23,6 @@ export default function AlbumItem({ track, setIsPlaying, isPlaying }) {
           className="w-[13%] h-[60px] bg-center object-cover"
           style={{ background: `url(${thumbnail.src})` }}
         ></div>
-
         <div className="w-[73%] flex flex-col gap-1">
           <p className="text-sm  text-thirdBlack capitalize">
             Ngày mai người ta lấy chồng (Karaoke) voi bản đôn{" "}
