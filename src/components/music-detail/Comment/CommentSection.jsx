@@ -43,7 +43,7 @@ export default function CommentSection() {
           {showOption && (
             <ul
               ref={optionListRef}
-              className="w-[136px] absolute bg-white overflow-y-auto rounded left-0 bottom-0 translate-y-[115%] "
+              className="w-[136px] absolute bg-white overflow-y-auto rounded left-0 bottom-0 translate-y-[115%] scrollbar"
               style={{ boxShadow: "0px 4px 4px 0px rgba(171, 171, 171, 0.25)" }}
             >
               {options.map((option, idx) => (
