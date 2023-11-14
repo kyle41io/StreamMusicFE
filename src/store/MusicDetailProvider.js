@@ -10,6 +10,7 @@ export default function MusicDetailProvider({ children }) {
   const [track, setTrack] = useState(tracks[currentIndex]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
   const audioRef = useRef(null);
   const inputRef = useRef(null);
   const [songProgressValue, setSongProgressValue] = useState(0);
@@ -18,7 +19,7 @@ export default function MusicDetailProvider({ children }) {
   const volumeBarRef = useRef(null);
   const [showVolume, setShowVolume] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [songVolume, setSongVolume] = useState(60);
+  const [songVolume, setSongVolume] = useState(50);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userData, setUserData] = useState("");
 
@@ -29,6 +30,8 @@ export default function MusicDetailProvider({ children }) {
         setIsPlaying,
         isRepeat,
         setIsRepeat,
+        isShuffle,
+        setIsShuffle,
         track,
         setTrack,
         audioRef,

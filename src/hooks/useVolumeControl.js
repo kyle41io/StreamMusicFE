@@ -7,12 +7,9 @@ export default function useVolumeControl() {
   const handleControlVolume = () => {
     if (songVolume !== 0 && audioRef.current) {
       setSongVolume(0);
-      audioRef.current.muted = true;
     }
-
     if (songVolume === 0 && audioRef.current) {
-      setSongVolume(60);
-      audioRef.current.muted = false;
+      setSongVolume(50);
     }
   };
 
