@@ -15,7 +15,6 @@ export default function MusicPlayer() {
     isPlaying,
     isRepeat,
     setIsPlaying,
-    isShuffle,
     currentIndex,
     setCurrentIndex,
     track,
@@ -50,11 +49,6 @@ export default function MusicPlayer() {
     const handleTrackEnded = () => {
       if (isRepeat) {
         audio.currentTime = 0;
-      } else if (isShuffle) {
-        let randomIndex = Math.floor(Math.random() * (tracks.length + 1));
-        setCurrentIndex(randomIndex);
-        setTrack(tracks[randomIndex]);
-        audio.src = tracks[randomIndex].path;
       } else {
         const nextIndex = (currentIndex + 1) % tracks.length;
         setCurrentIndex(nextIndex);
@@ -127,7 +121,7 @@ export default function MusicPlayer() {
         className="hidden"
         onTimeUpdate={() => onTimeUpdate()}
       >
-        <source src={tracks[currentIndex].path} type="audio/mpeg" />
+        <source src={track.path} type="audio/mpeg" />
       </audio>
 
       {/* Song control */}

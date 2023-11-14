@@ -1,4 +1,4 @@
-"use client";
+
 import AlbumItem from "@/components/music-detail/AlbumItem";
 import Information from "@/components/music-detail/Information";
 import ListAction from "@/components/ListAction";
@@ -18,6 +18,7 @@ const DetailMusic = () => {
     setCurrentIndex(track.id);
   };
 
+const DetailMusic = () => {
   return (
     <div className="flex mx-auto gap-[4%]">
       <div className="w-[64%] flex flex-col gap-6">
@@ -26,14 +27,13 @@ const DetailMusic = () => {
         <Information />
       </div>
       <div className="w-[32%] flex flex-col border border-secondaryGray rounded">
-        {tracks.map((track, idx) => (
-          <AlbumItem
-            key={idx}
-            track={track}
-            isPlaying={isPlaying && selectedTrack === track}
-            setIsPlaying={() => handlePlayTrack(track)}
-          />
-        ))}
+        <AlbumItem />
+        <AlbumItem />
+        <AlbumItem />
+        <AlbumItem />
+        <AlbumItem />
+        <AlbumItem />
+        <AlbumItem />
       </div>
     </div>
   );

@@ -4,16 +4,16 @@ import React, { useContext } from "react";
 import logo from "@/assets/images/logo.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import Button from "./Button";
-import ResultBox from "@/components/ResultBox";
+import ResultBox from "../ResultBox";
 import { MdPlaylistAdd } from "react-icons/md";
-import UserAvatar from "@/components/UserAvatar";
+import UserAvatar from "../UserAvatar";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function Header() {
   const { userData } = useContext(DetailProvider);
-  // const useAuthentication = useAuth();
+  const useAuthentication = useAuth();
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">

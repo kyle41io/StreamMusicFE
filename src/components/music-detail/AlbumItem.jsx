@@ -19,16 +19,17 @@ export default function AlbumItem({ track, setIsPlaying, isPlaying }) {
             <p className="text-sm">{track.id + 1}</p>
           )}
         </div>
+
         <div
-          className="w-[13%] h-[60px] bg-center object-contain"
-          style={{ background: `url(${track.image})` }}
+          className="w-[13%] h-[60px] bg-center object-cover"
+          style={{ background: `url(${thumbnail.src})` }}
         ></div>
 
         <div className="w-[73%] flex flex-col gap-1">
           <p className="text-sm  text-thirdBlack capitalize">
-            {track.songName}
+            Ngày mai người ta lấy chồng (Karaoke) voi bản đôn{" "}
           </p>
-          <p className="text-xs text-primaryGray capitalize">{track.singer}</p>
+          <p className="text-xs text-primaryGray capitalize">N B D</p>
         </div>
       </div>
     </>

@@ -85,6 +85,10 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 131px;
 }
 
+.error {
+  background-image: url('./../assets/svg/error.svg');
+}
+
 .person {
   background-image: url("./../assets/svg/person.svg");
 }
@@ -194,6 +198,14 @@ button {
   border-radius: 6px;
 }
 
+.button-1:disabled {
+  background: #ffa667;
+}
+
+.button-1:disabled:hover {
+  background: #ffa667;
+}
+
 .button-1:hover {
   background: #df5d00;
 }
@@ -243,20 +255,5 @@ button {
   top: -25px;
   left: -8px;
   cursor: pointer;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  border-radius: 6px;
-  background-color: #fff;
-}
-
-.scrollbar::-webkit-scrollbar {
-  width: 4px;
-  background-color: #d9d9d9;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: #d9d9d9;
 }
 
