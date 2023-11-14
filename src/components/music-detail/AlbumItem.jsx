@@ -10,7 +10,7 @@ export default function AlbumItem({ track, setIsPlaying, isPlaying }) {
     <>
       <div
         className="w-full h-20 flex py-2 px-3 gap-4 items-center hover:bg-secondaryGray cursor-pointer"
-        onClick={handlePlayClick}
+        onClick={setIsPlaying}
       >
         <div className="w-[12px]">
           {isPlaying ? (
@@ -21,13 +21,13 @@ export default function AlbumItem({ track, setIsPlaying, isPlaying }) {
         </div>
         <div
           className="w-[13%] h-[60px] bg-center object-cover"
-          style={{ background: `url(${thumbnail.src})` }}
+          style={{ background: `url(${track.image})` }}
         ></div>
         <div className="w-[73%] flex flex-col gap-1">
           <p className="text-sm  text-thirdBlack capitalize">
-            Ngày mai người ta lấy chồng (Karaoke) voi bản đôn{" "}
+            {track.songName}
           </p>
-          <p className="text-xs text-primaryGray capitalize">N B D</p>
+          <p className="text-xs text-primaryGray capitalize">{track.singer}</p>
         </div>
       </div>
     </>
