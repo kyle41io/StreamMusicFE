@@ -4,15 +4,18 @@ import Information from "@/components/music-detail/Information";
 import ListAction from "@/components/ListAction";
 import MusicPlayer from "@/components/music-detail/MusicPlayer";
 import { tracks } from "@/constant/songs(test)";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 
 const DetailMusic = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState(null);
+  const { currentIndex, setCurrentIndex } = useContext(DetailProvider);
 
   const handlePlayTrack = (track) => {
     setIsPlaying(true);
     setSelectedTrack(track);
+    setCurrentIndex(track.id);
   };
 
   return (

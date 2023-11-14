@@ -1,13 +1,16 @@
 "use client";
-// import thumbnail from "@/assets/images/album_thumb.png";
 import { IoStatsChartSharp } from "react-icons/io5";
 
 export default function AlbumItem({ track, setIsPlaying, isPlaying }) {
+  const handlePlayClick = () => {
+    setIsPlaying(); // Make sure to pass track information if needed
+  };
+
   return (
     <>
       <div
         className="w-full h-20 flex py-2 px-3 gap-4 items-center hover:bg-secondaryGray cursor-pointer"
-        onClick={setIsPlaying}
+        onClick={handlePlayClick}
       >
         <div className="w-[12px]">
           {isPlaying ? (

@@ -1,15 +1,18 @@
 "use client";
-import { useContext, useEffect, useRef, useState } from "react";
-import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
 import Image from "next/image";
-import avatar from "@/assets/images/avatar.png";
-import { MdPlaylistPlay } from "react-icons/md";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 import { formatTime } from "@/utils";
 import useVolumeControl from "@/hooks/useVolumeControl";
-import ButtonControl from "./ButtonControl";
 import useSongControl from "@/hooks/useSongControl";
+import ButtonControl from "./ButtonControl";
+import avatar from "@/assets/images/avatar.png";
+import { MdPlaylistPlay } from "react-icons/md";
+import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
+import { tracks } from "@/constant/songs(test)";
+import CurrentPlaylistItem from "./CurrentPlaylistItem";
 
 export default function Footer() {
   const [showVolumeBar, setShowVolumeBar] = useState(false);
@@ -28,6 +31,8 @@ export default function Footer() {
     volumeBarRef,
     songVolume,
     setSongVolume,
+    currentIndex,
+    isPlaying,
   } = useContext(DetailProvider);
   const { handleControlVolume } = useVolumeControl();
   const { onSongProgressChange } = useSongControl();
@@ -41,11 +46,18 @@ export default function Footer() {
     return { backgroundSize: `${(songVolume * 100) / MAX}% 100%` };
   };
 
-  const handleHoverOut = (e) => {
-    if (showVolumeBar) {
-      console.log(e.target);
+  const onTimeUpdate = () => {
+    if (audioRef.current?.duration) {
+      const progress = Math.floor(
+        (audioRef.current?.currentTime / audioRef.current?.duration) * 100
+      );
+      setSongProgressValue(progress);
     }
   };
+
+  useEffect(() => {
+    isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
+  }, [isPlaying, audioRef]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -69,6 +81,13 @@ export default function Footer() {
         <ButtonControl />
         <div className="w-[42%] flex items-center gap-3">
           <p className="text-sm text-primary w-[32px]">{timeProgress}</p>
+          <audio
+            ref={audioRef}
+            className="hidden"
+            onTimeUpdate={() => onTimeUpdate()}
+          >
+            <source src={tracks[currentIndex].path} type="audio/mpeg" />
+          </audio>
           <input
             type="range"
             value={songProgressValue}
@@ -119,7 +138,7 @@ export default function Footer() {
           )}
         </div>
         {/* Information */}
-        <div className="w-[35,7%] h-full flex items-center border-l gap-4 border-l-secondaryGray">
+        <div className="w-[35,7%] h-full flex items-center border-l gap-4 border-l-secondaryGray relative">
           <Image
             src={avatar.src}
             width={46}
@@ -127,12 +146,16 @@ export default function Footer() {
             alt="avatar"
             className="rounded-full ml-6"
           />
+
+          {/* Song info */}
           <div className="flex flex-col h-full mt-3">
             <p className="text-xs text-primaryGray mb-1">N B D</p>
             <h5 className="text-sm text-thirdBlack uppercase">
               Mặt mộc | Phạm Nguyên Ngọc x Vanh x Ân Nhi{" "}
             </h5>
           </div>
+
+          {/* Like */}
           <div onClick={() => setIsLiked(!isLiked)}>
             {isLiked ? (
               <BsHeartFill
@@ -143,6 +166,27 @@ export default function Footer() {
               <BsHeart size={24} className="text-2xl cursor-pointer" />
             )}
           </div>
+
+          {/* Current Playlist */}
+          {showPlaylist && (
+            <div className="absolute flex flex-col w-[470px] h-[500px] top-0 -translate-y-[100%] overflow-y-auto right-0 translate-x-[11%] border border-secondaryGray z-10">
+              {/* header */}
+              <div className="flex justify-between bg-white border-b border-secondaryGray p-3">
+                <p className="text-sm text-thirdBlack">Tracks</p>
+                <IoMdClose
+                  size={24}
+                  className="text-thirdBlack cursor-pointer"
+                />
+              </div>
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+              <CurrentPlaylistItem />
+            </div>
+          )}
         </div>
         <MdPlaylistPlay
           size={24}
