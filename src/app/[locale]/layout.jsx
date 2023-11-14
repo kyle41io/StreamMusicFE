@@ -1,4 +1,4 @@
-import "../../styles/globals.css";
+import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
 import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
@@ -20,7 +20,7 @@ const locales = ["en", "vi"];
 export default async function LocaleLayout({ children, params: { locale } }) {
   let messages;
   try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
+    messages = (await import(`@/messages/${locale}.json`)).default;
   } catch (error) {
     notFound();
   }
