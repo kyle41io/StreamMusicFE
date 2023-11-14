@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import Link from "next/link";
-import styles from "./../../../styles/auth/sign-in/SignIn.module.css";
+import styles from "@/styles/auth/sign-in/SignIn.module.css";
 import Input from "@/components/shared/Input";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -12,40 +12,39 @@ const SignIn = () => {
   const t = useTranslations("Auth");
   const router = useRouter();
 
-  const [userName, setUserName] = useState('');
-  const [passWord, setPassword] = useState('');
+  const [userName, setUserName] = useState("");
+  const [passWord, setPassword] = useState("");
 
   const handleSubmit = async () => {
-    
     const requestBody = {
       username: userName,
-      password: passWord
-    }
+      password: passWord,
+    };
 
     let responseHolder = {};
-    
-    fetch('http://192.168.1.123:3000/auth', {
-      method: 'POST',
+
+    fetch("http://192.168.1.123:3000/auth", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     })
-      .then(response => {
+      .then((response) => {
         responseHolder = response;
         return response.json();
       })
-      .then(data => {
-        if(responseHolder.status === 200 || responseHolder.status === 201) {
-          router.push('/home', {
-            scroll: true
+      .then((data) => {
+        if (responseHolder.status === 200 || responseHolder.status === 201) {
+          router.push("/home", {
+            scroll: true,
           });
-          localStorage.setItem('token', data.token);
+          localStorage.setItem("token", data.token);
         } else {
           console.log(data);
-        }  
-      })
-  }
+        }
+      });
+  };
 
   return (
     <div className={styles["main-session"]}>
@@ -54,7 +53,13 @@ const SignIn = () => {
         <div className={styles["signin-box"]}>
           <p className={styles["title"]}>{t("sign_in")}</p>
           <div className={styles["inputs-field"]}>
-            <Input value={userName} type={"text"} placeholder={t("username")} icon={"person"} setDataState={setUserName} />
+            <Input
+              value={userName}
+              type={"text"}
+              placeholder={t("username")}
+              icon={"person"}
+              setDataState={setUserName}
+            />
             <Input
               value={passWord}
               type={"password"}
@@ -67,7 +72,9 @@ const SignIn = () => {
             <input type="checkbox" name="" id="" className={styles.checkbox} />
             <span>{t("remember_me")}</span>
           </div>
-          <button className="button-1" onClick={handleSubmit}>{t("submit")}</button>
+          <button className="button-1" onClick={handleSubmit}>
+            {t("submit")}
+          </button>
           <span className={styles["linkSignUp"]}>
             {t("or")}
             <Link href={"/auth/sign-up"} scroll={true}>
