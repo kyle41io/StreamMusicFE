@@ -15,10 +15,10 @@ export default function CommentTextarea() {
     }
   };
   return (
-    <div className="w-full flex py-2 items-center rounded border-t border-b bg-[#f6f6f6] border-t-secondaryGray border-b-secondaryGray relative">
+    <div className="w-full flex py-2 items-center gap-2 rounded border-t border-b bg-[#f6f6f6] border-t-secondaryGray border-b-secondaryGray">
       <textarea
         ref={textAreaRef}
-        className="w-[89%] h-[40px] p-2 ml-3 rounded leading-6 focus:outline-none placeholder:text-xs placeholder:text-primaryGray"
+        className="w-[89%] h-[40px] p-2 ml-2 rounded leading-6 focus:outline-none placeholder:text-xs placeholder:text-primaryGray"
         placeholder="Write a comment"
         cols={800}
         value={inputValue}
@@ -30,7 +30,7 @@ export default function CommentTextarea() {
         width={40}
         height={40}
         alt="Avatar"
-        className="absolute rounded-full top-2 right-3"
+        className="rounded-full"
       />
     </div>
   );

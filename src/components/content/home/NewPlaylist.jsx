@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/content/home/NewPlaylist.module.css";
+import styles from "./../../../styles/content/home/NewPlaylist.module.css";
 import PagingBar from "@/components/shared/PagingBar";
 import CommonTable from "@/components/shared/CommonTable";
 import { useTranslations } from "next-intl";
@@ -17,12 +17,7 @@ function NewPlaylist() {
     <div className={styles["main-container"]}>
       <p className={styles.title}>{t("new_playlist")}</p>
       <div className={styles["main-content"]}>
-        <CommonTable
-          list={NEW_PLAYLIST}
-          headerList={tableHeader}
-          playingIndex={playingIndex}
-          setPlayingIndex={setPlayingIndex}
-        />
+        <CommonTable list={NEW_PLAYLIST} headerList={tableHeader} playingIndex={playingIndex} setPlayingIndex={setPlayingIndex}/>
         <PagingBar
           currentPage={currentPage}
           onClick={setCurrentPage}

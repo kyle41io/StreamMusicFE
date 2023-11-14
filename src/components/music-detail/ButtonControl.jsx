@@ -4,35 +4,13 @@ import { DetailProvider } from "@/store/MusicDetailProvider";
 import React, { useContext } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
-import { IoMdPause } from "react-icons/io";
-import { MdRepeatOne, MdRepeat } from "react-icons/md";
-import { PiShuffleAngularBold } from "react-icons/pi";
+import { IoMdPause, IoMdRepeat } from "react-icons/io";
 
 export default function ButtonControl() {
-  const {
-    isPlaying,
-    setIsPlaying,
-    isRepeat,
-    setIsRepeat,
-    isShuffle,
-    setIsShuffle,
-  } = useContext(DetailProvider);
-  const { handlePlayNext, handlePlayPrev } = useSongControl();
-
-  const handleClick = () => {
-    if (!isRepeat && !isShuffle) {
-      setIsRepeat(true);
-    }
-
-    if (isRepeat) {
-      setIsRepeat(false);
-      setIsShuffle(true);
-    }
-
-    if (isShuffle) {
-      setIsShuffle(false);
-    }
-  };
+  const { isPlaying, setIsPlaying, isRepeat, setIsRepeat } =
+    useContext(DetailProvider);
+  const { handlePlayNext, handlePlayPrev } =
+    useSongControl();
 
   return (
     <>
@@ -49,15 +27,11 @@ export default function ButtonControl() {
         className="cursor-pointer"
         onClick={handlePlayNext}
       />
-      <div className="cursor-pointer" onClick={handleClick}>
-        {!isRepeat && !isShuffle ? (
-          <MdRepeat size={24} />
-        ) : isRepeat && !isShuffle ? (
-          <MdRepeatOne size={24} />
-        ) : (
-          <PiShuffleAngularBold size={24} />
-        )}
-      </div>
+      <IoMdRepeat
+        size={24}
+        className={`${isRepeat ? "text-primary" : ""} cursor-pointer`}
+        onClick={() => setIsRepeat(!isRepeat)}
+      />
     </>
   );
 }
