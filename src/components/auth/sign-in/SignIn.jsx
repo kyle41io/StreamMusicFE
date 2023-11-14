@@ -7,13 +7,17 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/api/apiAuth";
+import ToastMessage from "@/components/shared/ToastMessage";
 
 const SignIn = () => {
   const t = useTranslations("Auth");
   const router = useRouter();
 
+  const [isRemember, setIsRemember] = useState(false);
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
+
+  const [displayToast, setDisplayToast] = useState(false);
 
   const handleSubmit = async () => {
     
@@ -40,7 +44,9 @@ const SignIn = () => {
           router.push('/home', {
             scroll: true
           });
-          localStorage.setItem('token', data.token);
+          if(isRemember) {
+            localStorage.setItem('token', data.token);
+          }
         } else {
           console.log(data);
         }  
@@ -49,22 +55,25 @@ const SignIn = () => {
 
   return (
     <div className={styles["main-session"]}>
+      <ToastMessage />
       <div className={styles["signin-container"]}>
         <div className={styles["listener-svg"]}></div>
         <div className={styles["signin-box"]}>
           <p className={styles["title"]}>{t("sign_in")}</p>
           <div className={styles["inputs-field"]}>
-            <Input value={userName} type={"text"} placeholder={t("username")} icon={"person"} setDataState={setUserName} />
+            <Input value={userName} type={"text"} placeholder={t("username")} icon={"person"} setDataState={setUserName} regex={/^.{5,32}$/} errorMessage={"Username must have 5-32 characters"}/>
             <Input
               value={passWord}
               type={"password"}
               placeholder={t("password")}
               icon={"lock"}
               setDataState={setPassword}
+              regex={/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9#@$%]{8,}$/}
+              errorMessage={"Password must contain 1 upper case, 1 special characters, 1 number and have length from 8 to 32 characters"}
             />
           </div>
           <div className={styles.remember}>
-            <input type="checkbox" name="" id="" className={styles.checkbox} />
+            <input type="checkbox" name="" id="" className={styles.checkbox} onChange={() => setIsRemember(true)}/>
             <span>{t("remember_me")}</span>
           </div>
           <button className="button-1" onClick={handleSubmit}>{t("submit")}</button>
