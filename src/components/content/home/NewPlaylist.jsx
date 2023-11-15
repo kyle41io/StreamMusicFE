@@ -1,11 +1,14 @@
 "use client";
 
-import styles from "./../../../styles/content/home/NewPlaylist.module.css";
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+
+import { NEW_PLAYLIST, tableHeader } from "@/constant/newplaylist";
+
 import PagingBar from "@/components/shared/PagingBar";
 import CommonTable from "@/components/shared/CommonTable";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import { NEW_PLAYLIST, tableHeader } from "@/constant/newplaylist";
+
+import styles from "@/styles/content/home/NewPlaylist.module.css";
 
 function NewPlaylist() {
   const t = useTranslations("Home");

@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './../../styles/shared/PagingBar.module.css'
+import styles from '@/styles/shared/PagingBar.module.css'
 
 function PagingBar({ currentPage=1, onClick, maxPage }) {
 
@@ -21,7 +21,6 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
     }
 
     const rerenderArray = (currentPage) => {
-        //console.log(currentPage);
         if (currentPage === 1) {
             return [currentPage + 1, currentPage + 2];
         } else if (currentPage === 2) {

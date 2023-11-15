@@ -8,10 +8,11 @@ import styles from '@/styles/content/home/Slider2.module.css'
 
 export default function Slider2({ list }) {
     const t = useTranslations("Home");
+    
+    const sliderRef = useRef();
 
     const [isBlurLeft, setIsBlurLeft] = useState(false);
 
-    const sliderRef = useRef();
 
     const handleGoLeft = () => {
         sliderRef.current.scrollLeft -= 301;
