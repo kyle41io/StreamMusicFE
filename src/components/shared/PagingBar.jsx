@@ -2,20 +2,20 @@
 
 import styles from '@/styles/shared/PagingBar.module.css'
 
-function PagingBar({ currentPage=1, onClick, maxPage }) {
+function PagingBar({ currentPage = 1, onClick, maxPage }) {
 
     const handleClick = (item) => {
         onClick(item);
     }
 
     const handlePrevious = () => {
-        if(currentPage > 1) {
+        if (currentPage > 1) {
             onClick(currentPage - 1);
         }
     }
 
     const handleNext = () => {
-        if(currentPage < maxPage) {
+        if (currentPage < maxPage) {
             onClick(currentPage + 1);
         }
     }
@@ -25,16 +25,16 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
             return [currentPage + 1, currentPage + 2];
         } else if (currentPage === 2) {
             return [currentPage, currentPage + 1]
-        } else if (currentPage === 1 + 3) {
+        } else if (currentPage === 4) {
             return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1]
-        } else if (currentPage === maxPage -3) {
-            return [currentPage -1, currentPage, currentPage + 1, currentPage + 2]
+        } else if (currentPage === maxPage - 3) {
+            return [currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
         } else if (currentPage === maxPage - 1) {
-            return [currentPage -1, currentPage]
+            return [currentPage - 1, currentPage]
         } else if (currentPage === maxPage) {
             return [currentPage - 2, currentPage - 1]
         }
-        else if (currentPage >= 1 + 2 && currentPage <= maxPage - 2) {
+        else if (currentPage >= 3 && currentPage <= maxPage - 2) {
             return [currentPage - 1, currentPage, currentPage + 1];
         }
     }
@@ -48,7 +48,7 @@ function PagingBar({ currentPage=1, onClick, maxPage }) {
                 <div className={`${styles.numbers} ${currentPage == 1 ? styles.chosen : ''}`} onClick={() => onClick(1)}>
                     1
                 </div>
-                {currentPage > 1 + 3 && <div className="w-5 h-5 justify-center flex">
+                {currentPage > 4 && <div className="w-5 h-5 justify-center flex">
                     ...
                 </div>}
                 {rerenderArray(currentPage).map((item, index) =>

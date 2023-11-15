@@ -1,12 +1,15 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import styles from './../../../styles/content/home/MyPlaylist.module.css'
-import Link from 'next/link';
-import { MY_PLAYLISTS } from '@/constant/myplaylists';
-import PagingBar from '@/components/shared/PagingBar';
-import InfinityList from './InfinityList';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl'
+
+import { MY_PLAYLISTS } from '@/constant/myplaylists';
+
+import PagingBar from '@/components/shared/PagingBar';
+import Link from 'next/link';
+import InfinityList from './InfinityList';
+
+import styles from '@/styles/content/home/MyPlaylist.module.css'
 
 function MyPlaylist() {
     const [currentPage, setCurrentPage] = useState(1);
