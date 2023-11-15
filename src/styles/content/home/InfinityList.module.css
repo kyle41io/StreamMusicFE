@@ -29,17 +29,12 @@
     color: white;
 }
 
-
 .loading {
     z-index: 0;
     min-height: 32px;
     padding: 12px;
     display: flex;
     justify-content: center;
-    background-image: url('./../../../assets/svg/spinner.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
     display: none;
 }
 

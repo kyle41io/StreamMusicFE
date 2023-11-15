@@ -9,6 +9,8 @@ import PagingBar from '@/components/shared/PagingBar';
 import Link from 'next/link';
 import InfinityList from './InfinityList';
 
+import IcPlayOrange from '@/assets/icons/IcPlayOrange';
+
 import styles from '@/styles/content/home/MyPlaylist.module.css'
 
 function MyPlaylist() {
@@ -31,7 +33,9 @@ function MyPlaylist() {
                             <img src={item.img_src} className={styles['my-playlist-bg']} />
                             <div className={styles['my-playlist-img-container']}>
                                 <img src={item.img_src} className={styles['my-playlist-img']} />
-                                <Link href={"./../music-detail"} className='play-orange'></Link>
+                                <Link href={"./../music-detail"} className={styles['play-orange']}>
+                                    <IcPlayOrange />
+                                </Link>
                             </div>
                             <InfinityList index={index}/>
                         </div>
