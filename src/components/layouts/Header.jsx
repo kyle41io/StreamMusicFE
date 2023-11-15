@@ -6,9 +6,9 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
-import Button from "./Button";
-import ResultBox from "../ResultBox";
-import UserAvatar from "../UserAvatar";
+import Button from "../shared/Button";
+import ResultBox from "./HeaderComponents/ResultBox";
+import UserAvatar from "./HeaderComponents/UserAvatar";
 
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdPlaylistAdd } from "react-icons/md";

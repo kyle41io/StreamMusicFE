@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl";
 import React, { useState, useEffect } from "react";
 import { FileProvider } from "@/store/FileProvider";
 
-import AddSong from "@/components/upload/AddSong";
-import Complete from "@/components/upload/Complete";
-import StepBar from "@/components/upload/StepBar";
-import Information from "@/components/upload/Information";
+import AddSong from "@/components/pages/content/upload/AddSong";
+import Complete from "@/components/pages/content/upload/Complete";
+import StepBar from "@/components/pages/content/upload/StepBar";
+import Information from "@/components/pages/content/upload/Information";
 import ToastMessage from "@/components/shared/ToastMessage";
 
 import "@/styles/upload/UploadStyle.css";

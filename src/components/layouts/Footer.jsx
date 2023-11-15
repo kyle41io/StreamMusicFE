@@ -12,8 +12,8 @@ import { tracks } from "@/constant/songs(test)";
 
 import { formatTime } from "@/utils";
 
-import CurrentPlaylistItem from "./Footer/CurrentPlaylistItem";
-import ButtonControl from "./ButtonControl";
+import CurrentPlaylistItem from "../pages/content/music-detail/CurrentPlaylistItem";
+import ButtonControl from "../pages/content/music-detail/ButtonControl";
 
 import { MdPlaylistPlay } from "react-icons/md";
 import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";

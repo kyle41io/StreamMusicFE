@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import SignIn from "@/components/auth/sign-in/SignIn";
+import SignIn from "@/components/pages/auth/sign-in/SignIn";
 
 const SignInPage = () => {
   const router = useRouter();
