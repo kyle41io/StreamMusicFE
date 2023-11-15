@@ -41,14 +41,16 @@
     right: 0px;
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
 .right-icon {
-    width: 24px;
-    height: 24px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
     cursor: pointer;
 }
 

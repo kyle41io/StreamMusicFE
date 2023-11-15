@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import IcError from '@/assets/icons/IcError';
+import IcClose from '@/assets/icons/IcClose';
+import IcOpen from '@/assets/icons/IcOpen';
+
 import styles from '@/styles/shared/Input.module.css'
 
 const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, errorMessage }) => {
@@ -42,8 +46,8 @@ const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, 
   }
 
   const configPadding = () => {
-    if(type === 'password') {
-      if(status === 'error') {
+    if (type === 'password') {
+      if (status === 'error') {
         return '!pr-16'
       }
       return '!pr-8'
@@ -51,17 +55,22 @@ const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, 
       return ''
     }
   }
-  
+
   return (
     <div>
       <div className={styles['input-container']}>
-        <div className={`${styles['icon']} ${icon}`}></div>
+        <div className={styles['icon']}>
+          {icon}
+        </div>
         <input type={internalType} id={`input-${type}-${icon}`} className={`${configPadding()} ${styles['input-1']} ${styles[status]}`} placeholder={placeholder} value={value} onChange={event => { handleChangeValue(event) }} onBlur={handleBlur} />
         <div className={styles['right-icons']}>
-          {status === 'error' && 
-            <div className={`${styles['right-icon']} error`}></div>
+          {status === 'error' &&
+            <IcError />
           }
-          {type === 'password' && <div className={`${eye} } ${styles['right-icon']}`} onClick={handleToggleEye}></div>}
+          {type === 'password' && <div className={styles['right-icon']} onClick={handleToggleEye}>
+            {eye === 'open' && <IcClose />}
+            {eye === 'close' && <IcOpen />}
+          </div>}
         </div>
       </div>
       {status === 'error' && <p className={styles['error-msg']}>{errorMessage}</p>}

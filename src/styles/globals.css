@@ -85,34 +85,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 131px;
 }
 
-.error {
-  background-image: url('./../assets/svg/error.svg');
-}
-
-.person {
-  background-image: url("./../assets/svg/person.svg");
-}
-
-.lock {
-  background-image: url("./../assets/svg/lock.svg");
-}
-
-.open {
-  background-image: url("./../assets/svg/open.svg");
-}
-
-.close {
-  background-image: url("./../assets/svg/close.svg");
-}
-
-.key {
-  background-image: url("./../assets/svg/key.svg");
-}
-
-.card {
-  background-image: url("./../assets/svg/card.svg");
-}
-
 .upload-icon {
   width: 16px;
   height: 16px;

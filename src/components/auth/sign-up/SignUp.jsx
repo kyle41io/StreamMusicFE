@@ -10,6 +10,11 @@ import UploadImg from "./UploadImg";
 import Link from "next/link";
 import ToastMessage from "@/components/shared/ToastMessage";
 
+import IcCard from "@/assets/icons/IcCard";
+import IcPerson from "@/assets/icons/IcPerson";
+import IcLock from "@/assets/icons/IcLock";
+import IcKey from "@/assets/icons/IcKey";
+
 import styles from "@/styles/auth/sign-up/SignUp.module.css";
 
 function SignUp() {
@@ -117,7 +122,7 @@ function SignUp() {
               value={displayName}
               type={"text"}
               placeholder={t("display_name")}
-              icon={"card"}
+              icon={<IcCard />}
               setDataState={setDisplayName}
               onBlur={handleBlurDisplayName}
               isError={isErrorDisplayName}
@@ -127,7 +132,7 @@ function SignUp() {
               value={userName}
               type={"text"}
               placeholder={t("username")}
-              icon={"person"}
+              icon={<IcPerson />}
               setDataState={setUserName}
               onBlur={handleBlurUsername}
               isError={isErrorUserName}
@@ -137,7 +142,7 @@ function SignUp() {
               value={password}
               type={"password"}
               placeholder={t("password")}
-              icon={"lock"}
+              icon={<IcLock />}
               setDataState={setPassword}
               onBlur={handleBlurPassword}
               isError={isErrorPassword}
@@ -147,7 +152,7 @@ function SignUp() {
               value={repeatPassword}
               type={"password"}
               placeholder={t("repeat_password")}
-              icon={"key"}
+              icon={<IcKey />}
               setDataState={setRepeatPassword}
               onBlur={handleBlurRepeatPassword}
               isError={isErrorRepeatPassword}
