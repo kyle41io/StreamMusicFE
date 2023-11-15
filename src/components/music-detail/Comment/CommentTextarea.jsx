@@ -1,11 +1,13 @@
 import Image from "next/image";
-import avatar from "@/assets/images/avatar.png";
 import { useRef, useState } from "react";
+
 import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
 
+import avatar from "@/assets/images/avatar.png";
+
 export default function CommentTextarea() {
-  const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
 
   useAutoResizeTextArea(textAreaRef.current, inputValue);
 

@@ -1,16 +1,21 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { FaCommentAlt } from "react-icons/fa";
-import { BiSolidChevronDown } from "react-icons/bi";
+
+import { options } from "@/utils";
+
+import PagingBar from "@/components/shared/PagingBar";
+
 import CommentTextarea from "./CommentTextarea";
 import CommentList from "./CommentList";
-import PagingBar from "@/components/shared/PagingBar";
-const options = ["Newest", "Oldest"];
+import { FaCommentAlt } from "react-icons/fa";
+
+import { BiSolidChevronDown } from "react-icons/bi";
 
 export default function CommentSection() {
+  const optionListRef = useRef(null);
+  
   const [showOption, setShowOption] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Newest");
-  const optionListRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

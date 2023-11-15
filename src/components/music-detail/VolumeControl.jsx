@@ -1,8 +1,10 @@
 "use client";
+import { DetailProvider } from "@/store/MusicDetailProvider";
+
+import React, { useContext } from "react";
 
 import useVolumeControl from "@/hooks/useVolumeControl";
-import { DetailProvider } from "@/store/MusicDetailProvider";
-import React, { useContext } from "react";
+
 import {
   IoVolumeHigh,
   IoVolumeLow,
