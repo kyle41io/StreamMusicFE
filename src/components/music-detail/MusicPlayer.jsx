@@ -38,58 +38,58 @@ export default function MusicPlayer() {
     return { backgroundSize: `${(songProgressValue * 100) / MAX}% 100%` };
   };
 
-  const onTimeUpdate = () => {
-    if (audioRef.current.duration) {
-      const progress = Math.floor(
-        (audioRef.current.currentTime / audioRef.current.duration) * 100
-      );
-      setSongProgressValue(progress);
-    }
-  };
+  // const onTimeUpdate = () => {
+  //   if (audioRef.current.duration) {
+  //     const progress = Math.floor(
+  //       (audioRef.current.currentTime / audioRef.current.duration) * 100
+  //     );
+  //     setSongProgressValue(progress);
+  //   }
+  // };
 
-  useEffect(() => {
-    isPlaying ? audioRef.current.play() : audioRef.current.pause();
-  }, [isPlaying, audioRef]);
+  // useEffect(() => {
+  //   isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  // }, [isPlaying, audioRef]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    const handleTrackEnded = () => {
-      if (isRepeat) {
-        audio.currentTime = 0;
-      } else if (isShuffle) {
-        let randomIndex = Math.floor(Math.random() * (tracks.length + 1));
-        setCurrentIndex(randomIndex);
-        setTrack(tracks[randomIndex]);
-        audio.src = tracks[randomIndex].path;
-      } else {
-        const nextIndex = (currentIndex + 1) % tracks.length;
-        setCurrentIndex(nextIndex);
-        setTrack(tracks[nextIndex]);
-        audio.src = tracks[nextIndex].path;
-      }
-      setIsPlaying(true);
-      audio.play();
-    };
-    audio.addEventListener("ended", handleTrackEnded);
+  // useEffect(() => {
+  //   const audio = audioRef.current;
+  //   const handleTrackEnded = () => {
+  //     if (isRepeat) {
+  //       audio.currentTime = 0;
+  //     } else if (isShuffle) {
+  //       let randomIndex = Math.floor(Math.random() * (tracks.length + 1));
+  //       setCurrentIndex(randomIndex);
+  //       setTrack(tracks[randomIndex]);
+  //       audio.src = tracks[randomIndex].path;
+  //     } else {
+  //       const nextIndex = (currentIndex + 1) % tracks.length;
+  //       setCurrentIndex(nextIndex);
+  //       setTrack(tracks[nextIndex]);
+  //       audio.src = tracks[nextIndex].path;
+  //     }
+  //     setIsPlaying(true);
+  //     audio.play();
+  //   };
+  //   audio.addEventListener("ended", handleTrackEnded);
 
-    return () => audio.removeEventListener("ended", handleTrackEnded);
-  }, [isRepeat, currentIndex, audioRef.current]);
+  //   return () => audio.removeEventListener("ended", handleTrackEnded);
+  // }, [isRepeat, currentIndex, audioRef.current]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      const handleTimeUpdate = () => {
-        setTimeProgress(formatTime(audio.currentTime));
-        let newProgress;
-        if (audio.currentTime && audio.duration) {
-          newProgress = (audio.currentTime / audio.duration) * 100;
-        }
-        setSongProgressValue(newProgress);
-      };
-      audio.addEventListener("timeupdate", handleTimeUpdate);
-      return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
-    }
-  }, [audioRef]);
+  // useEffect(() => {
+  //   const audio = audioRef.current;
+  //   if (audio) {
+  //     const handleTimeUpdate = () => {
+  //       setTimeProgress(formatTime(audio.currentTime));
+  //       let newProgress;
+  //       if (audio.currentTime && audio.duration) {
+  //         newProgress = (audio.currentTime / audio.duration) * 100;
+  //       }
+  //       setSongProgressValue(newProgress);
+  //     };
+  //     audio.addEventListener("timeupdate", handleTimeUpdate);
+  //     return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
+  //   }
+  // }, [audioRef]);
 
   return (
     <div className="w-full flex-col h-[180px] bg-primaryBlack">
