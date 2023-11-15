@@ -9,7 +9,7 @@ import PagingBar from '@/components/shared/PagingBar';
 import Link from 'next/link';
 import InfinityList from './InfinityList';
 
-import styles from './../../../styles/content/home/MyPlaylist.module.css'
+import styles from '@/styles/content/home/MyPlaylist.module.css'
 
 function MyPlaylist() {
     const [currentPage, setCurrentPage] = useState(1);

@@ -1,11 +1,14 @@
-import "../../styles/globals.css";
+
 import { Poppins } from "next/font/google";
-import Header from "@/components/shared/Header";
 import { notFound } from "next/navigation";
+
 import { NextIntlClientProvider } from "next-intl";
+import Header from "@/components/shared/Header";
 import MusicDetailProvider from "@/store/MusicDetailProvider";
 import Footer from "@/components/music-detail/Footer";
 import DeleteModal from "@/components/music-detail/DeleteModal";
+
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Music Is Life",

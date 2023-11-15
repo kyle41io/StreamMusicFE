@@ -1,8 +1,9 @@
 "use client";
+
 import { useTranslations } from "next-intl";
-// import SignInPage from "./auth/sign-in/page";
-import HomePage from "./(content)/home/page";
 import { useAuth } from "@/hooks/useAuth";
+
+import HomePage from "./(content)/home/page";
 
 function Page({ data }) {
   const t = useTranslations("Auth");
