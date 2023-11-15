@@ -13,10 +13,14 @@ import UserAvatar from "../UserAvatar";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdPlaylistAdd } from "react-icons/md";
 import logo from "@/assets/images/logo.png";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
   const { userData } = useContext(DetailProvider);
   const useAuthentication = useAuth();
+
+  const trans = useTranslations("Header");
+  const translate = useTranslations("Auth");
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
@@ -42,7 +46,7 @@ export default function Header() {
         <form className="flex items-center relative">
           <input
             type="text"
-            placeholder="Please enter the song name"
+            placeholder={trans("search_playlist_placeholder")}
             className="xl:h-12 lg:h-12 md:h-12  2xl:w-[450px] lg:w-[450px] xl:w-[450px] md:w-[360px] p-3 rounded-md placeholder:text-primaryGray placeholder:text-sm"
           />
           <HiOutlineSearch
@@ -57,26 +61,28 @@ export default function Header() {
 
         {userData ? (
           <div className="flex gap-8 items-center">
-            <Button
-              text="Create Playlist"
-              showIcon={{ icon: <MdPlaylistAdd /> }}
-              iconSize={24}
-              iconColor="text-white"
-              className="w-[192px] gap-3"
-            />
+            <Link href="/upload">
+              <Button
+                text={trans("create_playlist")}
+                showIcon={{ icon: <MdPlaylistAdd /> }}
+                iconSize={24}
+                iconColor="text-white"
+                className="w-[192px] gap-3"
+              />
+            </Link>
             <UserAvatar />
           </div>
         ) : (
           <div className="flex justify-between 2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4 sm:gap-3">
             <Link href="/auth/sign-in">
               <Button
-                text="Sign in"
+                text={translate("sign_in")}
                 className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
               />
             </Link>
             <Link href="/auth/sign-up">
               <Button
-                text="Sign up"
+                text={translate("sign_up")}
                 color="primary"
                 className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
               />
