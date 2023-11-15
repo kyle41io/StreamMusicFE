@@ -104,6 +104,7 @@ function SignUp() {
       <ToastMessage
         onClose={() => setDisplayToast(false)}
         error={isError}
+        errorMessage={"sign_up_fail"}
         successMessage={t('sign_up_success')}
         showToast={displayToast}
       />

@@ -7,19 +7,16 @@ import TopMember from "@/components/content/home/TopMember";
 import Slider2 from "@/components/content/home/Slider2";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
 import MyPlaylist from "@/components/content/home/MyPlaylist";
-import { useEffect } from "react";
 
 const HomePage = () => {
   const t = useTranslations("Home");
-  
-  useEffect(() => {
-    useAuth();
-  }, [])
+
+  useAuth();
 
   return (
     <div className="body-container">
       <div className="!w-full content-container">
-        <Slider2/>
+        <Slider2 />
         <div className="section-2">
           <div className="left-container">
             <NewPlaylist />
