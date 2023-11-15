@@ -1,7 +1,10 @@
-import { tracks } from "@/constant/songs(test)";
-import { DetailProvider } from "@/store/MusicDetailProvider";
-import { formatTime } from "@/utils";
 import { useContext } from "react";
+
+import { tracks } from "@/constant/songs(test)";
+
+import { formatTime } from "@/utils";
+
+import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function useSongControl() {
   const {

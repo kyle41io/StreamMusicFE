@@ -1,5 +1,5 @@
-import { DetailProvider } from "@/store/MusicDetailProvider";
 import React, { useContext } from "react";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function useVolumeControl() {
   const { songVolume, setSongVolume, audioRef } = useContext(DetailProvider);
