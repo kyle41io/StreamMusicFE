@@ -3,10 +3,10 @@
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 
-import TopMember from "@/components/content/home/TopMember";
-import Slider2 from "@/components/content/home/Slider2";
-import NewPlaylist from "@/components/content/home/NewPlaylist";
-import MyPlaylist from "@/components/content/home/MyPlaylist";
+import TopMember from "@/components/pages/content/home/TopMember";
+import Slider2 from "@/components/pages/content/home/Slider2";
+import NewPlaylist from "@/components/pages/content/home/NewPlaylist";
+import MyPlaylist from "@/components/pages/content/home/MyPlaylist";
 
 const HomePage = () => {
   const t = useTranslations("Home");
