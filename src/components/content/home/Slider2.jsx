@@ -1,7 +1,10 @@
+
 import { useTranslations } from 'next-intl'
-import styles from './../../../styles/content/home/Slider2.module.css'
-import TOP_PLAYLIST from '@/constant/topPlaylist';
 import { useRef, useState } from 'react';
+
+import TOP_PLAYLIST from '@/constant/topPlaylist';
+
+import styles from '@/styles/content/home/Slider2.module.css'
 
 export default function Slider2({ list }) {
     const t = useTranslations("Home");

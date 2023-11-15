@@ -1,15 +1,20 @@
 "use client";
+
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/hooks/useAuth";
+
 import TopMember from "@/components/content/home/TopMember";
-import Slider from "@/components/content/home/Slider";
 import Slider2 from "@/components/content/home/Slider2";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
-import { useAuth } from "@/hooks/useAuth";
 import MyPlaylist from "@/components/content/home/MyPlaylist";
+import { useEffect } from "react";
 
 const HomePage = () => {
   const t = useTranslations("Home");
-  useAuth();
+  
+  useEffect(() => {
+    useAuth();
+  }, [])
 
   return (
     <div className="body-container">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react'
+
 import styles from '@/styles/shared/Input.module.css'
 
 const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, errorMessage }) => {
