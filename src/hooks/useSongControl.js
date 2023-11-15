@@ -36,8 +36,8 @@ export default function useSongControl() {
       setCurrentIndex(nextIndex);
       setTrack(tracks[nextIndex]);
       setIsPlaying(true);
-      audioRef.src = tracks[nextIndex].path;
-      audioRef.play();
+      audio.src = tracks[nextIndex].path;
+      audio.play();
     }
   };
 
