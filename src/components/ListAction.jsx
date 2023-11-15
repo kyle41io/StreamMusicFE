@@ -1,9 +1,11 @@
 "use client";
+import { DetailProvider } from "@/store/MusicDetailProvider";
+
 import React, { useContext } from "react";
+
 import { BiSolidRightArrow } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 import { FaShare, FaTrashAlt } from "react-icons/fa";
-import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function ListAction() {
   const { setShowDeleteModal } = useContext(DetailProvider);
