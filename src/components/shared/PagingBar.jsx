@@ -57,7 +57,7 @@ function PagingBar({ currentPage = 1, onClick, maxPage }) {
                 <div className={`${styles.numbers} ${currentPage == 1 ? styles.chosen : ''}`} onClick={() => onClick(1)}>
                     1
                 </div>
-                {currentPage > 1 + 3 && <div className="w-5 h-5 justify-center flex">
+                {currentPage > 4 && <div className="w-5 h-5 justify-center flex">
                     ...
                 </div>}
                 {rerenderArray(currentPage).map((item, index) =>

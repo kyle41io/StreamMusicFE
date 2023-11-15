@@ -128,13 +128,13 @@ export default function MusicPlayer() {
           style={getBackgroundSize()}
         />
       </div>
-      <audio
+      {/* <audio
         ref={audioRef}
         className="hidden"
         onTimeUpdate={() => onTimeUpdate()}
       >
         <source src={tracks[currentIndex].path} type="audio/mpeg" />
-      </audio>
+      </audio> */}
 
       {/* Song control */}
       <SongControl />
