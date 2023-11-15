@@ -1,14 +1,16 @@
 'use client'
 
-import styles from "./../../../styles/auth/sign-up/SignUp.module.css";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { uploadBytes, getDownloadURL } from "firebase/storage";
+import { useTranslations } from "next-intl";
+
 import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
 import ToastMessage from "@/components/shared/ToastMessage";
-import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { uploadBytes, getDownloadURL } from "firebase/storage";
+
+import styles from "@/styles/auth/sign-up/SignUp.module.css";
 
 function SignUp() {
   const t = useTranslations("Auth")
@@ -18,12 +20,10 @@ function SignUp() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
   const [isErrorDisplayName, setIsErrorDisplayName] = useState(false);
   const [isErrorUserName, setIsErrorUserName] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isErrorRepeatPassword, setIsErrorRepeatPassword] = useState(false);
-
   const [displayToast, setDisplayToast] = useState(false);
 
   const isError = useMemo(() => {
@@ -104,6 +104,7 @@ function SignUp() {
       <ToastMessage
         onClose={() => setDisplayToast(false)}
         error={isError}
+        errorMessage={"sign_up_fail"}
         successMessage={t('sign_up_success')}
         showToast={displayToast}
       />

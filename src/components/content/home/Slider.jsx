@@ -1,6 +1,9 @@
 'use client'
+
 import { useEffect, useReducer, useRef, useState } from 'react'
-import styles from './../../../styles/content/home/Slider.module.css'
+
+import styles from '@/styles/content/home/Slider.module.css'
+
 import TOP_PLAYLIST from '@/constant/topPlaylist'
 
 function Slider({ topPlayList_t, list }) {

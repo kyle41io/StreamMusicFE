@@ -1,13 +1,14 @@
 'use client'
 
-import Link from "next/link";
-import styles from "./../../../styles/auth/sign-in/SignIn.module.css";
-import Input from "@/components/shared/Input";
 import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { signIn } from "@/api/apiAuth";
+import { useTranslations } from "next-intl";
+
+import Link from "next/link";
+import Input from "@/components/shared/Input";
 import ToastMessage from "@/components/shared/ToastMessage";
+
+import styles from "@/styles/auth/sign-in/SignIn.module.css";
 
 const SignIn = () => {
   const t = useTranslations("Auth");
@@ -16,7 +17,6 @@ const SignIn = () => {
   const [isRemember, setIsRemember] = useState(false);
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
-
   const [displayToast, setDisplayToast] = useState(false);
   const [isErrorUsername, setIsErrorUsername] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
