@@ -26,14 +26,6 @@
   justify-content: center;
 }
 
-.left-arrow {
-  background-image: url("./../../../assets/svg/left-arrow.svg");
-}
-
-.right-arrow {
-  background-image: url("./../../../assets/svg/right-arrow.svg");
-}
-
 .slider-view {
   width: 100%;
   height: 185px;
