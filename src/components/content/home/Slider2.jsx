@@ -4,6 +4,10 @@ import { useRef, useState } from 'react';
 
 import TOP_PLAYLIST from '@/constant/topPlaylist';
 
+import IcLeftArrow from '@/assets/icons/IcLeftArrow';
+import IcRightArrow from '@/assets/icons/IcRightArrow';
+import IcHeadPhones from '@/assets/icons/IcHeadPhones';
+
 import styles from '@/styles/content/home/Slider2.module.css'
 
 export default function Slider2({ list }) {
@@ -31,8 +35,12 @@ export default function Slider2({ list }) {
             <div className={styles['slider-header']}>
                 <p className='text-4xl font-bold'>{t('top_playlist')}</p>
                 <div className={styles['move-buttons']}>
-                    <button className={`${styles['left-arrow']} ${styles.buttons}`} onClick={handleGoLeft}></button>
-                    <button className={`${styles['right-arrow']} ${styles.buttons}`} onClick={handleGoRight}></button>
+                    <button className={styles.buttons} onClick={handleGoLeft}>
+                        <IcLeftArrow />
+                    </button>
+                    <button className={styles.buttons} onClick={handleGoRight}>
+                        <IcRightArrow />
+                    </button>
                 </div>
             </div>
             <div className={styles['blurs-container']}>
@@ -47,7 +55,7 @@ export default function Slider2({ list }) {
                 <div className={styles['slider']} >
                     {TOP_PLAYLIST.map((item, index) => <div className={styles['card']} key={index}>
                         <div className={styles['views']}>
-                            <div className='headphones'></div>
+                            <IcHeadPhones />
                             <span className='text-xs text-white'>
                                 {(item.views)}
                             </span>

@@ -1,6 +1,10 @@
 'use client'
+
 import { useState } from 'react'
-import styles from './../../../styles/auth/sign-up/UploadImg.module.css'
+
+import IcUpload from '@/assets/icons/IcUpload';
+
+import styles from '@/styles/auth/sign-up/UploadImg.module.css'
 
 function UploadImg({ uploadAvatar, noFileChosen }) {
     const [fileName, setFileName] = useState(noFileChosen);
@@ -13,8 +17,7 @@ function UploadImg({ uploadAvatar, noFileChosen }) {
         <div className={styles['upload-avt']}>
             <div className={styles['upload-button-container']}>
                 <label htmlFor="input-avt" className={styles['button-upload-avt']}>
-                    <div className='upload-icon'>
-                    </div>
+                    <IcUpload />
                     <span className='link text-xs'>
                         {uploadAvatar}
                     </span>

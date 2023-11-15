@@ -8,13 +8,15 @@ import Link from "next/link";
 import Input from "@/components/shared/Input";
 import ToastMessage from "@/components/shared/ToastMessage";
 
+import IcPerson from "@/assets/icons/IcPerson";
+import IcLock from "@/assets/icons/IcLock";
+
 import styles from "@/styles/auth/sign-in/SignIn.module.css";
 
 const SignIn = () => {
   const t = useTranslations("Auth");
   const router = useRouter();
 
-  const [isRemember, setIsRemember] = useState(false);
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
   const [displayToast, setDisplayToast] = useState(false);
@@ -88,12 +90,12 @@ const SignIn = () => {
         <div className={styles["signin-box"]}>
           <p className={styles["title"]}>{t("sign_in")}</p>
           <div className={styles["inputs-field"]}>
-            <Input value={userName} type={"text"} placeholder={t("username")} icon={"person"} setDataState={setUserName} onBlur={handleBlurUsername} isError={isErrorUsername} errorMessage={"Username must have 5-32 characters"} />
+            <Input value={userName} type={"text"} placeholder={t("username")} icon={<IcPerson />} setDataState={setUserName} onBlur={handleBlurUsername} isError={isErrorUsername} errorMessage={"Username must have 5-32 characters"} />
             <Input
               value={passWord}
               type={"password"}
               placeholder={t("password")}
-              icon={"lock"}
+              icon={<IcLock />}
               setDataState={setPassword}
               onBlur={handleBlurPassword}
               isError={isErrorPassword}
@@ -101,7 +103,7 @@ const SignIn = () => {
             />
           </div>
           <div className={styles.remember}>
-            <input type="checkbox" name="" id="" className={styles.checkbox} onChange={() => setIsRemember(true)} />
+            <input type="checkbox" name="" id="" className={styles.checkbox} />
             <span>{t("remember_me")}</span>
           </div>
           <button className="button-1" onClick={handleSubmit} disabled={isError}>{t("submit")}</button>

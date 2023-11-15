@@ -21,8 +21,9 @@
   height: 30px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  background-repeat: no-repeat;
-  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .left-arrow {

@@ -1,3 +1,4 @@
+import IcPlayWhite from '@/assets/icons/IcPlayWhite';
 import TOP_MEMBERS from '@/constant/topMembers'
 
 import styles from '@/styles/content/home/TopMember.module.css'
@@ -25,7 +26,7 @@ function TopMember({ t ,list }) {
                         <span className={styles['displayname']}>{item.member_display_name}</span>
                     </div>
                     <div className={styles['total-views']}>
-                        <div className='play-white'></div>
+                        <IcPlayWhite />
                         <span className={styles['view-count']}>
                             {formatViews(item.totalViews)}
                         </span>

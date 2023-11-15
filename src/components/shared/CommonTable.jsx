@@ -3,7 +3,11 @@ import { useTranslations } from "use-intl";
 
 import PlayingBeat from "./PlayingBeat";
 
+import IcPlayGray from "@/assets/icons/IcPlayGray";
+import IcHeartGray from "@/assets/icons/IcHeartGray";
+
 import styles from "@/styles/shared/CommonTable.module.css";
+import IcPlayBlack from "@/assets/icons/IcPlayBlack";
 
 function CommonTable({ list, headerList, playingIndex, setPlayingIndex }) {
 
@@ -22,11 +26,11 @@ function CommonTable({ list, headerList, playingIndex, setPlayingIndex }) {
             <p className="text-sm">{item.song.name_playlist}</p>
             <div className={styles["new-playlist-view-like"]}>
               <div className={styles["new-playlist-vl"]}>
-                <div className="play-gray"></div>
+                <IcPlayGray />
                 <div>{item.song.views}</div>
               </div>
               <div className={styles["new-playlist-vl"]}>
-                <div className="heart-gray"></div>
+                <IcHeartGray width={10}/>
                 <div>{item.song.likes}</div>
               </div>
             </div>
@@ -37,8 +41,10 @@ function CommonTable({ list, headerList, playingIndex, setPlayingIndex }) {
       genre: item.genre,
       tracks: item.tracks,
       isPlaying: <>
-        {index === playingIndex ? <PlayingBeat onClick={setPlayingIndex}/> : <div className="play-black cursor-pointer" onClick={() => setPlayingIndex(index)}></div>}
-        <div className="icon-20 heart-gray"></div>
+        {index === playingIndex ? <PlayingBeat onClick={setPlayingIndex} /> : <div className="cursor-pointer" onClick={() => setPlayingIndex(index)}>
+          <IcPlayBlack />
+        </div>}
+        <IcHeartGray width={20}/>
       </>
     };
   };
