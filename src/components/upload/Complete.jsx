@@ -7,10 +7,23 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const Complete = ({ t }) => {
   const router = useRouter();
+
+  const { title, artist, genre, ref } = infoPlaylist;
+  const { infoPlaylist, uploadedImageFile } = useContext(FileContext);
+
   const [copySuccess, setCopySuccess] = useState(false);
   const [audioURL, setAudioURL] = useState("");
-  const { infoPlaylist, uploadedImageFile } = useContext(FileContext);
-  const { title, artist, genre, ref } = infoPlaylist;
+
+  const handleCopyLink = () => {
+    const linkInput = document.getElementById("link-input");
+    linkInput.select();
+    document.execCommand("copy");
+    setCopySuccess(true);
+
+    setTimeout(() => {
+      setCopySuccess(false);
+    }, 2000);
+  };
 
   // useEffect(() => {
   //   const storage = getStorage();
@@ -30,17 +43,6 @@ const Complete = ({ t }) => {
   //       console.log(error);
   //     });
   // }, [uploadedImageFile, ref]);
-
-  const handleCopyLink = () => {
-    const linkInput = document.getElementById("link-input");
-    linkInput.select();
-    document.execCommand("copy");
-    setCopySuccess(true);
-
-    setTimeout(() => {
-      setCopySuccess(false);
-    }, 2000);
-  };
 
   return (
     <div className="flex flex-col items-center p-14 gap-6 ">

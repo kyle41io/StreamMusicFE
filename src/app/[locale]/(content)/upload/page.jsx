@@ -1,20 +1,33 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
 import { useTranslations } from "next-intl";
-import StepBar from "@/components/upload/StepBar";
-import Information from "@/components/upload/Information";
+
+import React, { useState, useEffect } from "react";
+import { FileProvider } from "@/store/FileProvider";
+
 import AddSong from "@/components/upload/AddSong";
 import Complete from "@/components/upload/Complete";
-import { FileProvider } from "@/store/FileProvider";
+import StepBar from "@/components/upload/StepBar";
+import Information from "@/components/upload/Information";
 import ToastMessage from "@/components/shared/ToastMessage";
+
 import "@/styles/upload/UploadStyle.css";
 
 export default function UploadPage() {
   const t = useTranslations("Upload");
+
   const [currentStep, setCurrentStep] = useState(1);
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState(false);
   const [closingToast, setClosingToast] = useState(false);
+
+  const handleCloseToast = () => {
+    setClosingToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      setClosingToast(false);
+    }, 500);
+  };
 
   useEffect(() => {
     let timeout;
@@ -25,14 +38,6 @@ export default function UploadPage() {
     }
     return () => clearTimeout(timeout);
   }, [showToast]);
-
-  const handleCloseToast = () => {
-    setClosingToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-      setClosingToast(false);
-    }, 500);
-  };
 
   return (
     <main className="flex flex-col items-center">

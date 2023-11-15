@@ -1,11 +1,14 @@
-import "../../styles/globals.css";
-import { Poppins } from "next/font/google";
-import Header from "@/components/shared/Header";
-import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import MusicDetailProvider from "@/store/MusicDetailProvider";
-import Footer from "@/components/music-detail/Footer";
+
+import { Poppins } from "next/font/google";
+import { notFound } from "next/navigation";
+
 import DeleteModal from "@/components/music-detail/DeleteModal";
+import Footer from "@/components/music-detail/Footer";
+import Header from "@/components/shared/Header";
+import MusicDetailProvider from "@/store/MusicDetailProvider";
+
+import "@/styles/globals.css";
 
 export const metadata = {
   title: "Music Is Life",
@@ -24,9 +27,6 @@ export default async function LocaleLayout({ children, params: { locale } }) {
   } catch (error) {
     notFound();
   }
-  // Validate that the incoming `locale` parameter is valid
-  // const isValidLocale = locales.some((cur) => cur === locale);
-  // if (!isValidLocale) notFound();
 
   return (
     <html lang={locale}>
