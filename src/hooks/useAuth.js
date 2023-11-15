@@ -2,12 +2,9 @@
 
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
-import { useRouter } from "next/navigation";
-
 import { useContext, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
-import { DetailProvider } from "@/store/MusicDetailProvider";
+import { useRouter } from "next/navigation";
 
 export function useAuth() {
   const router = useRouter();
