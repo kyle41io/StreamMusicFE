@@ -2,41 +2,50 @@
 
 import styles from '@/styles/shared/PagingBar.module.css'
 
-function PagingBar({ currentPage=1, onClick, maxPage }) {
+function PagingBar({ currentPage = 1, onClick, maxPage }) {
 
     const handleClick = (item) => {
         onClick(item);
     }
 
     const handlePrevious = () => {
-        if(currentPage > 1) {
+        if (currentPage > 1) {
             onClick(currentPage - 1);
         }
     }
 
     const handleNext = () => {
-        if(currentPage < maxPage) {
+        if (currentPage < maxPage) {
             onClick(currentPage + 1);
         }
     }
 
     const rerenderArray = (currentPage) => {
-        if (currentPage === 1) {
-            return [currentPage + 1, currentPage + 2];
-        } else if (currentPage === 2) {
-            return [currentPage, currentPage + 1]
-        } else if (currentPage === 1 + 3) {
-            return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1]
-        } else if (currentPage === maxPage -3) {
-            return [currentPage -1, currentPage, currentPage + 1, currentPage + 2]
-        } else if (currentPage === maxPage - 1) {
-            return [currentPage -1, currentPage]
-        } else if (currentPage === maxPage) {
-            return [currentPage - 2, currentPage - 1]
+        let result = [];
+        switch (currentPage) {
+            case 1:
+                result = [currentPage + 1, currentPage + 2];
+                break;
+            case 2:
+                result = [currentPage, currentPage + 1];
+                break;
+            case 4:
+                result = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1]
+                break;
+            case maxPage - 3:
+                result = [currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
+                break;
+            case maxPage - 1:
+                result = [currentPage - 1, currentPage]
+                break;
+            case maxPage:
+                result = [currentPage - 2, currentPage - 1]
+                break;
+            default:
+                result = [currentPage - 1, currentPage, currentPage + 1]
+                break;
         }
-        else if (currentPage >= 1 + 2 && currentPage <= maxPage - 2) {
-            return [currentPage - 1, currentPage, currentPage + 1];
-        }
+        return result;
     }
 
     return (
