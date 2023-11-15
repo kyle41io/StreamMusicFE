@@ -1,6 +1,12 @@
+
 import { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './../../../styles/content/home/InfinityList.module.css'
+
 import { getList } from '@/constant/myPlayListMock';
+
+import IcPlayWhite2 from '@/assets/icons/IcPlayWhite2';
+import IcSpinner from '@/assets/icons/IcSpinner';
+
+import styles from '@/styles/content/home/InfinityList.module.css'
 
 function InfinityList({ playListId, index }) {
     const [internalSongs, setInternalSongs] = useState([]);
@@ -55,13 +61,14 @@ function InfinityList({ playListId, index }) {
                         {song.name_song} - {song.author_song}
                     </p>
                     <div className={styles['song-views']}>
-                        <div className='play-white-2'></div>
+                        <IcPlayWhite2 />
                         <p>{song.views_song}</p>
                     </div>
                 </div>
             )}
             <div className={`px-1 py-2 spinner-element s${index}`}>
-                <div className={`${styles.loading} ${isScrollEnd && styles.appear}`}>
+                <div className={`${styles.loading} ${isScrollEnd ? styles.appear : ''}`}>
+                    <IcSpinner />
                 </div>
             </div>
         </div>
