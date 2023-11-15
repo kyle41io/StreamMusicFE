@@ -19,3 +19,4 @@ export const getBackgroundSize = (value, MAX) => {
   return { backgroundSize: `${(value * MAX) / MAX}% 100%` };
 };
 
+export const options = ["Newest", "Oldest"];
