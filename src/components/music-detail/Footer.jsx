@@ -1,24 +1,23 @@
 "use client";
 import Image from "next/image";
 
-import { DetailProvider } from "@/store/MusicDetailProvider";
-
 import { useContext, useEffect, useRef, useState } from "react";
 
 import useSongControl from "@/hooks/useSongControl";
 import useVolumeControl from "@/hooks/useVolumeControl";
 
-import { tracks } from "@/constant/songs(test)";
-
+import { DetailProvider } from "@/store/MusicDetailProvider";
 import { formatTime } from "@/utils";
 
-import CurrentPlaylistItem from "./CurrentPlaylistItem";
 import ButtonControl from "./ButtonControl";
+import CurrentPlaylistItem from "./CurrentPlaylistItem";
 
 import { MdPlaylistPlay } from "react-icons/md";
 import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+
+import { tracks } from "@/constant/songs(test)";
 
 import avatar from "@/assets/images/avatar.png";
 
@@ -46,6 +45,11 @@ export default function Footer() {
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
 
+
+  const volumeRef = useRef(null);
+
+  const [showVolumeBar, setShowVolumeBar] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false);
 
   const MAX = 100;
   const getBackgroundSize = () => {
