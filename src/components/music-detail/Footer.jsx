@@ -119,7 +119,7 @@ export default function Footer() {
   return (
     <>
       {userData ? (
-        <section className="fixed bottom-0 flex justify-center w-full bg-thirdGray items-center">
+        <section className="fixed bottom-0 flex justify-center w-full bg-thirdGray items-center z-50">
           <div className="h-[72px] 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px] justify-between flex gap-6 items-center">
             <ButtonControl />
             <div className="w-[42%] flex items-center gap-3">
