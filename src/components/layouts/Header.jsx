@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
-import Button from "./Button";
+import Button from "../shared/Button";
 import ResultBox from "../ResultBox";
 import UserAvatar from "../UserAvatar";
 

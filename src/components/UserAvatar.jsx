@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
+import Image from "next/image";
 import { BiSolidChevronDown } from "react-icons/bi";
 
 import avatar from "@/assets/images/avatar.png";

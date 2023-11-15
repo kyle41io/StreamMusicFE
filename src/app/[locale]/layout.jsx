@@ -3,9 +3,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 
-import DeleteModal from "@/components/music-detail/DeleteModal";
-import Footer from "@/components/music-detail/Footer";
-import Header from "@/components/shared/Header";
+import DeleteModal from "@/components/pages/content/music-detail/DeleteModal";
+import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/Header";
 import MusicDetailProvider from "@/store/MusicDetailProvider";
 
 import "@/styles/globals.css";
