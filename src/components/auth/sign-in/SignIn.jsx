@@ -20,8 +20,10 @@ const SignIn = () => {
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
   const [displayToast, setDisplayToast] = useState(false);
+  const [displayToast2, setDisplayToast2] = useState(false);
   const [isErrorUsername, setIsErrorUsername] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
+  const [responseData, setResponseData] = useState('')
 
   const isError = useMemo(() => isErrorUsername || isErrorPassword || !userName || !passWord, [userName, passWord, isErrorUsername, isErrorPassword])
 
@@ -55,7 +57,11 @@ const SignIn = () => {
           }, 3000);
           localStorage.setItem('token', data.token);
         } else {
-          console.log(data);
+          setResponseData(data.message)
+          setDisplayToast2(true)
+          setTimeout(() => {
+            setDisplayToast2(false)
+          }, 3000);
         }
       })
   }
@@ -81,9 +87,15 @@ const SignIn = () => {
     <div className={styles["main-session"]}>
       <ToastMessage
         onClose={() => setDisplayToast(false)}
-        error={isError}
+        error={false}
         successMessage={t('login_success')}
         showToast={displayToast}
+      />
+      <ToastMessage
+        onClose={() => setDisplayToast2(false)}
+        error={true}
+        errorMessage={responseData}
+        showToast={displayToast2}
       />
       <div className={styles["signin-container"]}>
         <div className={styles["listener-svg"]}></div>

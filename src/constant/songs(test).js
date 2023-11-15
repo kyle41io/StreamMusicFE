@@ -1,7 +1,7 @@
-import jaykii from "@/assets/SongImg/chieu_hom_ay.jpeg";
-import andiez from "@/assets/SongImg/cho_doi_co_dang_so.jpeg";
-import kuun from "@/assets/SongImg/tinh_co_yeu_em.jpeg";
-import tuanhung from "@/assets/SongImg/gap_doi_yeu_thuong.jpeg";
+import jaykii from "@/assets/images/SongImg/chieu_hom_ay.jpeg";
+import andiez from "@/assets/images/SongImg/cho_doi_co_dang_so.jpeg";
+import kuun from "@/assets/images/SongImg/tinh_co_yeu_em.jpeg";
+import tuanhung from "@/assets/images/SongImg/gap_doi_yeu_thuong.jpeg";
 
 export const tracks = [
   {
