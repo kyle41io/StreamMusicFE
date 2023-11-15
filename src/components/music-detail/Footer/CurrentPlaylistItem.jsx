@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
 
-import { IoMdClose } from "react-icons/io";
 import { IoStatsChartSharp } from "react-icons/io5";
 
 import buiAnhTuan from "@/assets/images/BuiAnhTuan.png";
 
 export default function CurrentPlaylistItem() {
+
   return (
     <>
       {/* body item */}
