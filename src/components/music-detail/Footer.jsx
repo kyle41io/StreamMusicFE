@@ -1,25 +1,25 @@
 "use client";
 import Image from "next/image";
 import { useContext, useEffect, useRef, useState } from "react";
+
+import useSongControl from "@/hooks/useSongControl";
+import useVolumeControl from "@/hooks/useVolumeControl";
+
 import { DetailProvider } from "@/store/MusicDetailProvider";
 import { formatTime } from "@/utils";
-import useVolumeControl from "@/hooks/useVolumeControl";
-import useSongControl from "@/hooks/useSongControl";
+
 import ButtonControl from "./ButtonControl";
-import avatar from "@/assets/images/avatar.png";
+import CurrentPlaylistItem from "./CurrentPlaylistItem";
+
 import { MdPlaylistPlay } from "react-icons/md";
 import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+
 import { tracks } from "@/constant/songs(test)";
-import CurrentPlaylistItem from "./CurrentPlaylistItem";
+import avatar from "@/assets/images/avatar.png";
 
 export default function Footer() {
-  const [showVolumeBar, setShowVolumeBar] = useState(false);
-  const [showPlaylist, setShowPlaylist] = useState(false);
-
-  const volumeRef = useRef(null);
-
   const {
     timeProgress,
     isLiked,
@@ -36,6 +36,11 @@ export default function Footer() {
   } = useContext(DetailProvider);
   const { handleControlVolume } = useVolumeControl();
   const { onSongProgressChange } = useSongControl();
+
+  const volumeRef = useRef(null);
+
+  const [showVolumeBar, setShowVolumeBar] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false);
 
   const MAX = 100;
   const getBackgroundSize = () => {
