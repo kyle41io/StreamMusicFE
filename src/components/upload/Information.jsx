@@ -1,12 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import React, { useContext, useState, useEffect } from "react";
+
 import storage from "@/lib/firebaseConfig";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
-import React, { useContext, useState, useEffect } from "react";
 import FileContext from "@/store/FileProvider";
 
-import { useRouter } from "next/navigation";
 
 import { slugify } from "@/utils/slugify";
 

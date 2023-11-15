@@ -2,16 +2,17 @@
 
 import { useEffect, useReducer, useRef, useState } from 'react'
 
-import styles from '@/styles/content/home/Slider.module.css'
-
 import TOP_PLAYLIST from '@/constant/topPlaylist'
 
-function Slider({ topPlayList_t, list }) {
-    const [showBlurLeft, setShowBlurLeft] = useState(false);
+import styles from '@/styles/content/home/Slider.module.css'
 
+function Slider({ topPlayList_t, list }) {
     const sliderRef = useRef();
     const containerRef = useRef();
     const interValFake = useRef();
+    
+    const [showBlurLeft, setShowBlurLeft] = useState(false);
+
 
     useEffect(() => {
         sliderRef.current.style.left = '0px';

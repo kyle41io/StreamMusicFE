@@ -6,7 +6,6 @@ import React, { useContext } from "react";
 
 import { BiSolidRightArrow } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
-
 import { FaShare, FaTrashAlt } from "react-icons/fa";
 
 export default function ListAction() {

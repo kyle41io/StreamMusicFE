@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { LIST_GENRE } from "@/constant/genre";
 

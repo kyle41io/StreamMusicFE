@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function useVolumeControl() {

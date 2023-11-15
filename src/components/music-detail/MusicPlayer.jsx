@@ -3,13 +3,9 @@ import Image from "next/image";
 
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
-import React, { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 
 import useSongControl from "@/hooks/useSongControl";
-
-import { tracks } from "@/constant/songs(test)";
-
-import { formatTime } from "@/utils";
 
 import SongControl from "./SongControl";
 
@@ -18,78 +14,12 @@ import avatar from "@/assets/images/song_detail_avatar.png";
 const MAX = 100;
 
 export default function MusicPlayer() {
-  const {
-    isPlaying,
-    isRepeat,
-    setIsPlaying,
-    currentIndex,
-    setCurrentIndex,
-    track,
-    setTrack,
-    audioRef,
-    setSongProgressValue,
-    songProgressValue,
-    setTimeProgress,
-    progressBarRef,
-  } = useContext(DetailProvider);
+  const { songProgressValue, progressBarRef } = useContext(DetailProvider);
   const { onSongProgressChange } = useSongControl();
 
   const getBackgroundSize = () => {
     return { backgroundSize: `${(songProgressValue * 100) / MAX}% 100%` };
   };
-
-  // const onTimeUpdate = () => {
-  //   if (audioRef.current.duration) {
-  //     const progress = Math.floor(
-  //       (audioRef.current.currentTime / audioRef.current.duration) * 100
-  //     );
-  //     setSongProgressValue(progress);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   isPlaying ? audioRef.current.play() : audioRef.current.pause();
-  // }, [isPlaying, audioRef]);
-
-  // useEffect(() => {
-  //   const audio = audioRef.current;
-  //   const handleTrackEnded = () => {
-  //     if (isRepeat) {
-  //       audio.currentTime = 0;
-  //     } else if (isShuffle) {
-  //       let randomIndex = Math.floor(Math.random() * (tracks.length + 1));
-  //       setCurrentIndex(randomIndex);
-  //       setTrack(tracks[randomIndex]);
-  //       audio.src = tracks[randomIndex].path;
-  //     } else {
-  //       const nextIndex = (currentIndex + 1) % tracks.length;
-  //       setCurrentIndex(nextIndex);
-  //       setTrack(tracks[nextIndex]);
-  //       audio.src = tracks[nextIndex].path;
-  //     }
-  //     setIsPlaying(true);
-  //     audio.play();
-  //   };
-  //   audio.addEventListener("ended", handleTrackEnded);
-
-  //   return () => audio.removeEventListener("ended", handleTrackEnded);
-  // }, [isRepeat, currentIndex, audioRef.current]);
-
-  // useEffect(() => {
-  //   const audio = audioRef.current;
-  //   if (audio) {
-  //     const handleTimeUpdate = () => {
-  //       setTimeProgress(formatTime(audio.currentTime));
-  //       let newProgress;
-  //       if (audio.currentTime && audio.duration) {
-  //         newProgress = (audio.currentTime / audio.duration) * 100;
-  //       }
-  //       setSongProgressValue(newProgress);
-  //     };
-  //     audio.addEventListener("timeupdate", handleTimeUpdate);
-  //     return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
-  //   }
-  // }, [audioRef]);
 
   return (
     <div className="w-full flex-col h-[180px] bg-primaryBlack">
@@ -128,15 +58,7 @@ export default function MusicPlayer() {
           style={getBackgroundSize()}
         />
       </div>
-      {/* <audio
-        ref={audioRef}
-        className="hidden"
-        onTimeUpdate={() => onTimeUpdate()}
-      >
-        <source src={tracks[currentIndex].path} type="audio/mpeg" />
-      </audio> */}
 
-      {/* Song control */}
       <SongControl />
     </div>
   );

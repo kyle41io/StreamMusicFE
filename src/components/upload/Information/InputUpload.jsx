@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 
+import Image from "next/image";
+
 import React, { useState, useRef, useEffect, useMemo } from "react";
 
-import Image from "next/image";
 
 const Input = ({
   type = "text",
