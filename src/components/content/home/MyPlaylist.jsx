@@ -1,12 +1,12 @@
 'use client'
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl'
 
 import { MY_PLAYLISTS } from '@/constant/myplaylists';
 
 import PagingBar from '@/components/shared/PagingBar';
-import Link from 'next/link';
 import InfinityList from './InfinityList';
 
 import IcPlayOrange from '@/assets/icons/IcPlayOrange';

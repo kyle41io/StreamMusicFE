@@ -1,9 +1,11 @@
 "use client";
-import React, { useContext, useState, useEffect } from "react";
-import CopyIcon from "@/assets/icons/CopyIcon";
-import FileContext from "@/store/FileProvider";
 import { useRouter } from "next/navigation";
+import React, { useContext, useState, useEffect } from "react";
+
+import FileContext from "@/store/FileProvider";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+
+import CopyIcon from "@/assets/icons/CopyIcon";
 
 const Complete = ({ t }) => {
   const router = useRouter();

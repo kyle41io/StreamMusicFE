@@ -9,49 +9,51 @@ import IcSpinner from '@/assets/icons/IcSpinner';
 import styles from '@/styles/content/home/InfinityList.module.css'
 
 function InfinityList({ playListId, index }) {
-    const [internalSongs, setInternalSongs] = useState([]);
-    const [isScrollEnd, setIsScrollEnd] = useState(false);
-    const [segment, setSegment] = useState(0);
-    const [isLoadable, setIsLoadable] = useState(true);
+  const [internalSongs, setInternalSongs] = useState([]);
+  const [isScrollEnd, setIsScrollEnd] = useState(false);
+  const [segment, setSegment] = useState(0);
+  const [isLoadable, setIsLoadable] = useState(true);
 
-    const observer = useRef();
+  const observer = useRef();
 
-    useEffect(() => {
-        observer.current = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && isLoadable) {
-                    setSegment(prev => {
-                        return prev + 1;
-                    });
-                    setIsScrollEnd(true);
-                } else {
-                    setIsScrollEnd(false);
-                }
-            })
-        })
-        observer.current.observe(document.querySelector(`.spinner-element.s${index}`));
-
-        return () => {
-            observer.current.disconnect();
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && isLoadable) {
+          setSegment((prev) => {
+            return prev + 1;
+          });
+          setIsScrollEnd(true);
+        } else {
+          setIsScrollEnd(false);
         }
-    }, [])
+      });
+    });
+    observer.current.observe(
+      document.querySelector(`.spinner-element.s${index}`)
+    );
 
-    useEffect(() => {
-        const appendList = getList(segment, 5).list;
-        const length = getList(segment, 5).length;
-        const newList = [...internalSongs, ...appendList];
-        setInternalSongs(newList)
-        if(segment*5 === length) {
-            setIsLoadable(false);
-        }
-    }, [segment])
+    return () => {
+      observer.current.disconnect();
+    };
+  }, []);
 
-    useEffect(() => {
-        if(!isLoadable) {
-            setIsScrollEnd(false);
-            observer.current.disconnect();
-        }
-    }, [isLoadable])
+  useEffect(() => {
+    const appendList = getList(segment, 5).list;
+    const length = getList(segment, 5).length;
+    const newList = [...internalSongs, ...appendList];
+    setInternalSongs(newList);
+    if (segment * 5 === length) {
+      setIsLoadable(false);
+    }
+  }, [segment]);
+
+  useEffect(() => {
+    if (!isLoadable) {
+      setIsScrollEnd(false);
+      observer.current.disconnect();
+    }
+  }, [isLoadable]);
 
     return (
         <div className={styles['my-playlist-songs']}>
@@ -75,4 +77,4 @@ function InfinityList({ playListId, index }) {
     )
 }
 
-export default InfinityList
+export default InfinityList;

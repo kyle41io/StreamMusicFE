@@ -1,4 +1,4 @@
-
+'use client'
 import { useTranslations } from "use-intl";
 
 import PlayingBeat from "./PlayingBeat";

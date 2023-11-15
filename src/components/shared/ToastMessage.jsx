@@ -1,7 +1,9 @@
-import React from "react";
-import XIcon from "@/assets/icons/XIcon";
 import { BsCheck2 } from "react-icons/bs";
-import "../../styles/shared/ToastMessage.css";
+
+// import "../../styles/shared/ToastMessage.css";
+import "@/styles/shared/ToastMessage.css";
+
+import XIcon from "@/assets/icons/XIcon";
 
 const ToastMessage = ({
   onClose,

@@ -1,5 +1,6 @@
-import IcPlayWhite from '@/assets/icons/IcPlayWhite';
 import TOP_MEMBERS from '@/constant/topMembers'
+
+import IcPlayWhite from '@/assets/icons/IcPlayWhite';
 
 import styles from '@/styles/content/home/TopMember.module.css'
 

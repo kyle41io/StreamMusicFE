@@ -1,5 +1,5 @@
 "use client";
-import React, { cloneElement } from "react";
+import { cloneElement } from "react";
 
 export default function Button({
   text,
