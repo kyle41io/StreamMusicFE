@@ -1,8 +1,11 @@
 'use client'
 
 import styles from '@/styles/shared/PagingBar.module.css'
+import { useTranslations } from 'next-intl';
 
 function PagingBar({ currentPage = 1, onClick, maxPage }) {
+
+    const t = useTranslations("Home")
 
     const handleClick = (item) => {
         onClick(item);
@@ -51,7 +54,7 @@ function PagingBar({ currentPage = 1, onClick, maxPage }) {
     return (
         <div className={styles['main-bar']}>
             <button onClick={handlePrevious}>
-                Previous
+                {t("previous")}
             </button>
             <div className={styles['page-number-choser']}>
                 <div className={`${styles.numbers} ${currentPage == 1 ? styles.chosen : ''}`} onClick={() => onClick(1)}>
@@ -72,7 +75,7 @@ function PagingBar({ currentPage = 1, onClick, maxPage }) {
                 </div>
             </div>
             <button onClick={handleNext}>
-                Next
+                {t("next")}
             </button>
         </div>
     )
