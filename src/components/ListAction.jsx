@@ -1,12 +1,16 @@
 "use client";
+
 import React, { useContext } from "react";
+
+import { DetailProvider } from "@/store/MusicDetailProvider";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
+
 import { FaShare, FaTrashAlt } from "react-icons/fa";
-import { DetailProvider } from "@/store/MusicDetailProvider";
 
 export default function ListAction() {
   const { setShowDeleteModal } = useContext(DetailProvider);
+
   return (
     <section className="w-full flex justify-between">
       <div className="flex gap-4 items-center">

@@ -1,5 +1,4 @@
 export const API_ROUTE = {
-  // form
   AUTH: "/auth",
   USER: "/user",
   PLAYPLIST: "/playlist",
