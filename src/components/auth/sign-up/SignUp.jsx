@@ -41,6 +41,7 @@ function SignUp() {
       name: displayName,
       username: userName,
       password: password,
+      image: "https://res.cloudinary.com/dbda40mpf/image/upload/v1698906957/cld-sample.jpg"
     };
 
     let responsePlaceHolder = {};

@@ -62,7 +62,7 @@ const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, 
         <div className={styles['icon']}>
           {icon}
         </div>
-        <input type={internalType} id={`input-${type}-${icon}`} className={`${configPadding()} ${styles['input-1']} ${styles[status]}`} placeholder={placeholder} value={value} onChange={event => { handleChangeValue(event) }} onBlur={handleBlur} />
+        <input type={internalType} id={`input-${placeholder}`} className={`${configPadding()} ${styles['input-1']} ${styles[status]}`} placeholder={placeholder} value={value} onChange={event => { handleChangeValue(event) }} onBlur={handleBlur} />
         <div className={styles['right-icons']}>
           {status === 'error' &&
             <IcError />
