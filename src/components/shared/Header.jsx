@@ -1,15 +1,18 @@
 "use client";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 import Image from "next/image";
+import Link from "next/link";
+
 import React, { useContext } from "react";
-import logo from "@/assets/images/logo.png";
-import { HiOutlineSearch } from "react-icons/hi";
+import { useAuth } from "@/hooks/useAuth";
+
 import Button from "./Button";
 import ResultBox from "../ResultBox";
-import { MdPlaylistAdd } from "react-icons/md";
 import UserAvatar from "../UserAvatar";
-import Link from "next/link";
-import { useAuth } from "@/hooks/useAuth";
-import { DetailProvider } from "@/store/MusicDetailProvider";
+
+import { HiOutlineSearch } from "react-icons/hi";
+import { MdPlaylistAdd } from "react-icons/md";
+import logo from "@/assets/images/logo.png";
 
 export default function Header() {
   const { userData } = useContext(DetailProvider);
