@@ -18,7 +18,9 @@
     "my_profile": "My Profile",
     "field_error": "This field is error.",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "login_success": "Login successfully",
+    "sign_up_success": "Sign Up successfully"
   },
   "Header": {
     "search_playlist_placholder": "Please enter a playlist's name...",

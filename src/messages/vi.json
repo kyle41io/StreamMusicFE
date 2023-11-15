@@ -18,7 +18,9 @@
     "my_profile": "Tài khoản của tôi",
     "field_error": "Thông tin không hợp lệ",
     "cancel": "Hủy",
-    "save": "Lưu"
+    "save": "Lưu",
+    "login_success": "Đăng nhập thành công",
+    "sign_up_success": "Đăng ký thành công"
   },
   "Header": {
     "search_playlist_placholder": "Nhập danh sách phát...",

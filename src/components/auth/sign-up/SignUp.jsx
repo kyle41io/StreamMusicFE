@@ -5,9 +5,10 @@ import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
 import ToastMessage from "@/components/shared/ToastMessage";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { uploadBytes, getDownloadURL } from "firebase/storage";
 
 function SignUp() {
   const t = useTranslations("Auth")
@@ -23,6 +24,13 @@ function SignUp() {
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isErrorRepeatPassword, setIsErrorRepeatPassword] = useState(false);
 
+  const [displayToast, setDisplayToast] = useState(false);
+
+  const isError = useMemo(() => {
+    return isErrorDisplayName || isErrorUserName || isErrorPassword || isErrorRepeatPassword
+      || !displayName || !userName || !password || !repeatPassword
+  }, [displayName, userName, password, repeatPassword, isErrorDisplayName, isErrorUserName, isErrorPassword, isErrorRepeatPassword])
+
   const handleSend = () => {
     const body = {
       name: displayName,
@@ -32,7 +40,7 @@ function SignUp() {
 
     let responsePlaceHolder = {};
 
-    fetch("http://192.168.1.123:3000/user/new", {
+    fetch("http://192.168.1.123:3000/api/auth/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,10 +52,15 @@ function SignUp() {
         return response.json();
       })
       .then((data) => {
-        if(responsePlaceHolder.status === 200 || responsePlaceHolder.status === 201) {
-          router.push('/home', {
-            scroll: true
-          })
+        if (responsePlaceHolder.status === 200 || responsePlaceHolder.status === 201) {
+          setDisplayToast(true);
+          setTimeout(() => {
+            router.push('/auth/sign-in', {
+              scroll: true
+            })
+            setDisplayToast(false);
+          }, 3000);
+
         } else {
           console.log(data);
         }
@@ -55,25 +68,45 @@ function SignUp() {
   };
 
   const handleBlurDisplayName = () => {
-    if(!displayName.match(/^.{6,32}$/)) {
-
+    if (!displayName.match(/^.{6,32}$/)) {
+      setIsErrorDisplayName(true);
+    } else {
+      setIsErrorDisplayName(false);
     }
   }
 
   const handleBlurUsername = () => {
-
+    if (!userName.match(/^.{5,32}$/)) {
+      setIsErrorUserName(true);
+    } else {
+      setIsErrorUserName(false);
+    }
   }
 
   const handleBlurPassword = () => {
-
+    if (!password.match(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,32}$/)) {
+      setIsErrorPassword(true);
+    } else {
+      setIsErrorPassword(false);
+    }
   }
 
   const handleBlurRepeatPassword = () => {
-    
+    if (repeatPassword !== password) {
+      setIsErrorRepeatPassword(true);
+    } else {
+      setIsErrorRepeatPassword(false);
+    }
   }
 
   return (
     <div className={styles["main-session"]}>
+      <ToastMessage
+        onClose={() => setDisplayToast(false)}
+        error={isError}
+        successMessage={t('sign_up_success')}
+        showToast={displayToast}
+      />
       <div className={styles["signup-container"]}>
         <div className={styles["listener-svg"]}></div>
         <div className={styles["signup-box"]}>
@@ -130,7 +163,7 @@ function SignUp() {
             uploadAvatar={t("upload_avatar")}
             noFileChosen={t("no_file_chosen")}
           />
-          <button className="button-1" onClick={handleSend}>
+          <button className="button-1" disabled={isError} onClick={handleSend}>
             {t("send")}
           </button>
           <span className={styles["linkSignUp"]}>

@@ -21,13 +21,9 @@ const SignIn = () => {
   const [isErrorUsername, setIsErrorUsername] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
 
-  const isError = useMemo(() => isErrorUsername || isErrorPassword || !userName || !passWord, [isErrorUsername, isErrorPassword])
+  const isError = useMemo(() => isErrorUsername || isErrorPassword || !userName || !passWord, [userName, passWord, isErrorUsername, isErrorPassword])
 
   const handleSubmit = () => {
-    setDisplayToast(true)
-    setTimeout(() => {
-      setDisplayToast(false);
-    }, 3000);
     const requestBody = {
       username: userName,
       password: passWord
@@ -35,7 +31,7 @@ const SignIn = () => {
 
     let responseHolder = {};
 
-    fetch('http://192.168.1.123:3000/auth', {
+    fetch('http://192.168.1.123:3000/api/auth', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -48,12 +44,14 @@ const SignIn = () => {
       })
       .then(data => {
         if (responseHolder.status === 200 || responseHolder.status === 201) {
-          router.push('/home', {
-            scroll: true
-          });
-          if (isRemember) {
-            localStorage.setItem('token', data.token);
-          }
+          setDisplayToast(true)
+          setTimeout(() => {
+            router.push('/home', {
+              scroll: true
+            });
+            setDisplayToast(false);
+          }, 3000);
+          localStorage.setItem('token', data.token);
         } else {
           console.log(data);
         }
@@ -71,10 +69,8 @@ const SignIn = () => {
   const handleBlurPassword = () => {
     const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,32}$/;
     if (!passWord.match(regex)) {
-      console.log('password fake');
       setIsErrorPassword(true);
     } else {
-      console.log('password riel');
       setIsErrorPassword(false);
     }
   }
@@ -84,7 +80,7 @@ const SignIn = () => {
       <ToastMessage
         onClose={() => setDisplayToast(false)}
         error={isError}
-        successMessage={'Login successfully!'}
+        successMessage={t('login_success')}
         showToast={displayToast}
       />
       <div className={styles["signin-container"]}>
