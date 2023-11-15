@@ -1,7 +1,10 @@
 "use client";
-import useSongControl from "@/hooks/useSongControl";
 import { DetailProvider } from "@/store/MusicDetailProvider";
+
 import React, { useContext } from "react";
+
+import useSongControl from "@/hooks/useSongControl";
+
 import { BiSolidRightArrow } from "react-icons/bi";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { IoMdPause } from "react-icons/io";

@@ -1,12 +1,19 @@
 "use client";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
-import avatar from "@/assets/images/song_detail_avatar.png";
-import SongControl from "./SongControl";
+
 import { DetailProvider } from "@/store/MusicDetailProvider";
-import { tracks } from "@/constant/songs(test)";
-import { formatTime } from "@/utils";
+
+import React, { useContext, useEffect, useState } from "react";
+
 import useSongControl from "@/hooks/useSongControl";
+
+import { tracks } from "@/constant/songs(test)";
+
+import { formatTime } from "@/utils";
+
+import SongControl from "./SongControl";
+
+import avatar from "@/assets/images/song_detail_avatar.png";
 
 const MAX = 100;
 

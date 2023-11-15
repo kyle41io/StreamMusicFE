@@ -1,9 +1,13 @@
 "use client";
-import { useContext, useEffect } from "react";
 import { DetailProvider } from "@/store/MusicDetailProvider";
+
+import { useContext, useEffect } from "react";
+
 import { formatTime } from "@/utils";
+
 import ButtonControl from "./ButtonControl";
 import VolumeControl from "./VolumeControl";
+
 export default function SongControl() {
   const { audioRef, timeProgress, volumeBarRef, songVolume, setSongVolume } =
     useContext(DetailProvider);
