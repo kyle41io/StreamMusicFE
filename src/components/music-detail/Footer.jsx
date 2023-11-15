@@ -12,7 +12,7 @@ import { tracks } from "@/constant/songs(test)";
 
 import { formatTime } from "@/utils";
 
-import CurrentPlaylistItem from "./CurrentPlaylistItem";
+import CurrentPlaylistItem from "./Footer/CurrentPlaylistItem";
 import ButtonControl from "./ButtonControl";
 
 import { MdPlaylistPlay } from "react-icons/md";
@@ -24,19 +24,24 @@ import avatar from "@/assets/images/avatar.png";
 
 export default function Footer() {
   const {
+    userData,
+    audioRef,
+    volumeBarRef,
     timeProgress,
+    setTimeProgress,
     isLiked,
     setIsLiked,
     songProgressValue,
     setSongProgressValue,
-    setTimeProgress,
-    audioRef,
-    volumeBarRef,
     songVolume,
     setSongVolume,
     currentIndex,
+    setCurrentIndex,
     isPlaying,
-    userData,
+    isRepeat,
+    setIsPlaying,
+    isShuffle,
+    setTrack,
   } = useContext(DetailProvider);
 
   const volumeRef = useRef(null);
@@ -83,7 +88,33 @@ export default function Footer() {
       audio.addEventListener("timeupdate", handleTimeUpdate);
       return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
     }
-  }, [audioRef]);
+  }, [audioRef, audioRef.current?.currentTime]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      const handleTrackEnded = () => {
+        if (isRepeat) {
+          audio.currentTime = 0;
+        } else if (isShuffle) {
+          let randomIndex = Math.floor(Math.random() * (tracks.length + 1));
+          setCurrentIndex(randomIndex);
+          setTrack(tracks[randomIndex]);
+          audio.src = tracks[randomIndex].path;
+        } else {
+          const nextIndex = (currentIndex + 1) % tracks.length;
+          setCurrentIndex(nextIndex);
+          setTrack(tracks[nextIndex]);
+          audio.src = tracks[nextIndex].path;
+        }
+        setIsPlaying(true);
+        audio.play();
+      };
+      audio.addEventListener("ended", handleTrackEnded);
+
+      return () => audio.removeEventListener("ended", handleTrackEnded);
+    }
+  }, [isRepeat, currentIndex, audioRef.current]);
 
   return (
     <>
@@ -185,10 +216,12 @@ export default function Footer() {
                   {/* header */}
                   <div className="flex justify-between bg-white border-b border-secondaryGray p-3">
                     <p className="text-sm text-thirdBlack">Tracks</p>
-                    <IoMdClose
-                      size={24}
+                    <div
                       className="text-thirdBlack cursor-pointer"
-                    />
+                      onClick={() => setShowPlaylist(false)}
+                    >
+                      <IoMdClose size={24} />
+                    </div>
                   </div>
                   <CurrentPlaylistItem />
                   <CurrentPlaylistItem />

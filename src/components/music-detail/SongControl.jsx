@@ -18,8 +18,9 @@ export default function SongControl() {
   };
 
   useEffect(() => {
-    if (audioRef) {
-      audioRef.current.volume = songVolume / 100;
+    const audio = audioRef.current
+    if (audio) {
+      audioRef.volume = songVolume / 100;
     }
   }, [songVolume, audioRef]);
 
