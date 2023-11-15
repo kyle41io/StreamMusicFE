@@ -1,7 +1,9 @@
-import styles from './../../../styles/content/home/TopMember.module.css'
 import TOP_MEMBERS from '@/constant/topMembers'
 
+import styles from '@/styles/content/home/TopMember.module.css'
+
 function TopMember({ t ,list }) {
+
     const formatViews = (view) => {
         if (view > 1000) {
             return (view / 1000).toFixed(3);

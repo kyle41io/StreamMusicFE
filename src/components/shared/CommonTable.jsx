@@ -1,7 +1,9 @@
-import { useTransition } from "react";
-import styles from "./../../styles/shared/CommonTable.module.css";
+
 import { useTranslations } from "use-intl";
+
 import PlayingBeat from "./PlayingBeat";
+
+import styles from "@/styles/shared/CommonTable.module.css";
 
 function CommonTable({ list, headerList, playingIndex, setPlayingIndex }) {
 
