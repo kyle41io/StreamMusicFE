@@ -1,7 +1,9 @@
 "use client";
-import React, { useContext, useEffect } from "react";
-import Modal from "../shared/Modal";
 import { DetailProvider } from "@/store/MusicDetailProvider";
+
+import React, { useContext, useEffect } from "react";
+
+import Modal from "../shared/Modal";
 
 export default function DeleteModal() {
   const { showDeleteModal, setShowDeleteModal } = useContext(DetailProvider);

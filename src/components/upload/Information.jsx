@@ -1,39 +1,39 @@
 "use client";
-import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import FileContext from "@/store/FileProvider";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
-import { slugify } from "@/utils/slugify";
+
 import storage from "@/lib/firebaseConfig";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+
+import React, { useContext, useState, useEffect } from "react";
+import FileContext from "@/store/FileProvider";
+
+import { useRouter } from "next/navigation";
+
+import { slugify } from "@/utils/slugify";
+
+import Input from "./Information/InputUpload";
+import Dropdown from "./Information/DropDown";
+
 import LoadingIcon from "@/assets/icons/LoaddingIcon";
 import CameraIcon from "@/assets/icons/CameraIcon";
-import Input from "./Information/InputUpload";
+
 import "@/styles/upload/Information.css";
-import Dropdown from "./Information/DropDown";
 
 const Information = ({ setCurrentStep, t }) => {
   const router = useRouter();
+
   const { setInfoPlaylist } = useContext(FileContext);
   const { setUploadedImageFile } = useContext(FileContext);
+
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageURL, setUploadedImageURL] = useState(null);
   const [errorImage, setErrorImage] = useState(false);
   const [percentImage, setPercentImage] = useState(0);
   const [disabled, setDisabled] = useState(true);
-
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [genre, setGenre] = useState("None");
   const [artist, setArtist] = useState("");
   const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    setInfoPlaylist((prevInfoPlaylist) => ({
-      ...prevInfoPlaylist,
-      title: title,
-      slug: slug,
-    }));
-  }, [title, slug, setInfoPlaylist]);
 
   const handleCancle = () => {
     router.back();
@@ -112,6 +112,14 @@ const Information = ({ setCurrentStep, t }) => {
       artist: artist,
     }));
   };
+
+  useEffect(() => {
+    setInfoPlaylist((prevInfoPlaylist) => ({
+      ...prevInfoPlaylist,
+      title: title,
+      slug: slug,
+    }));
+  }, [title, slug, setInfoPlaylist]);
 
   return (
     <div

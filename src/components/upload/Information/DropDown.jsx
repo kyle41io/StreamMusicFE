@@ -1,13 +1,21 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+
 import { useTranslations } from "next-intl";
+
+import React, { useState, useRef, useEffect } from "react";
+
+import { LIST_GENRE } from "@/constant/genre";
+
 import { BiSolidChevronDown } from "react-icons/bi";
 import { BiSolidChevronUp } from "react-icons/bi";
-import { LIST_GENRE } from "@/constant/genre";
+
 import "@/styles/upload/DropDown.css";
 
 const Dropdown = ({ genre, setGenre, setInfoPlaylist }) => {
   const t = useTranslations("Upload");
+
+  const inputRef = useRef(null);
+
   const [inputStyles, setInputStyles] = useState({
     outlineColor: "#f08c51",
     borderColor: "#CFD3D4",
@@ -17,21 +25,6 @@ const Dropdown = ({ genre, setGenre, setInfoPlaylist }) => {
   });
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
   const handleChangeGenre = (genre) => {
     setGenre(genre);
     setInfoPlaylist((prevInfoPlaylist) => ({
@@ -47,6 +40,20 @@ const Dropdown = ({ genre, setGenre, setInfoPlaylist }) => {
       color: "#474646b0",
     });
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div>

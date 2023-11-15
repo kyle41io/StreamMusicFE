@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+
 import { useAuth } from "@/hooks/useAuth";
 
 import HomePage from "./(content)/home/page";

@@ -1,6 +1,9 @@
 "use client";
-import React, { useState, useRef, useEffect, useMemo } from "react";
+
 import { useTranslations } from "next-intl";
+
+import React, { useState, useRef, useEffect, useMemo } from "react";
+
 import Image from "next/image";
 
 const Input = ({
@@ -18,7 +21,12 @@ const Input = ({
   value,
   className,
 }) => {
+  const maxLimit = 500;
+
   const t = useTranslations("Upload");
+
+  const inputRef = useRef(null);
+
   const [isInputChanged, setIsInputChanged] = useState(false);
   const [inputStyles, setInputStyles] = useState({
     outlineColor: color,
@@ -28,10 +36,8 @@ const Input = ({
   const [labelStyles, setLabelStyles] = useState({
     color: "#CFD3D4",
   });
-  const inputRef = useRef(null);
   const [text, setText] = useState("");
   const [isMaxLimitReached, setIsMaxLimitReached] = useState(false);
-  const maxLimit = 500;
 
   const characterCount = useMemo(() => {
     return maxLimit - text.length;
@@ -100,6 +106,7 @@ const Input = ({
       });
     }
   };
+
   useEffect(() => {
     if (value) {
       setInputStyles({
