@@ -1,20 +1,22 @@
 "use client";
+
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/hooks/useAuth";
+
 import TopMember from "@/components/content/home/TopMember";
-import Slider from "@/components/content/home/Slider";
 import Slider2 from "@/components/content/home/Slider2";
 import NewPlaylist from "@/components/content/home/NewPlaylist";
-import { useAuth } from "@/hooks/useAuth";
 import MyPlaylist from "@/components/content/home/MyPlaylist";
 
 const HomePage = () => {
   const t = useTranslations("Home");
+
   useAuth();
 
   return (
     <div className="body-container">
       <div className="!w-full content-container">
-        <Slider2/>
+        <Slider2 />
         <div className="section-2">
           <div className="left-container">
             <NewPlaylist />

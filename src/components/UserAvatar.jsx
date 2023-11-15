@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import avatar from "@/assets/images/avatar.png";
+
 import { BiSolidChevronDown } from "react-icons/bi";
 
+import avatar from "@/assets/images/avatar.png";
+
 export default function UserAvatar() {
-  const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const clickOutside = (e) => {
-      console.log(menuRef.current);
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowMenu(false);
       }

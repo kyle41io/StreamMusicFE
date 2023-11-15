@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-import avatar from "@/assets/images/avatar.png";
-import { AiFillCaretDown } from "react-icons/ai";
+
 import CommentSection from "./Comment/CommentSection";
+
+import { AiFillCaretDown } from "react-icons/ai";
+
+import avatar from "@/assets/images/avatar.png";
 
 export default function Information() {
   return (

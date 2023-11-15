@@ -1,8 +1,9 @@
 "use client";
 
+import { DetailProvider } from "@/store/MusicDetailProvider";
+
 import React, { useContext } from "react";
 
-import { DetailProvider } from "@/store/MusicDetailProvider";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 

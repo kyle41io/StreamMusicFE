@@ -1,46 +1,51 @@
 "use client";
 
-import { tracks } from "@/constant/songs(test)";
 import { createContext, useRef, useState } from "react";
+
+import { tracks } from "@/constant/songs(test)";
 
 export const DetailProvider = createContext();
 
 export default function MusicDetailProvider({ children }) {
+  const inputRef = useRef(null);
+  const audioRef = useRef(null);
+  const progressBarRef = useRef(null);
+  const volumeBarRef = useRef(null);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [track, setTrack] = useState(tracks[currentIndex]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
-  const audioRef = useRef(null);
-  const inputRef = useRef(null);
+  const [isShuffle, setIsShuffle] = useState(false);
   const [songProgressValue, setSongProgressValue] = useState(0);
   const [timeProgress, setTimeProgress] = useState("--:--");
-  const progressBarRef = useRef(null);
-  const volumeBarRef = useRef(null);
   const [showVolume, setShowVolume] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [songVolume, setSongVolume] = useState(60);
+  const [songVolume, setSongVolume] = useState(50);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userData, setUserData] = useState("");
 
   return (
     <DetailProvider.Provider
       value={{
+        inputRef,
+        audioRef,
+        progressBarRef,
+        volumeBarRef,
+        currentIndex,
+        setCurrentIndex,
+        track,
+        setTrack,
         isPlaying,
         setIsPlaying,
         isRepeat,
         setIsRepeat,
-        track,
-        setTrack,
-        audioRef,
-        inputRef,
-        currentIndex,
-        setCurrentIndex,
+        isShuffle,
+        setIsShuffle,
         songProgressValue,
         setSongProgressValue,
         timeProgress,
         setTimeProgress,
-        progressBarRef,
-        volumeBarRef,
         showVolume,
         setShowVolume,
         isLiked,

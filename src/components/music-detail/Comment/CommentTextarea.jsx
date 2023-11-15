@@ -1,11 +1,14 @@
 import Image from "next/image";
-import avatar from "@/assets/images/avatar.png";
+
 import { useRef, useState } from "react";
+
 import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
 
+import avatar from "@/assets/images/avatar.png";
+
 export default function CommentTextarea() {
-  const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
 
   useAutoResizeTextArea(textAreaRef.current, inputValue);
 
@@ -15,10 +18,10 @@ export default function CommentTextarea() {
     }
   };
   return (
-    <div className="w-full flex py-2 items-center gap-2 rounded border-t border-b bg-[#f6f6f6] border-t-secondaryGray border-b-secondaryGray">
+    <div className="w-full flex py-2 items-center rounded border-t border-b bg-[#f6f6f6] border-t-secondaryGray border-b-secondaryGray relative">
       <textarea
         ref={textAreaRef}
-        className="w-[89%] h-[40px] p-2 ml-2 rounded leading-6 focus:outline-none placeholder:text-xs placeholder:text-primaryGray"
+        className="w-[89%] h-[40px] p-2 ml-3 rounded leading-6 focus:outline-none placeholder:text-xs placeholder:text-primaryGray"
         placeholder="Write a comment"
         cols={800}
         value={inputValue}
@@ -30,7 +33,7 @@ export default function CommentTextarea() {
         width={40}
         height={40}
         alt="Avatar"
-        className="rounded-full"
+        className="absolute rounded-full top-2 right-3"
       />
     </div>
   );
