@@ -8,8 +8,8 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const Complete = ({ t }) => {
   const router = useRouter();
 
-  const { title, artist, genre, ref } = infoPlaylist;
   const { infoPlaylist, uploadedImageFile } = useContext(FileContext);
+  const { title, artist, genre, ref } = infoPlaylist;
 
   const [copySuccess, setCopySuccess] = useState(false);
   const [audioURL, setAudioURL] = useState("");

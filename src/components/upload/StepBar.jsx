@@ -11,7 +11,7 @@ const StepBar = ({ currentStep, t }) => {
   const [complete, setComplete] = useState(false);
 
   return (
-    <div className="flex mb-10 z-0">
+    <div className="flex my-10 z-0">
       {steps?.map((step, i) => (
         <div
           key={i}
