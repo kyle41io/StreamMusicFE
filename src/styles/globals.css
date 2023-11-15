@@ -85,42 +85,10 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 131px;
 }
 
-.upload-icon {
-  width: 16px;
-  height: 16px;
-  background-image: url("./../assets/svg/upload.svg");
-}
-
-.play-white {
-  height: 16px;
-  width: 16px;
-  background-image: url("./../assets/svg/play-white.svg");
-}
-
-.left-arrow {
-  background-image: url("./../assets/svg/left-arrow.svg");
-}
-
-.right-arrow {
-  background-image: url("./../assets/svg/right-arrow.svg");
-}
-
-.headphones {
-  width: 12px;
-  height: 12px;
-  background-image: url("./../assets/svg/headphones.svg");
-}
-
 .play-gray {
   width: 10px;
   height: 10px;
   background-image: url("./../assets/svg/play-gray.svg");
-}
-
-.play-black {
-  width: 20px;
-  height: 20px;
-  background-image: url("./../assets/svg/play-black.svg");
 }
 
 .play-orange {
@@ -143,18 +111,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 20px !important;
   height: 20px !important;
   background-size: 20px 20px;
-}
-
-.heart-gray {
-  width: 10px;
-  height: 10px;
-  background-image: url("./../assets/svg/heart-gray.svg");
-}
-
-.playing-icon {
-  width: 20px;
-  height: 20px;
-  background-image: url("./../assets/svg/playing-icon.svg");
 }
 
 button {
