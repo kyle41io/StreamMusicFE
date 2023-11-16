@@ -6,17 +6,16 @@ import { DetailProvider } from "@/store/MusicDetailProvider";
 import { useContext, useEffect, useRef, useState } from "react";
 
 import useSongControl from "@/hooks/useSongControl";
-import useVolumeControl from "@/hooks/useVolumeControl";
 
 import { tracks } from "@/constant/songs(test)";
 
 import { formatTime } from "@/utils";
 
 import CurrentPlaylistItem from "../pages/content/music-detail/CurrentPlaylistItem";
+import VolumeControl from "../pages/content/music-detail/VolumeControl";
 import ButtonControl from "../pages/content/music-detail/ButtonControl";
 
 import { MdPlaylistPlay } from "react-icons/md";
-import { IoVolumeHigh, IoVolumeMedium, IoVolumeMute } from "react-icons/io5";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 
@@ -44,9 +43,8 @@ export default function Footer() {
     setTrack,
   } = useContext(DetailProvider);
 
-  const volumeRef = useRef(null);
+  const volumeContainerRef = useRef(null);
 
-  const { handleControlVolume } = useVolumeControl();
   const { onSongProgressChange } = useSongControl();
 
   const [showVolumeBar, setShowVolumeBar] = useState(false);
@@ -74,6 +72,8 @@ export default function Footer() {
     isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
   }, [isPlaying, audioRef]);
 
+  // Update time progress and song progress
+
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -89,6 +89,8 @@ export default function Footer() {
       return () => audio.removeEventListener("timeupdate", handleTimeUpdate);
     }
   }, [audioRef, audioRef.current?.currentTime]);
+
+  // Control what to do when the song ends
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -115,6 +117,15 @@ export default function Footer() {
       return () => audio.removeEventListener("ended", handleTrackEnded);
     }
   }, [isRepeat, currentIndex, audioRef.current]);
+
+  // Control volume 
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = songVolume / 100;
+    }
+  }, [songVolume, audioRef.current]);
 
   return (
     <>
@@ -147,23 +158,12 @@ export default function Footer() {
             </div>
 
             <div
-              ref={volumeRef}
+              ref={volumeContainerRef}
               className="relative group"
               onMouseOver={() => setShowVolumeBar(true)}
               onMouseLeave={() => setShowVolumeBar(false)}
             >
-              <div
-                className="cursor-pointer text-2xl "
-                onClick={handleControlVolume}
-              >
-                {audioRef.current?.muted || songVolume === 0 ? (
-                  <IoVolumeMute size={24} />
-                ) : !audioRef.current?.muted && songVolume <= 50 ? (
-                  <IoVolumeMedium size={24} />
-                ) : (
-                  <IoVolumeHigh size={24} />
-                )}
-              </div>
+              <VolumeControl />
 
               {showVolumeBar && (
                 <div
