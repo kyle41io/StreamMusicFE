@@ -20,7 +20,7 @@ export default function CurrentPlaylistItem() {
           />
           <div className="flex flex-col gap-4">
             <p className="text-lg text-thirdBlack">Nơi tình yêu bắt đầu</p>
-            <p className="text-xs text-secondaryGray">Bùi Anh Tuấn</p>
+            <p className="text-xs text-primaryGray">Bùi Anh Tuấn</p>
           </div>
         </div>
         <IoStatsChartSharp size={12} className="text-primary" />
