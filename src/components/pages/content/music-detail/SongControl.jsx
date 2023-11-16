@@ -1,7 +1,7 @@
  "use client";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import { formatTime } from "@/utils";
 
@@ -16,13 +16,6 @@ export default function SongControl() {
   const getBackgroundSize = () => {
     return { backgroundSize: `${(songVolume * 100) / MAX}% 100%` };
   };
-
-  useEffect(() => {
-    const audio = audioRef.current
-    if (audio) {
-      audio.volume = songVolume / 100;
-    }
-  }, [songVolume, audioRef.current]);
 
   return (
     <div className="flex pl-5 text-white">
