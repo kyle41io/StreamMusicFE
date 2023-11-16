@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 import { useContext, useEffect } from "react";
@@ -20,9 +20,9 @@ export default function SongControl() {
   useEffect(() => {
     const audio = audioRef.current
     if (audio) {
-      audioRef.volume = songVolume / 100;
+      audio.volume = songVolume / 100;
     }
-  }, [songVolume, audioRef]);
+  }, [songVolume, audioRef.current]);
 
   return (
     <div className="flex pl-5 text-white">
