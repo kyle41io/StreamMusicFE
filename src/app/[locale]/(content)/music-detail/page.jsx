@@ -1,9 +1,9 @@
 "use client";
+import { useState } from "react";
 import AlbumItem from "@/components/pages/content/music-detail/AlbumItem";
 import Information from "@/components/pages/content/music-detail/Information";
 import ListAction from "@/components/layouts/HeaderComponents/ListAction";
 import MusicPlayer from "@/components/pages/content/music-detail/MusicPlayer";
-import { useState } from "react";
 import { tracks } from "@/constant/songs(test)";
 
 const DetailMusic = () => {
