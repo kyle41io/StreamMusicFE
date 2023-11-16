@@ -56,6 +56,7 @@ const SignIn = () => {
             setDisplayToast(false);
           }, 3000);
           localStorage.setItem('token', data.token);
+          localStorage.setItem('id', data.userId)
         } else {
           setResponseData(data.message)
           setDisplayToast2(true)
