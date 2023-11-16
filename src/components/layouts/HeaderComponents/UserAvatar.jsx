@@ -6,9 +6,13 @@ import { BiSolidChevronDown } from "react-icons/bi";
 
 import avatar from "@/assets/images/avatar.png";
 
+import { useTranslations } from "next-intl";
+
+
 export default function UserAvatar() {
   const menuRef = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
+  const trans = useTranslations("Header");
 
   useEffect(() => {
     const clickOutside = (e) => {
@@ -45,15 +49,15 @@ export default function UserAvatar() {
           style={{ boxShadow: "0px 4px 4px 0px rgba(171, 171, 171, 0.25)" }}
         >
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
-            My profile
+            {trans("my_profile")}
           </li>
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack flex justify-between hover:bg-gray-100">
-            <p>Change language</p>
+            <p>{trans("changeLanguage")}</p>
             <p className="text-primaryGray">Vi</p>
           </li>
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
-            <span className="text-primaryError">Sign out</span>
-          </li>
+            <span className="text-primaryError">{trans("sign_out")}</span>
+          </li>         
         </ul>
       )}
     </div>

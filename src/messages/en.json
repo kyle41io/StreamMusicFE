@@ -23,7 +23,7 @@
     "sign_up_success": "Sign Up successfully"
   },
   "Header": {
-    "search_playlist_placholder": "Please enter a playlist's name...",
+    "search_playlist_placeholder": "Please enter a playlist's name...",
     "live": "Live",
     "create_playlist": "Create playlist",
     "my_profile": "My Profile",
