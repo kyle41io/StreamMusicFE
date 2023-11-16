@@ -5,12 +5,13 @@ import Image from "next/image";
 import { BiSolidChevronDown } from "react-icons/bi";
 
 import avatar from "@/assets/images/avatar.png";
+
 import { useTranslations } from "next-intl";
+
 
 export default function UserAvatar() {
   const menuRef = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
-
   const trans = useTranslations("Header");
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function UserAvatar() {
           </li>
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
             <span className="text-primaryError">{trans("sign_out")}</span>
-          </li>
+          </li>         
         </ul>
       )}
     </div>

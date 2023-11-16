@@ -13,14 +13,16 @@ import UserAvatar from "./HeaderComponents/UserAvatar";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdPlaylistAdd } from "react-icons/md";
 import logo from "@/assets/images/logo.png";
+
 import { useTranslations } from "next-intl";
+
 
 export default function Header() {
   const { userData } = useContext(DetailProvider);
   const useAuthentication = useAuth();
-
   const trans = useTranslations("Header");
   const translate = useTranslations("Auth");
+
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
@@ -47,6 +49,7 @@ export default function Header() {
           <input
             type="text"
             placeholder={trans("search_playlist_placeholder")}
+
             className="xl:h-12 lg:h-12 md:h-12  2xl:w-[450px] lg:w-[450px] xl:w-[450px] md:w-[360px] p-3 rounded-md placeholder:text-primaryGray placeholder:text-sm"
           />
           <HiOutlineSearch
@@ -61,6 +64,7 @@ export default function Header() {
 
         {userData ? (
           <div className="flex gap-8 items-center">
+
             <Link href="/upload">
               <Button
                 text={trans("create_playlist")}
@@ -77,6 +81,7 @@ export default function Header() {
             <Link href="/auth/sign-in">
               <Button
                 text={translate("sign_in")}
+
                 className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
               />
             </Link>
