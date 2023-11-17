@@ -1,8 +1,10 @@
 'use client'
 
-import { useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+
+import { UserData } from "@/store/UserDataProvider";
 
 import Link from "next/link";
 import Input from "@/components/shared/Input";
@@ -16,6 +18,8 @@ import styles from "@/styles/auth/sign-in/SignIn.module.css";
 const SignIn = () => {
   const t = useTranslations("Auth");
   const router = useRouter();
+
+  const { setIsLogin } = useContext(UserData)
 
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
@@ -50,12 +54,13 @@ const SignIn = () => {
         if (responseHolder.status === 200 || responseHolder.status === 201) {
           setDisplayToast(true)
           setTimeout(() => {
-            router.push('/home', {
+            router.push('/', {
               scroll: true
             });
             setDisplayToast(false);
           }, 3000);
           localStorage.setItem('token', data.token);
+          localStorage.setItem('id', data.userId)
         } else {
           setResponseData(data.message)
           setDisplayToast2(true)
@@ -82,6 +87,11 @@ const SignIn = () => {
       setIsErrorPassword(false);
     }
   }
+
+  useEffect(() => {
+    console.log('setting isLogin in Signin');
+    setIsLogin(!!localStorage.getItem('token'));
+  }, [])
 
   return (
     <div className={styles["main-session"]}>

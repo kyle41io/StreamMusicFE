@@ -23,9 +23,9 @@
     "sign_up_success": "Đăng ký thành công"
   },
   "Header": {
-    "search_playlist_placholder": "Nhập danh sách phát...",
+    "search_playlist_placeholder": "Nhập danh sách phát...",
     "live": "Phát trực tiếp",
-    "create_playlist": "Tạo danh sách phát",
+    "create_playlist": "Tạo danh sách",
     "my_profile": "Tài khoản của tôi",
     "changeLanguage": "Đổi ngôn ngữ",
     "sign_out": "Đăng xuất"

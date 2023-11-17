@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { uploadBytes, getDownloadURL } from "firebase/storage";
 import { useTranslations } from "next-intl";
+import useUpload from "@/hooks/useUpload";
 
 import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
@@ -25,23 +25,24 @@ function SignUp() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [img, setImg] = useState();
   const [isErrorDisplayName, setIsErrorDisplayName] = useState(false);
   const [isErrorUserName, setIsErrorUserName] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isErrorRepeatPassword, setIsErrorRepeatPassword] = useState(false);
   const [displayToast, setDisplayToast] = useState(false);
-
+  
   const isError = useMemo(() => {
     return isErrorDisplayName || isErrorUserName || isErrorPassword || isErrorRepeatPassword
       || !displayName || !userName || !password || !repeatPassword
   }, [displayName, userName, password, repeatPassword, isErrorDisplayName, isErrorUserName, isErrorPassword, isErrorRepeatPassword])
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const body = {
       name: displayName,
       username: userName,
       password: password,
-      image: "https://res.cloudinary.com/dbda40mpf/image/upload/v1698906957/cld-sample.jpg"
+      image: await useUpload(img),
     };
 
     let responsePlaceHolder = {};
@@ -166,10 +167,7 @@ function SignUp() {
               {t("i_accept")} <span className="link">{t("term_of_use")}</span>
             </span>
           </div>
-          <UploadImg
-            uploadAvatar={t("upload_avatar")}
-            noFileChosen={t("no_file_chosen")}
-          />
+          <UploadImg onChange={setImg}/>
           <button className="button-1" disabled={isError} onClick={handleSend}>
             {t("send")}
           </button>
