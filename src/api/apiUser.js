@@ -7,6 +7,6 @@ export const signUp = (payload) => {
 };
 
 export const getUserInfo = async (userID) => {
-  const response = await fetch(('http://192.168.1.123:3000/api/users/' + userID))
-  return await response.json()
-}
+  const res = await api.get(API_ROUTE.USER_INFO + userID);
+  return res.data;
+};

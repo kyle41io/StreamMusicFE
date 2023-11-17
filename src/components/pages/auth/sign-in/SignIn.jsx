@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 
 import { UserData } from "@/store/UserDataProvider";
 
+import { signIn } from "@/api/apiAuth";
+
 import Link from "next/link";
 import Input from "@/components/shared/Input";
 import ToastMessage from "@/components/shared/ToastMessage";
@@ -23,52 +25,25 @@ const SignIn = () => {
 
   const [userName, setUserName] = useState('');
   const [passWord, setPassword] = useState('');
-  const [displayToast, setDisplayToast] = useState(false);
-  const [displayToast2, setDisplayToast2] = useState(false);
   const [isErrorUsername, setIsErrorUsername] = useState(false);
   const [isErrorPassword, setIsErrorPassword] = useState(false);
-  const [responseData, setResponseData] = useState('')
 
   const isError = useMemo(() => isErrorUsername || isErrorPassword || !userName || !passWord, [userName, passWord, isErrorUsername, isErrorPassword])
 
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
     const requestBody = {
       username: userName,
       password: passWord
     }
-
-    let responseHolder = {};
-
-    fetch('http://192.168.1.123:3000/api/auth', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then(response => {
-        responseHolder = response;
-        return response.json();
-      })
-      .then(data => {
-        if (responseHolder.status === 200 || responseHolder.status === 201) {
-          setDisplayToast(true)
-          setTimeout(() => {
-            router.push('/', {
-              scroll: true
-            });
-            setDisplayToast(false);
-          }, 3000);
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('id', data.userId)
-        } else {
-          setResponseData(data.message)
-          setDisplayToast2(true)
-          setTimeout(() => {
-            setDisplayToast2(false)
-          }, 3000);
-        }
-      })
+    const response = await signIn(requestBody);
+    if (response.status === 200 || response.status === 201) {
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('id', response.data.userId)
+      router.push('/')
+    } else {
+      console.log(response.data);
+    }
   }
 
   const handleBlurUsername = () => {
@@ -89,24 +64,11 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-    console.log('setting isLogin in Signin');
     setIsLogin(!!localStorage.getItem('token'));
   }, [])
 
   return (
     <div className={styles["main-session"]}>
-      <ToastMessage
-        onClose={() => setDisplayToast(false)}
-        error={false}
-        successMessage={t('login_success')}
-        showToast={displayToast}
-      />
-      <ToastMessage
-        onClose={() => setDisplayToast2(false)}
-        error={true}
-        errorMessage={responseData}
-        showToast={displayToast2}
-      />
       <div className={styles["signin-container"]}>
         <div className={styles["listener-svg"]}></div>
         <div className={styles["signin-box"]}>
