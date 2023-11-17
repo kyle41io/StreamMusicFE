@@ -12,7 +12,8 @@ export const signIn = async (payload) => {
 
 export const signUp = async (payload) => {
   try {
-    
+    const response = await api.post(API_ROUTE.SIGN_UP, JSON.stringify(payload));
+    return response;
   } catch (error) {
     throw error;
   }

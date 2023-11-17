@@ -7,5 +7,6 @@ export const API_ROUTE = {
   COMMENT: "/comment",
   LIKE: "/like",
   ROOM: "/room",
-  USER_INFO: "/users/"
+  USER_INFO: "/users/",
+  SIGN_UP: "/auth/new"
 };

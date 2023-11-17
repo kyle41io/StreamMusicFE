@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import useUpload from "@/hooks/useUpload";
 
+import { signUp } from "@/api/apiAuth";
+
 import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
@@ -31,7 +33,7 @@ function SignUp() {
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isErrorRepeatPassword, setIsErrorRepeatPassword] = useState(false);
   const [displayToast, setDisplayToast] = useState(false);
-  
+
   const isError = useMemo(() => {
     return isErrorDisplayName || isErrorUserName || isErrorPassword || isErrorRepeatPassword
       || !displayName || !userName || !password || !repeatPassword
@@ -45,34 +47,11 @@ function SignUp() {
       image: await useUpload(img),
     };
 
-    let responsePlaceHolder = {};
-
-    fetch("http://192.168.1.123:3000/api/auth/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((response) => {
-        responsePlaceHolder = response;
-        return response.json();
-      })
-      .then((data) => {
-        if (responsePlaceHolder.status === 200 || responsePlaceHolder.status === 201) {
-          setDisplayToast(true);
-          setTimeout(() => {
-            router.push('/auth/sign-in', {
-              scroll: true
-            })
-            setDisplayToast(false);
-          }, 3000);
-
-        } else {
-          console.log(data);
-        }
-      });
-  };
+    const response = await signUp(body);
+    if(response.status === 201) {
+      router.push('/auth/sign-in')
+    }
+  }
 
   const handleBlurDisplayName = () => {
     if (!displayName.match(/^.{6,32}$/)) {
@@ -108,13 +87,6 @@ function SignUp() {
 
   return (
     <div className={styles["main-session"]}>
-      <ToastMessage
-        onClose={() => setDisplayToast(false)}
-        error={isError}
-        errorMessage={"sign_up_fail"}
-        successMessage={t('sign_up_success')}
-        showToast={displayToast}
-      />
       <div className={styles["signup-container"]}>
         <div className={styles["listener-svg"]}></div>
         <div className={styles["signup-box"]}>
@@ -167,7 +139,7 @@ function SignUp() {
               {t("i_accept")} <span className="link">{t("term_of_use")}</span>
             </span>
           </div>
-          <UploadImg onChange={setImg}/>
+          <UploadImg onChange={setImg} />
           <button className="button-1" disabled={isError} onClick={handleSend}>
             {t("send")}
           </button>
