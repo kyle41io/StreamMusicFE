@@ -1,18 +1,37 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useParams, useRouter } from "next/navigation";
 
-import Image from "next/image";
+import Link from "next-intl/link";
+
 import { BiSolidChevronDown } from "react-icons/bi";
 
 import avatar from "@/assets/images/avatar.png";
 
-import { useTranslations } from "next-intl";
 
-
-export default function UserAvatar() {
-  const menuRef = useRef(null);
-  const [showMenu, setShowMenu] = useState(false);
+export default function UserAvatar({ avatarURL }) {
+  const locale = useParams().locale;
+  const router = useRouter();
   const trans = useTranslations("Header");
+
+  const menuRef = useRef(null);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const changeLocaleTo = useMemo(() => {
+    if(locale === 'vi') {
+      return 'en';
+    } else if (locale === 'en') {
+      return 'vi';
+    }
+  }, [locale]) 
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    router.push('/auth/sign-in');
+  }
 
   useEffect(() => {
     const clickOutside = (e) => {
@@ -28,19 +47,12 @@ export default function UserAvatar() {
   return (
     <div
       ref={menuRef}
-      className={`${
-        showMenu ? "bg-black" : ""
-      } w-[108px] h-20 flex gap-3 items-center justify-center relative`}
+      className={`${showMenu ? "bg-black" : ""
+        } w-[108px] h-20 flex gap-3 items-center justify-center relative`}
       onClick={() => setShowMenu(!showMenu)}
     >
-      <div className="rounded-full w-12 h-12 bg-white cursor-pointer">
-        <Image
-          src={avatar.src}
-          width={48}
-          height={48}
-          alt="Avatar"
-          className=""
-        />
+      <div className="rounded-full object-cover w-12 h-12 bg-white cursor-pointer flex items-center justify-center overflow-hidden">
+        <img src={avatarURL ? avatarURL : avatar.src} className="w-full h-full object-cover" />
       </div>
       <BiSolidChevronDown size={24} className="text-white cursor-pointer" />
       {showMenu && (
@@ -51,13 +63,16 @@ export default function UserAvatar() {
           <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
             {trans("my_profile")}
           </li>
-          <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack flex justify-between hover:bg-gray-100">
+          <Link href={"/"} locale={changeLocaleTo} className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack flex justify-between hover:bg-gray-100">
             <p>{trans("changeLanguage")}</p>
-            <p className="text-primaryGray">Vi</p>
-          </li>
-          <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100">
+            <p className="text-primaryGray">
+              {changeLocaleTo === 'vi' && 'Vi'}
+              {changeLocaleTo === 'en' && 'En'}
+            </p>
+          </Link>
+          <li className="h-12 py-3 px-4 cursor-pointer font-medium text-thirdBlack hover:bg-gray-100" onClick={handleSignOut}>
             <span className="text-primaryError">{trans("sign_out")}</span>
-          </li>         
+          </li>
         </ul>
       )}
     </div>

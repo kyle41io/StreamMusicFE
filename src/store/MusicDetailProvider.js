@@ -7,6 +7,7 @@ import { tracks } from "@/constant/songs(test)";
 export const DetailProvider = createContext();
 
 export default function MusicDetailProvider({ children }) {
+  
   const inputRef = useRef(null);
   const audioRef = useRef(null);
   const progressBarRef = useRef(null);
@@ -23,7 +24,6 @@ export default function MusicDetailProvider({ children }) {
   const [isLiked, setIsLiked] = useState(false);
   const [songVolume, setSongVolume] = useState(50);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [userData, setUserData] = useState("");
 
   return (
     <DetailProvider.Provider
@@ -54,8 +54,6 @@ export default function MusicDetailProvider({ children }) {
         setSongVolume,
         showDeleteModal,
         setShowDeleteModal,
-        userData,
-        setUserData,
       }}
     >
       {children}

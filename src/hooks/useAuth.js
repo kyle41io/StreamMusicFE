@@ -3,13 +3,15 @@
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
 import { useContext, useEffect } from "react";
-
 import { useRouter } from "next/navigation";
+
+import { UserData } from "@/store/UserDataProvider";
+
 
 export function useAuth() {
   const router = useRouter();
 
-  const { userData, setUserData } = useContext(DetailProvider);
+  const {setIsLogin} = useContext(UserData)
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,8 +20,6 @@ export function useAuth() {
       router.push("/auth/sign-in", {
         scroll: true,
       });
-    } else {
-      setUserData(token);
     }
   }, []);
 }
