@@ -24,6 +24,7 @@ export default function MusicDetailProvider({ children }) {
   const [songVolume, setSongVolume] = useState(50);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userData, setUserData] = useState("");
+  const [songData, setSongData] = useState([]);
 
   return (
     <DetailProvider.Provider
@@ -56,6 +57,8 @@ export default function MusicDetailProvider({ children }) {
         setShowDeleteModal,
         userData,
         setUserData,
+        songData,
+        setSongData,
       }}
     >
       {children}
