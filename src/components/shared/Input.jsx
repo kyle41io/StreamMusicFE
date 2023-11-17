@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useTransition } from 'react'
 
 import IcError from '@/assets/icons/IcError';
 import IcClose from '@/assets/icons/IcClose';
 import IcOpen from '@/assets/icons/IcOpen';
 
 import styles from '@/styles/shared/Input.module.css'
+import { useTranslations } from 'next-intl';
 
-const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, errorMessage }) => {
+const Input = ({ id, value, type, placeholder, icon, setDataState, onBlur, isError, errorMessage }) => {
+  const t = useTranslations("Auth");
+
   const [internalType, setInternalType] = useState(type);
   const [eye, setEye] = useState('open');
   const [status, setStatus] = useState('');
@@ -22,7 +25,12 @@ const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, 
   }, [isError])
 
   const handleChangeValue = (event) => {
-    setDataState(event.target.value)
+    setDataState(prev => {
+      return {
+        ...prev,
+        [id]: event.target.value
+      }
+    })
     setStatus('typing');
   }
 
@@ -62,7 +70,7 @@ const Input = ({ value, type, placeholder, icon, setDataState, onBlur, isError, 
         <div className={styles['icon']}>
           {icon}
         </div>
-        <input type={internalType} id={`input-${placeholder}`} className={`${configPadding()} ${styles['input-1']} ${styles[status]}`} placeholder={placeholder} value={value} onChange={event => { handleChangeValue(event) }} onBlur={handleBlur} />
+        <input type={internalType} id={`input-${placeholder}`} className={`${configPadding()} ${styles['input-1']} ${styles[status]}`} placeholder={t(placeholder)} value={value} onChange={event => { handleChangeValue(event) }} onBlur={handleBlur} />
         <div className={styles['right-icons']}>
           {status === 'error' &&
             <IcError />

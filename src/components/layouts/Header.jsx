@@ -22,21 +22,24 @@ export default function Header() {
   const trans = useTranslations("Header");
   const translate = useTranslations("Auth");
 
-  const { isLogin, setIsLogin } = useContext(UserData);
+  const { isLogin } = useContext(UserData);
 
   const [avatarURL, setAvatarURL] = useState('');
 
+  const setAvavarUser = async () => {
+    const data = await getUserInfo(localStorage.getItem('id'));
+    setAvatarURL(data.image);
+  }
+
   useEffect(() => {
-    if (localStorage.getItem('id')) {
-      getUserInfo(localStorage.getItem('id'))
-        .then(data => { setAvatarURL(data.image) })
+    if(localStorage.getItem('token')) {
+      setAvavarUser();
     }
-  }, [])
+  }, [isLogin])
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
       <div className="flex justify-between items-center md:gap-2 h-full 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px]">
-        {/* Logo form */}
         <Link href="/home">
           <div className="flex gap-2 items-center cursor-pointer">
             <Image
