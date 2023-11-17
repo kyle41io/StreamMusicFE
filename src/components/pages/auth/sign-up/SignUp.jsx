@@ -7,17 +7,12 @@ import useUpload from "@/hooks/useUpload";
 
 import { signUp } from "@/api/apiAuth";
 
-import { INPUT_SIGN_UP } from "@/constant/signUpInputs";
+import { INPUT_SIGN_UP } from "@/constant/configInputs";
 
 import Input from "@/components/shared/Input";
 import UploadImg from "./UploadImg";
 import Link from "next/link";
 import ToastMessage from "@/components/shared/ToastMessage";
-
-import IcCard from "@/assets/icons/IcCard";
-import IcPerson from "@/assets/icons/IcPerson";
-import IcLock from "@/assets/icons/IcLock";
-import IcKey from "@/assets/icons/IcKey";
 
 import styles from "@/styles/auth/sign-up/SignUp.module.css";
 
@@ -40,38 +35,33 @@ function SignUp() {
     isErrorRepeatPassword: false
   })
 
-  const [isErrorDisplayName, setIsErrorDisplayName] = useState(false);
-  const [isErrorUserName, setIsErrorUserName] = useState(false);
-  const [isErrorPassword, setIsErrorPassword] = useState(false);
-  const [isErrorRepeatPassword, setIsErrorRepeatPassword] = useState(false);
-
-  // const isError = useMemo(() => {
-  //   return (
-  //     isErrorDisplayName ||
-  //     isErrorUserName ||
-  //     isErrorPassword ||
-  //     isErrorRepeatPassword ||
-  //     !displayName ||
-  //     !userName ||
-  //     !password ||
-  //     !repeatPassword
-  //   );
-  // }, [
-  //   displayName,
-  //   userName,
-  //   password,
-  //   repeatPassword,
-  //   isErrorDisplayName,
-  //   isErrorUserName,
-  //   isErrorPassword,
-  //   isErrorRepeatPassword,
-  // ]);
+  const isError = useMemo(() => {
+    return (
+      isErrorObject.isErrorDisplayName ||
+      isErrorObject.isErrorUserName ||
+      isErrorObject.isErrorPassword ||
+      isErrorObject.isErrorRepeatPassword ||
+      !signUpForm.displayName ||
+      !signUpForm.userName ||
+      !signUpForm.password ||
+      !signUpForm.repeatPassword
+    );
+  }, [
+    signUpForm.displayName,
+    signUpForm.userName,
+    signUpForm.password ,
+    signUpForm.repeatPassword,
+    isErrorObject.isErrorDisplayName,
+    isErrorObject.isErrorUserName,
+    isErrorObject.isErrorPassword,
+    isErrorObject.isErrorRepeatPassword ,
+  ]);
 
   const handleSend = async () => {
     const body = {
-      name: displayName,
-      username: userName,
-      password: password,
+      name: signUpForm.displayName,
+      username: signUpForm.userName,
+      password: signUpForm.password,
       image: await useUpload(img),
     };
 
@@ -81,8 +71,32 @@ function SignUp() {
     }
   };
 
-  const handleBlurForm = (key) => {
-    console.log(key);
+  const handleBlurForm = (item) => {
+    if (item.id !== 'repeatPassword') {
+      if (!signUpForm[item.id].match(item.regex)) {
+        setIsErrorObject(prev => ({
+          ...prev,
+          [item.isError_key]: true
+        }))
+      } else {
+        setIsErrorObject(prev => ({
+          ...prev,
+          [item.isError_key]: false
+        }))
+      }
+    } else {
+      if(signUpForm[item.id] !== signUpForm.password) {
+        setIsErrorObject(prev => ({
+          ...prev,
+          [item.isError_key]: true
+        }))
+      } else {
+        setIsErrorObject(prev => ({
+          ...prev,
+          [item.isError_key]: false
+        }))
+      }
+    }
   }
 
   return (
@@ -104,7 +118,7 @@ function SignUp() {
                 errorMessage={item.errorMessage}
                 setDataState={setSignUpForm}
                 onBlur={() => {
-                  handleBlurForm(item.isError_key);
+                  handleBlurForm(item);
                 }}
               />
             ))}
@@ -116,7 +130,7 @@ function SignUp() {
             </span>
           </div>
           <UploadImg onChange={setImg} />
-          <button className="button-1" onClick={handleSend}>
+          <button className="button-1" disabled={isError} onClick={handleSend}>
             {t("send")}
           </button>
           <span className={styles["linkSignUp"]}>

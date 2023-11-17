@@ -22,7 +22,7 @@ export default function Header() {
   const trans = useTranslations("Header");
   const translate = useTranslations("Auth");
 
-  const { isLogin, setIsLogin } = useContext(UserData);
+  const { isLogin } = useContext(UserData);
 
   const [avatarURL, setAvatarURL] = useState('');
 
@@ -32,8 +32,10 @@ export default function Header() {
   }
 
   useEffect(() => {
-    setAvavarUser();
-  }, [])
+    if(localStorage.getItem('token')) {
+      setAvavarUser();
+    }
+  }, [isLogin])
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">

@@ -1,8 +1,10 @@
-'use client'
+"use client";
 
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+
+import { SIGN_IN_INPUTS } from "@/constant/configInputs";
 
 import { UserData } from "@/store/UserDataProvider";
 
@@ -12,60 +14,60 @@ import Link from "next/link";
 import Input from "@/components/shared/Input";
 import ToastMessage from "@/components/shared/ToastMessage";
 
-import IcPerson from "@/assets/icons/IcPerson";
-import IcLock from "@/assets/icons/IcLock";
-
 import styles from "@/styles/auth/sign-in/SignIn.module.css";
 
 const SignIn = () => {
   const t = useTranslations("Auth");
   const router = useRouter();
 
-  const { setIsLogin } = useContext(UserData)
+  const { setIsLogin } = useContext(UserData);
 
-  const [userName, setUserName] = useState('');
-  const [passWord, setPassword] = useState('');
-  const [isErrorUsername, setIsErrorUsername] = useState(false);
-  const [isErrorPassword, setIsErrorPassword] = useState(false);
+  const [signInForm, setSignInForm] = useState({
+    userName: "",
+    passWord: "",
+  });
 
-  const isError = useMemo(() => isErrorUsername || isErrorPassword || !userName || !passWord, [userName, passWord, isErrorUsername, isErrorPassword])
+  const [isErrorObject, setIsErrorObject] = useState({
+    isErrorUsername: false,
+    isErrorPassword: false
+  })
 
+  const isError = useMemo(() => isErrorObject.isErrorUsername || isErrorObject.isErrorPassword || !signInForm.userName || !signInForm.passWord,
+    [signInForm.userName, signInForm.passWord, isErrorObject.isErrorUsername, isErrorObject.isErrorPassword]
+  );
 
   const handleSubmit = async () => {
     const requestBody = {
-      username: userName,
-      password: passWord
-    }
+      username: signInForm.userName,
+      password: signInForm.passWord,
+    };
     const response = await signIn(requestBody);
     if (response.status === 200 || response.status === 201) {
-      localStorage.setItem('token', response.data.token)
-      localStorage.setItem('id', response.data.userId)
-      router.push('/')
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("id", response.data.userId);
+      router.push("/");
     } else {
       console.log(response.data);
     }
-  }
+  };
 
-  const handleBlurUsername = () => {
-    if (!userName.match(/^.{5,32}$/)) {
-      setIsErrorUsername(true);
+  const handleBlurForm = (item) => {
+    if(!signInForm[item.id].match(item.regex)) {
+      setIsErrorObject(prev => ({
+        ...prev,
+        [item.isError_key]: true 
+      }))
     } else {
-      setIsErrorUsername(false);
-    }
-  }
-
-  const handleBlurPassword = () => {
-    const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,32}$/;
-    if (!passWord.match(regex)) {
-      setIsErrorPassword(true);
-    } else {
-      setIsErrorPassword(false);
+      setIsErrorObject(prev => ({
+        ...prev,
+        [item.isError_key]: false 
+      }))
     }
   }
 
   useEffect(() => {
-    setIsLogin(!!localStorage.getItem('token'));
-  }, [])
+    setIsLogin(!!localStorage.getItem("token"));
+  }, []);
 
   return (
     <div className={styles["main-session"]}>
@@ -74,23 +76,34 @@ const SignIn = () => {
         <div className={styles["signin-box"]}>
           <p className={styles["title"]}>{t("sign_in")}</p>
           <div className={styles["inputs-field"]}>
-            <Input value={userName} type={"text"} placeholder={t("username")} icon={<IcPerson />} setDataState={setUserName} onBlur={handleBlurUsername} isError={isErrorUsername} errorMessage={"Username must have 5-32 characters"} />
-            <Input
-              value={passWord}
-              type={"password"}
-              placeholder={t("password")}
-              icon={<IcLock />}
-              setDataState={setPassword}
-              onBlur={handleBlurPassword}
-              isError={isErrorPassword}
-              errorMessage={"Password must contain 1 upper case, 1 special characters, 1 number and have length from 8 to 32 characters"}
-            />
+            {SIGN_IN_INPUTS.map((item, index) => (
+              <Input
+                key={index}
+                id={item.id}
+                value={signInForm[item.id]}
+                type={item.type}
+                placeholder={item.placeholder}
+                icon={item.icon}
+                isError={isErrorObject[item.isError_key]}
+                errorMessage={item.errorMessage}
+                setDataState={setSignInForm}
+                onBlur={() => {
+                  handleBlurForm(item);
+                }}
+              />
+            ))}
           </div>
           <div className={styles.remember}>
             <input type="checkbox" name="" id="" className={styles.checkbox} />
             <span>{t("remember_me")}</span>
           </div>
-          <button className="button-1" onClick={handleSubmit} disabled={isError}>{t("submit")}</button>
+          <button
+            className="button-1"
+            onClick={handleSubmit}
+            disabled={isError}
+          >
+            {t("submit")}
+          </button>
           <span className={styles["linkSignUp"]}>
             {t("or")}
             <Link href={"/auth/sign-up"} scroll={true}>
