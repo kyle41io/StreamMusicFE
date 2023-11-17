@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import { SIGN_IN_INPUTS } from "@/constant/configInputs";
+import { SIGN_IN_INPUTS, VALIDATE_OPTIONS } from "@/constant/configInputs";
 
 import { UserData } from "@/store/UserDataProvider";
 
@@ -52,14 +52,17 @@ const SignInPage = () => {
   };
 
   const handleBlurForm = (item) => {
+    item.validate_keys.forEach((key) => {
+      const validateOption = VALIDATE_OPTIONS.find((item) => item.key === key);
       setIsErrorObject(prev => ({
         ...prev,
-        [item.isError_key]: !signInForm[item.id].match(item.regex)
+        [item.isError_key]: !validateOption.validateBy(signInForm[item.id], signInForm[validateOption.stateRef])
       }))
+    })
   }
 
   useEffect(() => {
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
       router.push('/')
     }
   })

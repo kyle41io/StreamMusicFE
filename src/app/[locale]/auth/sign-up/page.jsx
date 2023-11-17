@@ -7,7 +7,7 @@ import useUpload from "@/hooks/useUpload";
 
 import { signUp } from "@/api/apiAuth";
 
-import { INPUT_SIGN_UP } from "@/constant/configInputs";
+import { INPUT_SIGN_UP, VALIDATE_OPTIONS } from "@/constant/configInputs";
 
 import Input from "@/components/shared/Input";
 import UploadImg from "@/components/pages/auth/sign-up/UploadImg";
@@ -49,12 +49,12 @@ function SignUp() {
   }, [
     signUpForm.displayName,
     signUpForm.userName,
-    signUpForm.password ,
+    signUpForm.password,
     signUpForm.repeatPassword,
     isErrorObject.isErrorDisplayName,
     isErrorObject.isErrorUserName,
     isErrorObject.isErrorPassword,
-    isErrorObject.isErrorRepeatPassword ,
+    isErrorObject.isErrorRepeatPassword,
   ]);
 
   const handleSend = async () => {
@@ -72,17 +72,13 @@ function SignUp() {
   };
 
   const handleBlurForm = (item) => {
-    if (item.id !== 'repeatPassword') {
-        setIsErrorObject(prev => ({
-          ...prev,
-          [item.isError_key]: !signUpForm[item.id].match(item.regex) 
-        }))
-    } else {
-        setIsErrorObject(prev => ({
-          ...prev,
-          [item.isError_key]: !(signUpForm[item.id] === signUpForm.password)
-        }))
-    }
+    item.validate_keys.forEach(key => {
+      const validateOption = VALIDATE_OPTIONS.find(item => item.key === key);
+      setIsErrorObject(prev => ({
+        ...prev,
+        [item.isError_key]: !validateOption.validateBy(signUpForm[item.id], signUpForm[validateOption.stateRef])
+      }))
+    });
   }
 
   return (
