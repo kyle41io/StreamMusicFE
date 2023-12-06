@@ -1,13 +1,10 @@
 "use client";
-
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
-
-import { getUserInfo } from "@/api/apiUser";
-
-import { UserData } from "@/store/UserDataProvider";
+import { DetailProvider } from "@/store/MusicDetailProvider";
 import Image from "next/image";
 import Link from "next/link";
+
+import React, { useContext } from "react";
+import { useAuth } from "@/hooks/useAuth";
 
 import Button from "../shared/Button";
 import ResultBox from "./HeaderComponents/ResultBox";
@@ -17,29 +14,16 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { MdPlaylistAdd } from "react-icons/md";
 import logo from "@/assets/images/logo.png";
 
-
 export default function Header() {
+  const { userData } = useContext(DetailProvider);
+  // const useAuthentication = useAuth();
   const trans = useTranslations("Header");
   const translate = useTranslations("Auth");
-
-  const { isLogin } = useContext(UserData);
-
-  const [avatarURL, setAvatarURL] = useState('');
-
-  const setAvavarUser = async () => {
-    const data = await getUserInfo(localStorage.getItem('id'));
-    setAvatarURL(data.image);
-  }
-
-  useEffect(() => {
-    if(localStorage.getItem('token')) {
-      setAvavarUser();
-    }
-  }, [isLogin])
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
       <div className="flex justify-between items-center md:gap-2 h-full 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] md:w-[750px] sm:w-[600px] w-[350px]">
+        {/* Logo form */}
         <Link href="/home">
           <div className="flex gap-2 items-center cursor-pointer">
             <Image
@@ -49,6 +33,7 @@ export default function Header() {
               className="object-center min-w-[46px] min-h-[46px] sm:block md:block lg:block xl:block"
               alt="logo"
             />
+
             <div className="text-2xl text-white uppercase font-normal hidden xl:block">
               Music is life
             </div>
@@ -72,7 +57,20 @@ export default function Header() {
 
         {/* Buttons when there's no user */}
 
-        {!isLogin ? (
+        {userData ? (
+          <div className="flex gap-8 items-center">
+            <Link href="/upload">
+              <Button
+                text={trans("create_playlist")}
+                showIcon={{ icon: <MdPlaylistAdd /> }}
+                iconSize={24}
+                iconColor="text-white"
+                className="w-[192px] gap-3"
+              />
+            </Link>
+            <UserAvatar />
+          </div>
+        ) : (
           <div className="flex justify-between 2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4 sm:gap-3">
             <Link href="/auth/sign-in">
               <Button
@@ -87,20 +85,6 @@ export default function Header() {
                 className="w-12 sm:w-24 lg:w-32 xl:w-32 2xl:w-32"
               />
             </Link>
-          </div>
-        ) : (
-          <div className="flex gap-8 items-center">
-
-            <Link href="/upload">
-              <Button
-                text={trans("create_playlist")}
-                showIcon={{ icon: <MdPlaylistAdd /> }}
-                iconSize={24}
-                iconColor="text-white"
-                className="w-[192px] gap-3"
-              />
-            </Link>
-            <UserAvatar avatarURL={avatarURL} />
           </div>
         )}
       </div>

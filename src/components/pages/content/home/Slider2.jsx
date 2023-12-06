@@ -21,11 +21,13 @@ export default function Slider2({ list }) {
     const handleGoLeft = () => {
         sliderRef.current.scrollLeft -= 301;
         setIsBlurLeft(false)
+        console.log(sliderRef.current.scrollLeft);
     }
 
     const handleGoRight = () => {
         sliderRef.current.scrollLeft += 301;
         setIsBlurLeft(true)
+        console.log(sliderRef.current.scrollLeft);
     }
 
     return (

@@ -13,7 +13,7 @@ import { BiSolidChevronDown } from "react-icons/bi";
 
 export default function CommentSection() {
   const optionListRef = useRef(null);
-
+  
   const [showOption, setShowOption] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Newest");
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ export default function CommentSection() {
 
         {/* Sort dropdown */}
         <div
-          className="flex w-[145px] h-[26px] gap-2 items-center border border-primary rounded mb-2 p-2 text-primary text-xs hover:bg-primary hover:text-white cursor-pointer span-dropdown relative"
+          className="flex w-[145px] h-[26px] gap-2 items-center border border-primary rounded mb-2 p-2 text-primary text-xs hover:bg-primary hover:text-white cursor-pointer relative"
           onClick={() => setShowOption(!showOption)}
         >
           <span>Sorted by: {selectedOption}</span>
