@@ -17,15 +17,25 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { MdPlaylistAdd } from "react-icons/md";
 import logo from "@/assets/images/logo.png";
 
-import { useTranslations } from "next-intl";
-
 
 export default function Header() {
-  const { userData } = useContext(DetailProvider);
-  const useAuthentication = useAuth();
   const trans = useTranslations("Header");
   const translate = useTranslations("Auth");
 
+  const { isLogin } = useContext(UserData);
+
+  const [avatarURL, setAvatarURL] = useState('');
+
+  const setAvavarUser = async () => {
+    const data = await getUserInfo(localStorage.getItem('id'));
+    setAvatarURL(data.image);
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem('token')) {
+      setAvavarUser();
+    }
+  }, [isLogin])
 
   return (
     <div className="sticky top-0 flex justify-center bg-primaryBlack w-full h-20 z-10">
@@ -62,21 +72,7 @@ export default function Header() {
 
         {/* Buttons when there's no user */}
 
-        {userData ? (
-          <div className="flex gap-8 items-center">
-
-            <Link href="/upload">
-              <Button
-                text={trans("create_playlist")}
-                showIcon={{ icon: <MdPlaylistAdd /> }}
-                iconSize={24}
-                iconColor="text-white"
-                className="w-[192px] gap-3"
-              />
-            </Link>
-            <UserAvatar />
-          </div>
-        ) : (
+        {!isLogin ? (
           <div className="flex justify-between 2xl:gap-8 xl:gap-8 lg:gap-8 md:gap-4 sm:gap-3">
             <Link href="/auth/sign-in">
               <Button
