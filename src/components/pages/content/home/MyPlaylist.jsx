@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 import { MY_PLAYLISTS } from "@/constant/myplaylists";
 
@@ -14,6 +15,8 @@ import IcPlayOrange from "@/assets/icons/IcPlayOrange";
 import styles from "@/styles/content/home/MyPlaylist.module.css";
 
 function MyPlaylist() {
+  const router = useRouter();
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const t = useTranslations("Home");
@@ -32,7 +35,7 @@ function MyPlaylist() {
             <div
               className={styles["my-playlist"]}
               key={index}
-              onClick={() => open("/music-detail")}
+              onClick={() => router.push("/music-detail")}
             >
               <img src={item.img_src} className={styles["my-playlist-bg"]} />
               <div className={styles["my-playlist-img-container"]}>
