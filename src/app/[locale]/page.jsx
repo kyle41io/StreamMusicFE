@@ -8,7 +8,7 @@ import HomePage from "./(content)/home/page";
 
 function Page({ data }) {
   const t = useTranslations("Auth");
-  // useAuth();
+  useAuth();
   return (
     <div>
       <HomePage />

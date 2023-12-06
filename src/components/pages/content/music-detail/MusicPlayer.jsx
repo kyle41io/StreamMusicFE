@@ -3,18 +3,20 @@ import Image from "next/image";
 
 import { DetailProvider } from "@/store/MusicDetailProvider";
 
-import { useContext} from "react";
+import { useContext } from "react";
 
 import useSongControl from "@/hooks/useSongControl";
 
 import SongControl from "./SongControl";
 
-import avatar from "@/assets/images/song_detail_avatar.png";
-
 const MAX = 100;
 
-export default function MusicPlayer() {
-  const { songProgressValue, progressBarRef } = useContext(DetailProvider);
+export default function MusicPlayer({ data }) {
+  const {
+    songProgressValue,
+    progressBarRef,
+    currentIndex,
+  } = useContext(DetailProvider);
   const { onSongProgressChange } = useSongControl();
 
   const getBackgroundSize = () => {
@@ -26,18 +28,18 @@ export default function MusicPlayer() {
       <section className="flex p-5 justify-between">
         <div className="flex rounded gap-6">
           <Image
-            src={avatar.src}
+            src={data[currentIndex]?.image}
             width={98}
             height={98}
             alt="Song image"
             className="rounded"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-3">
             <h2 className="text-2xl font-normal text-white capitalize">
-              Nàng thơ
+              {data[currentIndex].songName}
             </h2>
             <h4 className="text-xs font-normal text-white capitalize">
-              Hoàng Dũng
+              {data[currentIndex].singer}
             </h4>
           </div>
         </div>
