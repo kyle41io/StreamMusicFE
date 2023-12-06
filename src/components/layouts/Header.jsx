@@ -2,6 +2,7 @@
 import { DetailProvider } from "@/store/MusicDetailProvider";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import React, { useContext } from "react";
 import { useAuth } from "@/hooks/useAuth";
